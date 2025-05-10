@@ -34,6 +34,41 @@ body {
   scrollbar-color: #00000060 transparent;
 }
 
+.herobg {
+  background-image: url('/images/herobg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
+.how-it-worksbg1 {
+  background: linear-gradient(rgba(179, 159, 241, 0.23), rgba(179, 159, 241, 0.23)), url('/images/how-it-works1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 13px;
+  height: 630px;
+}
+.how-it-worksbg2 {
+  background: linear-gradient(rgba(0, 0, 0, 0.278), rgba(0, 0, 0, 0.278)), url('/images/howbg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 13px;
+  height: 630px;
+}
 
+@media (min-width: 840px) {
+  .how-it-worksbg1 {
+    height: 400px;
+  }
+}
 
+.subscribebg {
+  background-image: url('/images/subscribebg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 13px;
+  height: 550px;
+}

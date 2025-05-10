@@ -34,7 +34,7 @@ export default function Navbar() {
 
   return (
     <div className='fixed top-0 left-0 w-full z-50'>
-    <nav className=" px-4 md:px-6 lg:px-8 2xl:px-40 bg-primary text-white h-[64px] content-center flex items-center justify-between relative">
+    <nav className=" px-4 md:px-10 lg:px-20 2xl:px-40 bg-primary text-white h-[64px] content-center flex items-center justify-between relative">
       {/* Left: Logo and Language */}
       <div className="flex items-center gap-5 w-full sm:w-auto justify-between">
         <span className="font-semibold text-2xl">Logo</span>
@@ -84,7 +84,7 @@ export default function Navbar() {
       {/* Right: Button and Hamburger */}
       <div className="flex items-center gap-4">
         <button
-          className="bg-white hover:bg-primary hover:text-white text-black rounded-md px-7 py-2 text-sm font-medium border hover:border-blue-100 transition hidden md:block"
+          className="bg-primary hover:bg-white hover:text-primary text-white rounded-md px-7 py-2 text-sm font-medium border hover:border-blue-100 transition hidden md:block"
         >
           About
         </button>

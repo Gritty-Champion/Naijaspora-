@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 const inter = Inter({
   weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
@@ -17,9 +18,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.variable}`}>
         <Navbar />
-        <div className="px-4 md:px-6 lg:px-8 2xl:px-40 mt-[64px]">
+        <div className="mt-[64px]">
         {children}
         </div>
+        <Footer />
       </body>
     </html>
   );
