@@ -30,7 +30,9 @@ const Hero = () => {
 
           <div className="flex relative z-10 items-center gap-8">
             <Button className="px-[30px] py-[8px]">Get Started</Button>
-            <Button appearance="outline">Talk to Expert</Button>
+            <Button appearance="outline" className="px-[30px] py-[8px]">
+              Talk to Expert
+            </Button>
           </div>
 
           <div className="absolute top-0 left-0 w-full h-full">
