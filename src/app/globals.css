@@ -14,6 +14,7 @@
 @theme inline {
   --font-inter: var(--font-inter);
   --font-roboto: var(--font-roboto);
+  --font-inria: var(--font-inria);
   --color-primary: var(--primary);
   --color-dark: var(--dark);
   --color-danger: var(--danger);

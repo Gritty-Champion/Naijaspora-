@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Roboto } from "next/font/google";
+import { Inter, Roboto,Inria_Sans } from "next/font/google";
 import "./globals.css";
 import { ControllerProvider } from "@/providers/Controller";
 
@@ -11,6 +11,13 @@ const inter = Inter({
 const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
+})
+
+const inria = Inria_Sans({
+  variable: "--font-inria",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "700"],
 })
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,7 +32,7 @@ export default function RootLayout({
   return (
     <ControllerProvider>
       <html lang="en">
-        <body className={`${inter.variable} ${roboto.variable} antialiased`}>
+        <body className={`${inter.variable} ${roboto.variable} ${inria.variable} antialiased`}>
           {children}
         </body>
       </html>

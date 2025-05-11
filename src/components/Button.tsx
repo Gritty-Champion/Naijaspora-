@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    "inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-all duration-500 cursor-pointer";
+    "flex items-center justify-center gap-2 rounded-md font-medium transition-all duration-500 cursor-pointer";
 
   const variantStyles = {
     primary: {
@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
       plain: "text-[#4B5563] hover:underline",
     },
     link: {
-      filled: "text-[#0070C9] hover:text-[#14181F] underline p-0",
+      filled: "text-[#0070C9] hover:text-[#14181F] p-0",
       outline:
         "border-2 border-[#0070C9] text-[#0070C9] hover:bg-[#0070C9] hover:text-[#ffffff] p-0",
       plain: "text-[#0070C9] hover:underline p-0",
@@ -48,18 +48,34 @@ const Button: React.FC<ButtonProps> = ({
   if (variant === "link" && to) {
     return (
       <Link href={to} className={buttonClasses}>
-        {prefixIcon && <span className="button-prefix">{prefixIcon}</span>}
-        {children}
-        {suffixIcon && <span className="button-suffix">{suffixIcon}</span>}
+        {prefixIcon && (
+          <div className="flex items-center gap-2 h-full">
+            <span className="button-prefix">{prefixIcon}</span>
+          </div>
+        )}
+        <div className="flex items-center gap-2 h-full">{children}</div>
+        {suffixIcon && (
+          <div className="flex items-center gap-2 h-full">
+            <span className="button-suffix">{suffixIcon}</span>{" "}
+          </div>
+        )}
       </Link>
     );
   }
 
   return (
     <button {...props} className={buttonClasses}>
-      {prefixIcon && <span className="button-prefix">{prefixIcon}</span>}
-      {children}
-      {suffixIcon && <span className="button-suffix">{suffixIcon}</span>}
+      {prefixIcon && (
+        <div className="flex items-center gap-2 h-full border">
+          <span className="button-prefix">{prefixIcon}</span>
+        </div>
+      )}
+      <div className="flex items-center gap-2 h-full">{children}</div>
+      {suffixIcon && (
+        <div className="flex items-center gap-2 h-full">
+          <span className="button-suffix">{suffixIcon}</span>{" "}
+        </div>
+      )}
     </button>
   );
 };
