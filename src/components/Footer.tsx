@@ -103,6 +103,30 @@ const Footer = () => {
           </div>
         </div>
       </Container>
+      <Container>
+        <div className="flex justify-between items-center shrink-0 self-stretch bg-[#F5F5F7] px-20 py-[27px]">
+          <div className="flex flex-col items-start gap-2.5 flex-[1_0_0]">
+            <p className="text-black font-inter text-[16.8px] font-normal leading-[28.235px]">
+              © 2025 Naijaspora. All rights reserved.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-[34px]">
+            {[
+              { name: "Terms of Service", link: "/terms" },
+              { name: "Privacy Policy", link: "/privacy" },
+            ].map((item, idx) => (
+              <Link
+                href={item.link}
+                key={idx}
+                className="flex min-w-[141.071px] w-fit flex-col justify-center text-black font-inter text-[16.8px] font-normal leading-[28.235px]"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </Container>
     </footer>
   );
 };

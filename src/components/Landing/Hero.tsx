@@ -1,12 +1,16 @@
+"use client";
+
 import React from 'react'
 import Container from '../Container';
 import Button from '../Button';
 import HeroBg from "@/img/HeroBG.svg?url"
 import Image from 'next/image';
+import { useController } from '@/hooks/useController';
 
 const Hero = () => {
+  const {heroRef} = useController();
   return (
-    <section className="w-full h-[711px] relative">
+    <section ref={heroRef} className="w-full h-[711px] relative">
       <Container>
         <div className="flex px-20 py-[124px] flex-col justify-center items-start gap-[43px]">
           <div className="flex relative z-10 justify-center items-center gap-2.5">
