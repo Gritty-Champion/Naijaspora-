@@ -1,9 +1,12 @@
+import Header from "@/components/Header";
+import Hero from "@/components/Landing/Hero";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
-      Naijaspora
+    <div className="flex w-full min-h-screen flex-col justify-start items-center gap-20 bg-white">
+      <Header />
+      <Hero />
     </div>
   );
 }
