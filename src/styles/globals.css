@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #0070C9;
+  --dark: #14181F;
+  --danger: #EF4444;
+  --white: #ffffff;
+  --grey: #4B5563;
+
+}
+
+@theme inline {
+  --font-inter: var(--font-inter);
+  --font-roboto: var(--font-roboto);
+  --font-inria: var(--font-inria);
+
+  
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on_primary);
+  --color-primary-container: var(--primary_container);
+  --color-on-primary-container: var(--on_primary_container);
+  --color-primary-fixed: var(--primary_fixed);
+  --color-on-primary-fixed: var(--on_primary_fixed);
+  --color-primary-fixed-dim: var(--primary_fixed_dim);
+  --color-on-primary-fixed-variant: var(--on_primary_fixed_variant);
+
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on_secondary);
+  --color-secondary-container: var(--secondary_container);
+  --color-on-secondary-container: var(--on_secondary_container);
+  --color-secondary-fixed: var(--secondary_fixed);
+  --color-on-secondary-fixed: var(--on_secondary_fixed);
+  --color-secondary-fixed-dim: var(--secondary_fixed_dim);
+  --color-on-secondary-fixed-variant: var(--on_secondary_fixed_variant);
+
+  --color-tertiary: var(--tertiary);
+  --color-on-tertiary: var(--on_tertiary);
+  --color-tertiary-container: var(--tertiary_container);
+  --color-on-tertiary-container: var(--on_tertiary_container);
+  --color-tertiary-fixed: var(--tertiary_fixed);
+  --color-on-tertiary-fixed: var(--on_tertiary_fixed);
+  --color-tertiary-fixed-dim: var(--tertiary_fixed_dim);
+  --color-on-tertiary-fixed-variant: var(--on_tertiary_fixed_variant);
+
+  --color-surface: var(--surface);
+  --color-on-surface: var(--on_surface);
+  --color-surface-container: var(--surface_container);
+}

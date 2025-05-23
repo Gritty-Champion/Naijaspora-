@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Roboto,Inria_Sans } from "next/font/google";
-import "./globals.css";
 import { ControllerProvider } from "@/providers/Controller";
+import GlobalStyles from "@/components/GlobalStyles";
+import "@/styles/globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,7 +33,10 @@ export default function RootLayout({
   return (
     <ControllerProvider>
       <html lang="en">
-        <body className={`${inter.variable} ${roboto.variable} ${inria.variable} antialiased`}>
+        <body
+          className={`${inter.variable} ${roboto.variable} ${inria.variable} antialiased`}
+        >
+          <GlobalStyles />
           {children}
         </body>
       </html>
