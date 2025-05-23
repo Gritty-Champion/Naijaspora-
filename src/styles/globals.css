@@ -1,0 +1,294 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on_primary);
+  --color-primary-container: var(--primary_container);
+  --color-on-primary-container: var(--on_primary_container);
+  --color-primary-fixed: var(--primary_fixed);
+  --color-on-primary-fixed: var(--on_primary_fixed);
+  --color-primary-fixed-dim: var(--primary_fixed_dim);
+  --color-on-primary-fixed-variant: var(--on_primary_fixed_variant);
+
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on_secondary);
+  --color-secondary-container: var(--secondary_container);
+  --color-on-secondary-container: var(--on_secondary_container);
+  --color-secondary-fixed: var(--secondary_fixed);
+  --color-on-secondary-fixed: var(--on_secondary_fixed);
+  --color-secondary-fixed-dim: var(--secondary_fixed_dim);
+  --color-on-secondary-fixed-variant: var(--on_secondary_fixed_variant);
+
+  --color-tertiary: var(--tertiary);
+  --color-on-tertiary: var(--on_tertiary);
+  --color-tertiary-container: var(--tertiary_container);
+  --color-on-tertiary-container: var(--on_tertiary_container);
+  --color-tertiary-fixed: var(--tertiary_fixed);
+  --color-on-tertiary-fixed: var(--on_tertiary_fixed);
+  --color-tertiary-fixed-dim: var(--tertiary_fixed_dim);
+  --color-on-tertiary-fixed-variant: var(--on_tertiary_fixed_variant);
+
+  --color-surface: var(--surface);
+  --color-on-surface: var(--on_surface);
+  --color-surface-container: var(--surface_container);
+
+  /* Fonts */
+  /* --font-display-large-family: var(--font-inter);
+  --font-display-large-size: 3rem;
+  --font-display-large-weight: 700;
+  --font-display-large-line-height: 1.2;
+  --font-display-large-letter-spacing: -0.015em;
+}
+
+:root {
+  --display-large: var(--font-inter), 3rem, 700, 1.2, -0.015em;
+   */
+}
+
+@layer components {
+  .display-large {
+    font-family: var(--font-monstserrat);
+    font-size: 57px;
+    font-weight: 600;
+    line-height: 64px;
+    letter-spacing: -0.25px;
+  }
+
+  .display-large-em {
+    font-family: var(--font-monstserrat);
+    font-size: 57px;
+    font-weight: 700;
+    line-height: 64px;
+    letter-spacing: -0.25px;
+  }
+
+  .display-medium {
+    font-family: var(--font-monstserrat);
+    font-size: 45px;
+    font-weight: 500;
+    line-height: 52px;
+    letter-spacing: 0;
+  }
+
+  .display-medium-em {
+    font-family: var(--font-monstserrat);
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 52px;
+    letter-spacing: 0;
+  }
+
+  .display-small {
+    font-family: var(--font-monstserrat);
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 44px;
+    letter-spacing: 0;
+  }
+
+  .display-small-em {
+    font-family: var(--font-monstserrat);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 44px;
+    letter-spacing: 0;
+  }
+
+  .headline-large {
+    font-family: var(--font-monstserrat);
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0;
+  }
+
+  .headline-large-em {
+    font-family: var(--font-monstserrat);
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 40px;
+    letter-spacing: 0;
+  }
+
+
+  .headline-medium {
+    font-family: var(--font-monstserrat);
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0;
+  }
+
+  .headline-medium-em {
+    font-family: var(--font-monstserrat);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: 0;
+  }
+
+  .headline-small {
+    font-family: var(--font-monstserrat);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0;
+  }
+
+  .headline-small-em {
+    font-family: var(--font-monstserrat);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: 0;
+  }
+
+  .title-large {
+    font-family: var(--font-monstserrat);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0;
+  }
+
+  .title-large-em {
+    font-family: var(--font-monstserrat);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0;
+  }
+
+  .title-medium {
+    font-family: var(--font-monstserrat);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+
+  .title-medium-em {
+    font-family: var(--font-monstserrat);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+
+  .title-small {
+    font-family: var(--font-monstserrat);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+
+  .title-small-em {
+    font-family: var(--font-monstserrat);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+
+  .label-large {
+    font-family: var(--font-inter);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0;
+  }
+
+  .label-large-em {
+    font-family: var(--font-inter);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0;
+  }
+
+  .label-medium {
+    font-family: var(--font-inter);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0;
+  }
+
+  .label-medium-em {
+    font-family: var(--font-inter);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0;
+  }
+
+  .label-small {
+    font-family: var(--font-inter);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0;
+  }
+
+  .label-small-em {
+    font-family: var(--font-inter);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0;
+  }
+
+  .body-large {
+    font-family: var(--font-inter);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+
+  .body-large-em {
+    font-family: var(--font-inter);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+
+  .body-medium {
+    font-family: var(--font-inter);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+  }
+
+  .body-medium-em {
+    font-family: var(--font-inter);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0;
+  }
+
+  .body-medium {
+    font-family: var(--font-inter);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0;
+  }
+
+  .body-medium-em {
+    font-family: var(--font-inter);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0;
+  }
+}
