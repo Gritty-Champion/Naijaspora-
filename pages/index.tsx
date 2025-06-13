@@ -1,4 +1,6 @@
 // import Head from "next/head";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
 import Image from "next/image";
 import { useEffect } from "react";
 
@@ -15,10 +17,21 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head> */}
-      <div
-        className={"font-montserrat"}
-      >
-        <main className="text-primary-base">some some</main>
+      <div className={"font-montserrat"}>
+        <Header />
+        <main className="flex w-full flex-col items-center gap-[50px] bg-white">
+          <Hero
+            title={
+              <>
+                Your Next Adventure{" "}
+                <span className="font-bold text-primary-on_primary_fixed">
+                  Starts Here!
+                </span>
+              </>
+            }
+            desc="Expert travel planning tailored to your dreams. Let us handle the details while you explore the world effortlessly."
+          />
+        </main>
       </div>
     </>
   );
