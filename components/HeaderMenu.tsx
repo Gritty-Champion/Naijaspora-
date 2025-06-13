@@ -9,9 +9,16 @@ import MenuVideo from "@/img/menuVideos.svg";
 import { RiArrowDropDownFill } from "@remixicon/react";
 import { useRouter } from "next/router";
 import Button from "./Button";
+import {useController} from "@/hooks/useController";
+import { cn } from "@/libs/cn";
 
-const HeaderMenu = () => {
+interface HeaderMenuProps {
+  isScrolled: boolean
+}
+
+const HeaderMenu = ({isScrolled}: HeaderMenuProps) => {
   const router = useRouter();
+  const {isHeroInView} = useController();
   const menuItems = [
     {
       label: "Services",
@@ -99,13 +106,23 @@ const HeaderMenu = () => {
         {menuItems.map((menu, idx) => (
           <NavigationMenu.Item key={idx}>
             <NavigationMenu.Trigger className="group  flex justify-center items-center gap-[12px]">
-              <p className="text-white text-title-medium font-montserrat font-medium">
+              <p
+                className={cn("text-title-medium font-montserrat font-medium", {
+                  "text-black": !isHeroInView,
+                  "text-white": isHeroInView || isScrolled,
+                })}
+              >
                 {menu.label}
               </p>
 
               {menu.hasChildren && (
                 <div className="flex items-center justify-center gap-2.5">
-                  <RiArrowDropDownFill className="w-7 h-7 aspect-[1/1] text-white" />
+                  <RiArrowDropDownFill
+                    className={cn("w-7 h-7 aspect-[1/1]", {
+                      "text-black": !isHeroInView,
+                      "text-white": isHeroInView || isScrolled,
+                    })}
+                  />
                 </div>
               )}
             </NavigationMenu.Trigger>

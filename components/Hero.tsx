@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Button from './Button'
 import { RiArrowRightCircleLine, RiPlayCircleLine } from '@remixicon/react'
 import SVGCurve from "@/img/curveSVGWhite.svg?url"
+import { useController } from '@/hooks/useController'
 
 type heroProps = {
   heroImage?: any;
@@ -26,8 +27,9 @@ const Hero = ({
   vidComClick = () => {},
   vidComText = "Everything you need to know about NaijaSpora",
 }: heroProps) => {
+  const { heroRef } = useController()
   return (
-    <section className="flex relative w-full h-[98vh] flex-col justify-center items-start gap-2.5">
+    <section ref={heroRef} className="flex relative w-full h-[98vh] flex-col justify-center items-start gap-2.5">
       <Wrapper>
         {/* Background and Overlays */}
         <div className="w-full h-full z-0 absolute top-0 left-0">

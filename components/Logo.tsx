@@ -1,9 +1,22 @@
 import React from 'react'
+import {cn} from "@/libs/cn";
+import {useController} from "@/hooks/useController";
 
-const Logo = () => {
+interface LogoProps {
+    isScrolled: boolean
+}
+
+const Logo = ({isScrolled}: LogoProps) => {
+  const {isHeroInView} = useController()
   return (
     <div className='flex flex-col items-start gap-2.5 p-2.5'>
-      <p className='text-primary-on_primary text-display-small font-semibold '>NaijaSpora</p>
+      <p className={cn(
+        "!text-display-small font-semibold",
+        {
+          "text-primary-on_primary": isScrolled || isHeroInView,
+          "text-black": !isHeroInView
+        }
+      )}>NaijaSpora</p>
     </div>
   )
 }
