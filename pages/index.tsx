@@ -18,7 +18,7 @@ export default function Home() {
       <div
         className={"font-montserrat"}
       >
-        <main></main>
+        <main className="text-primary-base">some some</main>
       </div>
     </>
   );
