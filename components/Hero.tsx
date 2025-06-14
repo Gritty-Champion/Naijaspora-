@@ -29,7 +29,10 @@ const Hero = ({
 }: heroProps) => {
   const { heroRef } = useController()
   return (
-    <section ref={heroRef} className="flex relative w-full h-[98vh] flex-col justify-center items-start gap-2.5">
+    <section
+      ref={heroRef}
+      className="flex relative w-full h-[98vh] flex-col justify-center items-start gap-2.5"
+    >
       <Wrapper>
         {/* Background and Overlays */}
         <div className="w-full h-full z-0 absolute top-0 left-0">
@@ -41,9 +44,10 @@ const Hero = ({
             priority
           />
         </div>
+
         <div className="flex w-full z-0 h-full items-start gap-2.5 absolute top-0 left-0 [background:rgba(255,255,255,0.15)] p-2.5" />
 
-        <div className="flex flex-col w-full h-[140px] z-0 items-start absolute right-0 bottom-0">
+        <div className="hidden xl:flex flex-col w-full h-[140px] z-0 items-start absolute right-0 bottom-0">
           <Image
             src={SVGCurve}
             alt="Hero Background"
@@ -53,30 +57,32 @@ const Hero = ({
           />
         </div>
 
-        <div className="flex relative z-[1] max-w-[751px] h-full flex-col items-start gap-[36px] shrink-0">
-          <p className="self-stretch font-montserrat text-white text-[74px] font-semibold leading-[normal]">
-            {title}
-          </p>
-
-          <div className="flex max-w-[545px] flex-col items-start gap-2.5">
-            <p className="self-stretch text-white text-body-large font-regular">
-              {desc}
+        <div className="w-full relative z-[1] h-full">
+          <div className="flex  w-full lg:max-w-[751px] h-full flex-col items-start gap-[36px] shrink-0">
+            <p className="self-stretch font-montserrat text-white text-[42px] md:text-[61px] lg:text-[74px] font-semibold leading-[normal]">
+              {title}
             </p>
-          </div>
 
-          <Button
-            iconPosition="right"
-            icon={<RiArrowRightCircleLine size={20} />}
-            onClick={heroBtnClick}
-          >
-            {heroBtnText}
-          </Button>
+            <div className="flex max-w-[545px] flex-col items-start gap-2.5">
+              <p className="self-stretch text-white text-body-large font-regular">
+                {desc}
+              </p>
+            </div>
 
-          <div className="flex cursor-pointer w-[416px] items-center gap-3 rounded-[10px]">
-            <RiPlayCircleLine className="w-12 h-12 shrink-0 aspect-[1/1] text-surface-container" />
-            <p className="max-w-[200px] shrink-0 text-surface-container font-inter font-normal text-body-small">
-              {vidComText}
-            </p>
+            <Button
+              iconPosition="right"
+              icon={<RiArrowRightCircleLine size={20} />}
+              onClick={heroBtnClick}
+            >
+              {heroBtnText}
+            </Button>
+
+            <div className="flex cursor-pointer w-full max-w-[416px] items-center gap-3 rounded-[10px]">
+              <RiPlayCircleLine className="w-12 h-12 shrink-0 aspect-[1/1] text-surface-container" />
+              <p className="max-w-[200px] shrink-0 text-surface-container font-inter font-normal text-body-small">
+                {vidComText}
+              </p>
+            </div>
           </div>
         </div>
       </Wrapper>

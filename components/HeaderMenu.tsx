@@ -101,15 +101,15 @@ const HeaderMenu = ({isScrolled}: HeaderMenuProps) => {
   ];
 
   return (
-    <NavigationMenu.Root className=" z-10 flex items-center gap-[32px]">
+    <NavigationMenu.Root className="z-10 hidden lg:flex items-center gap-[32px]">
       <NavigationMenu.List className="center m-0 flex items-center gap-[32px] list-none">
         {menuItems.map((menu, idx) => (
           <NavigationMenu.Item key={idx}>
             <NavigationMenu.Trigger className="group  flex justify-center items-center gap-[12px]">
               <p
                 className={cn("text-title-medium font-montserrat font-medium", {
+                  "text-primary-on_primary": isScrolled || isHeroInView,
                   "text-black": !isHeroInView,
-                  "text-white": isHeroInView || isScrolled,
                 })}
               >
                 {menu.label}
@@ -119,8 +119,8 @@ const HeaderMenu = ({isScrolled}: HeaderMenuProps) => {
                 <div className="flex items-center justify-center gap-2.5">
                   <RiArrowDropDownFill
                     className={cn("w-7 h-7 aspect-[1/1]", {
+                      "text-primary-on_primary": isScrolled || isHeroInView,
                       "text-black": !isHeroInView,
-                      "text-white": isHeroInView || isScrolled,
                     })}
                   />
                 </div>

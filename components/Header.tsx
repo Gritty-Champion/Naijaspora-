@@ -5,7 +5,7 @@ import Wrapper from './Wrapper'
 import Logo from './Logo'
 import HeaderMenu from './HeaderMenu'
 import Button from './Button'
-import { RiArrowRightCircleLine } from '@remixicon/react'
+import { RiArrowRightCircleLine, RiMenuLine } from '@remixicon/react'
 import { useController } from '@/hooks/useController'
 import { cn } from '@/libs/cn'
 
@@ -41,30 +41,36 @@ const Header = () => {
 
           <HeaderMenu isScrolled={isScrolled} />
 
-          <div className="flex items-center gap-[24px]">
+          <div className="hidden lg:flex items-center gap-[24px]">
             <Button
               variant="text"
               className={cn({
+                "text-primary-on_primary": isScrolled || isHeroInView,
                 "text-black": !isHeroInView,
-                "text-white": isHeroInView || isScrolled,
               })}
             >
               Log In
             </Button>
             <Button
-              variant="blur"
+              variant={isScrolled ? "primary" : "blur"}
               iconPosition="right"
               icon={
                 <RiArrowRightCircleLine
-                  className={cn("w-5 h-5 shrink-0 aspect-[1/1", {
-                    "text-black": !isHeroInView,
-                    "text-white": isHeroInView || isScrolled,
-                  })}
+                  className={cn("w-5 h-5 shrink-0 aspect-[1/1] text-white")}
                 />
               }
             >
               Get started
             </Button>
+          </div>
+
+          <div className="w-fit h-fit flex lg:hidden justify-center items-center">
+            <RiMenuLine
+              className={cn("h-[40px] w-[60px]",{
+                "text-primary-on_primary": isScrolled || isHeroInView,
+                "text-black": !isHeroInView,
+              })}
+            />
           </div>
         </div>
       </Wrapper>
