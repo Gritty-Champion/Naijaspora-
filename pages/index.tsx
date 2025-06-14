@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Landing/Features";
 import KeyPoints from "@/components/Landing/KeyPoints";
 import MissionStatement from "@/components/Landing/MissionStatement";
+import Services from "@/components/Landing/Services";
 import Image from "next/image";
 import { useEffect } from "react";
 
@@ -37,6 +38,7 @@ export default function Home() {
           <Features />
           <KeyPoints />
           <MissionStatement />
+          <Services />
         </main>
       </div>
     </>

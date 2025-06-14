@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ControllerProvider>
-      <AnimatePresence mode="wait" initial={true}>
+      <AnimatePresence>
         <GlobalStyle />
         <Component {...pageProps} key={router.route} />
       </AnimatePresence>
