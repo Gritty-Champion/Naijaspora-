@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Landing/Features";
 import KeyPoints from "@/components/Landing/KeyPoints";
+import MissionStatement from "@/components/Landing/MissionStatement";
 import Image from "next/image";
 import { useEffect } from "react";
 
@@ -35,6 +36,7 @@ export default function Home() {
           />
           <Features />
           <KeyPoints />
+          <MissionStatement />
         </main>
       </div>
     </>
