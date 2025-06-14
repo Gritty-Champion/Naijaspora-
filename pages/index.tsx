@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Landing/Features";
+import KeyPoints from "@/components/Landing/KeyPoints";
 import Image from "next/image";
 import { useEffect } from "react";
 
@@ -33,6 +34,7 @@ export default function Home() {
             desc="Expert travel planning tailored to your dreams. Let us handle the details while you explore the world effortlessly."
           />
           <Features />
+          <KeyPoints />
         </main>
       </div>
     </>
