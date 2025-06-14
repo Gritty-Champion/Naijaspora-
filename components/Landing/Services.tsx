@@ -143,9 +143,9 @@ const Services = () => {
     <section className="w-full h-fit">
       <Wrapper>
         <div className="flex w-full flex-col items-center gap-[50px] bg-white">
-          <div className="flex w-full items-end gap-2.5">
+          <div className="flex flex-col lg:flex-row w-full items-end gap-2.5">
             <div className="flex max-w-[681px] flex-col items-start gap-2.5 shrink-0 p-2.5">
-              <p className="self-stretch text-black font-montserrat text-display-large font-semibold">
+              <p className="self-stretch text-black font-montserrat text-headline-medium lg:text-display-large font-semibold">
                 More than just consultation. It's your global safety net.
               </p>
             </div>
@@ -191,10 +191,10 @@ const Services = () => {
 
                   {/* Content */}
                   <div className="relative z-20 flex max-w-[615px] h-[368px] flex-col justify-between items-start shrink-0">
-                    <p className="w-full font-montserrat text-display-small font-medium">
+                    <p className="w-full font-montserrat text-headline-small lg:text-display-small font-medium">
                       {item.title}
                     </p>
-                    <p className="font-montserrat text-display-medium font-semibold">
+                    <p className="font-montserrat text-headline-medium lg:text-display-medium font-semibold">
                       {item.desc}
                     </p>
                   </div>
