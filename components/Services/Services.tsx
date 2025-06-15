@@ -24,8 +24,8 @@ const Services = ({
     >
       <Wrapper>
         <div className="flex w-full flex-col justify-center items-center gap-[50px] self-stretch py-2.5">
-          <div className="flex w-full items-center gap-2.5 p-2.5">
-            <p className="w-full shrink-0 text-black text-display-small font-montserrat font-semibold">
+          <div className="flex w-full justify-center items-center gap-2.5 p-2.5">
+            <p className="w-fit shrink-0 text-black text-display-small font-montserrat font-semibold">
               {heading}
             </p>
           </div>

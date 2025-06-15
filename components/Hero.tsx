@@ -78,11 +78,11 @@ const Hero = ({
           />
         </div>
 
-        <div className="w-full flex relative z-[1] h-full flex-row py-[10vh]">
+        <div className="w-full flex relative z-[1] h-full flex-row py-[20vh]">
           <div className="flex  w-full flex-1 lg:max-w-[751px] h-full flex-col items-start gap-[36px] shrink-0">
             <p
               className={cn(
-                "self-stretch font-montserrat text-[42px] xl:text-[74px] font-semibold leading-[normal]",
+                "self-stretch font-montserrat text-[42px] xl:text-[70px] font-semibold leading-[normal]",
                 textStyles
               )}
             >

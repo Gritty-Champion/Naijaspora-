@@ -5,6 +5,9 @@ import ConsultationServiceThree from "@/img/consultations/services_3.svg?url";
 import FundingServiceOne from "@/img/funding/funding_1.svg?url";
 import FundingServiceTwo from "@/img/funding/funding_2.svg?url";
 import FundingServiceThree from "@/img/funding/funding_3.svg?url";
+import AgentServiceOne from "@/img/agents/agent_1.svg?url";
+import AgentServiceTwo from "@/img/agents/agent_2.svg?url";
+import AgentServiceThree from "@/img/agents/agent_3.svg?url";
 
 interface FaqInterface {
   question: string;
@@ -79,5 +82,26 @@ export const fundingServiceData: ServicesInterface[] = [
     description:
       "Say goodbye to shady loan sharks. NaijaSpora only partners with licensed financial providers that offer fair interest rates and clear repayment schedules",
     image: FundingServiceThree,
+  },
+];
+
+export const agentServiceData: ServicesInterface[] = [
+  {
+    title: "Verified Agents. Zero Guesswork.",
+    description:
+      "We perform background checks and performance assessments before listing any agent. Only genuine, accountable professionals make it to our network — giving you peace of mind and real results.",
+    image: AgentServiceOne,
+  },
+  {
+    title: "Direct Contact. Real Support.",
+    description:
+      "Chat with verified agents directly on NaijaSpora. Ask questions, compare services, and track responses all in one place — no more shady WhatsApp links or fake office addresses.",
+    image: AgentServiceTwo,
+  },
+  {
+    title: "Transparent Reviews & Ratings",
+    description:
+      "We collect feedback from real users and display honest reviews to help you make better decisions. Choose agents with proven success in your visa type or travel destination.",
+    image: AgentServiceThree,
   },
 ];
