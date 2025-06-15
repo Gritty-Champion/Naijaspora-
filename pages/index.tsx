@@ -26,9 +26,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head> */}
-      <div className={"font-montserrat"}>
+      <div
+        className={
+          "flex w-full flex-col items-center gap-[50px] bg-white overflow-hidden"
+        }
+      >
         <Header />
-        <main className="flex w-full flex-col items-center gap-[50px] bg-white overflow-hidden">
+        <main className="flex w-full flex-col items-center gap-[50px]">
           <Hero
             title={
               <>
@@ -47,8 +51,8 @@ export default function Home() {
           <DontFallForScam />
           <Testimonial />
           <FAQs faqData={faqData} />
-          <Footer />
         </main>
+        <Footer />
       </div>
     </>
   );
