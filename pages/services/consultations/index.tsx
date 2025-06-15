@@ -1,10 +1,12 @@
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
-import Hero from '@/components/Hero'
-import React from 'react'
-import HeroImg from "@/img/consultations/heroImg.svg?url"
-import Services from '@/components/Services/Services'
-import { consultationServiceData } from '@/libs/constants'
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import React from "react";
+import HeroImg from "@/img/consultations/heroImg.svg?url";
+import Services from "@/components/Services/Services";
+import { consultationServiceData } from "@/libs/constants";
+import CTA from "@/components/Services/CTA";
+import CTAImg from "@/img/consultations/cta_img.svg?url"
 
 const index = () => {
   return (
@@ -27,11 +29,21 @@ const index = () => {
           vidComClasses="text-surface-on"
         />
 
-        <Services heading="Turn visa stress into success with expert-led interview coaching" data={consultationServiceData} />
+        <Services
+          heading="Turn visa stress into success with expert-led interview coaching"
+          data={consultationServiceData}
+        />
+
+        <CTA
+          description="Join the NaijaSpora community of successful visa applicants"
+          cta_text="Learn more"
+          cta_action={() => { }}
+          image={CTAImg}
+        />
       </main>
       <Footer />
     </div>
   );
-}
+};
 
-export default index
+export default index;
