@@ -9,6 +9,8 @@ import test_three from "@/img/testimonials/testimonial_three.svg?url";
 import test_four from "@/img/testimonials/testimonial_four.svg?url";
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
+import { motion } from 'framer-motion';
+import { fadeIn } from '@/libs/motions';
 
 const Testimonial = () => {
 
@@ -39,7 +41,13 @@ const Testimonial = () => {
   const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
   return (
-    <section className="w-full h-fit">
+    <motion.section
+      className="w-full h-fit"
+      variants={fadeIn("left", 0.2)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
       <Wrapper>
         <div className="flex w-full flex-col items-center gap-[50px] bg-white">
           <div className="flex w-full lg:max-h-[232px] justify-center items-center gap-2.5 px-0 py-[76px]">
@@ -113,7 +121,7 @@ const Testimonial = () => {
           </div>
         </div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
 }
 

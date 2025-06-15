@@ -28,7 +28,7 @@ export default function Home() {
       </Head> */}
       <div className={"font-montserrat"}>
         <Header />
-        <main className="flex w-full flex-col items-center gap-[50px] bg-white">
+        <main className="flex w-full flex-col items-center gap-[50px] bg-white overflow-hidden">
           <Hero
             title={
               <>

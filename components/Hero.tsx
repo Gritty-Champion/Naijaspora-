@@ -7,6 +7,8 @@ import Button from './Button'
 import { RiArrowRightCircleLine, RiPlayCircleLine } from '@remixicon/react'
 import SVGCurve from "@/img/curveSVGWhite.svg?url"
 import { useController } from '@/hooks/useController'
+import { motion } from 'framer-motion'
+import { fadeIn } from '@/libs/motions'
 
 type heroProps = {
   heroImage?: any;
@@ -29,9 +31,13 @@ const Hero = ({
 }: heroProps) => {
   const { heroRef } = useController()
   return (
-    <section
+    <motion.section
       ref={heroRef}
       className="flex relative w-full h-[98vh] flex-col justify-center items-start gap-2.5"
+      variants={fadeIn("left", 0.2)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
     >
       <Wrapper>
         {/* Background and Overlays */}
@@ -47,7 +53,7 @@ const Hero = ({
 
         <div className="flex w-full z-0 h-full items-start gap-2.5 absolute top-0 left-0 [background:rgba(255,255,255,0.15)] p-2.5" />
 
-        <div className="hidden xl:flex flex-col w-full h-[140px] z-0 items-start absolute right-0 bottom-0">
+        <div className="hidden xl:flex flex-col w-full h-[140px] z-0 items-start absolute right-0 bottom-[-2px]">
           <Image
             src={SVGCurve}
             alt="Hero Background"
@@ -86,7 +92,7 @@ const Hero = ({
           </div>
         </div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
 };
 

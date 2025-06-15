@@ -1,18 +1,20 @@
-import React from 'react'
+import React from "react";
 import fbIcon from "@/img/fb.svg";
 import linkedIcon from "@/img/linked.svg";
 import instaIcon from "@/img/insta.svg";
 import twitterIcon from "@/img/twitter.svg";
-import Link from 'next/link';
-import Wrapper from './Wrapper';
+import Link from "next/link";
+import Wrapper from "./Wrapper";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/libs/motions";
 
 const Footer = () => {
   const socialLinks = [
-    {icon: fbIcon, link: ""},
-    {icon: linkedIcon, link: ""},
-    {icon: instaIcon, link: ""},
-    {icon: twitterIcon, link: ""}
-  ]
+    { icon: fbIcon, link: "" },
+    { icon: linkedIcon, link: "" },
+    { icon: instaIcon, link: "" },
+    { icon: twitterIcon, link: "" },
+  ];
 
   const footerLinks = [
     {
@@ -77,7 +79,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="flex w-full flex-col items-center gap-[36px] bg-primary-primary_container p-[30px] lg:p-[50px]">
+    <motion.footer
+      className="flex w-full flex-col items-center gap-[36px] bg-primary-primary_container p-[30px] lg:p-[50px]"
+      variants={fadeIn("bottom", 0.2)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
       {/* Top */}
       <div className="flex flex-col xl:flex-row items-start xl:justify-center gap-[50px] w-full">
         {/* Contact us */}
@@ -121,8 +129,14 @@ const Footer = () => {
           </div>
         ))}
       </div>
-    </footer>
-  );
-}
 
-export default Footer
+      {/* Divider */}
+      <div className="flex h-px justify-center items-center gap-[65px] self-stretch bg-[#000668]" />
+      <p className="w-full text-black text-center font-inter text-body-medium font-regular">
+        © Naijaspora 2025
+      </p>
+    </motion.footer>
+  );
+};
+
+export default Footer;

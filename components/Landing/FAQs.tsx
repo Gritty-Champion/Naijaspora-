@@ -5,6 +5,8 @@ import Image from "next/image";
 import FAQList from "./FaqList";
 import Button from "../Button";
 import { RiArrowDropDownLine, RiArrowDropRightLine } from "@remixicon/react";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/libs/motions";
 
 const FAQs = ({
   faqData,
@@ -12,7 +14,13 @@ const FAQs = ({
   faqData: { question: string; answer: string }[];
 }) => {
   return (
-    <section className="w-full h-full">
+    <motion.section
+      className="w-full h-full"
+      variants={fadeIn("right", 0.2)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
       <Wrapper>
         <div className="flex w-full items-center gap-5 px-[50px] py-5">
           <div className="hidden lg:flex w-full flex-1 lg:max-w-[608px] aspect-square justify-between items-center shrink-0 rounded-[20px]">
@@ -43,7 +51,7 @@ const FAQs = ({
           </div>
         </div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
 };
 

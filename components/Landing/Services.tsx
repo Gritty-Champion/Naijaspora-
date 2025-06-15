@@ -13,6 +13,8 @@ import Seven from "@/img/services/Service 7.png";
 import Eight from "@/img/services/Service eight.png";
 import Nine from "@/img/services/Service Nine.png";
 import Button from "../Button";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/libs/motions";
 
 const Services = () => {
   const servicesData = [
@@ -140,7 +142,13 @@ const Services = () => {
   }, []);
 
   return (
-    <section className="w-full h-fit">
+    <motion.section
+      className="w-full h-fit"
+      variants={fadeIn("left", 0.2)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
       <Wrapper>
         <div className="flex w-full flex-col items-center gap-[50px] bg-white">
           <div className="flex flex-col lg:flex-row w-full items-end gap-2.5">
@@ -209,7 +217,7 @@ const Services = () => {
           </div>
         </div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
 };
 

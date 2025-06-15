@@ -12,6 +12,8 @@ import Six from "@/img/points/six.svg?url";
 import Seven from "@/img/points/seven.svg?url";
 import Eight from "@/img/points/eight.svg?url";
 import Nine from "@/img/points/nine.svg?url";
+import { motion } from 'framer-motion';
+import { fadeIn, staggerContainer } from '@/libs/motions';
 
 
 const KeyPoints = () => {
@@ -55,7 +57,7 @@ const KeyPoints = () => {
     },
   ];
   return (
-    <section className="flex w-full flex-col ">
+    <motion.section className="flex w-full flex-col">
       <div className="w-full relative">
         <Image
           src={curveSVG}
@@ -82,36 +84,43 @@ const KeyPoints = () => {
             </div>
 
             {/* Bottom */}
-            <div className="grid h-fit gap-y-7 gap-x-7 shrink-0 self-stretch grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              className="grid h-fit gap-y-7 gap-x-7 shrink-0 self-stretch grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            >
               {cardData.map((Data, idx) => (
-              <div
-                key={idx}
-                className="flex relative w-full max-w-[360px] h-[380px] flex-col justify-center items-center gap-[22px] shrink-0 mx-auto"
-              >
-                <div className="flex w-full h-full flex-col items-start gap-2.5 z-0 absolute top-0 left-0 rounded-[16px] [background:rgba(255,255,255,0.05)] backdrop-blur-[6px] p-2.5" />
+                <motion.div
+                  key={idx}
+                  variants={fadeIn("bottom", idx * 0.1)}
+                  className="flex relative w-full max-w-[360px] h-[380px] flex-col justify-center items-center gap-[22px] shrink-0 mx-auto"
+                >
+                  <div className="flex w-full h-full flex-col items-start gap-2.5 z-0 absolute top-0 left-0 rounded-[16px] [background:rgba(255,255,255,0.05)] backdrop-blur-[6px] p-2.5" />
 
-                <div className="flex relative z-1 w-full h-[271px] flex-col items-start gap-2.5 shrink-0 rounded-[16px_16px_0px_0px]">
-                  <Image
-                  src={Data.img}
-                  alt={Data.desc}
-                  fill
-                  className="object-contain"
-                  priority={idx < 3}
-                  />
-                </div>
+                  <div className="flex relative z-1 w-full h-[271px] flex-col items-start gap-2.5 shrink-0 rounded-[16px_16px_0px_0px]">
+                    <Image
+                      src={Data.img}
+                      alt={Data.desc}
+                      fill
+                      className="object-contain"
+                      priority={idx < 3}
+                    />
+                  </div>
 
-                <div className="flex relative px-[36px] py-[10px] z-1 flex-col justify-center items-center gap-2.5 shrink-0 self-stretch">
-                <p className="self-stretch text-center text-white text-title-medium font-montserrat font-medium">
-                  {Data.desc}
-                </p>
-                </div>
-              </div>
+                  <div className="flex relative px-[36px] py-[10px] z-1 flex-col justify-center items-center gap-2.5 shrink-0 self-stretch">
+                    <p className="self-stretch text-center text-white text-title-medium font-montserrat font-medium">
+                      {Data.desc}
+                    </p>
+                  </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </Wrapper>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

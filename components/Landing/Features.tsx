@@ -8,6 +8,8 @@ import { cn } from "@/libs/cn";
 import Button from "../Button";
 import { RiArrowRightCircleLine } from "@remixicon/react";
 import Image from "next/image";
+import { fadeIn } from "@/libs/motions";
+import { motion } from "framer-motion";
 
 const Features = () => {
   const featuresData = [
@@ -56,7 +58,11 @@ const Features = () => {
           {/* card */}
 
           {featuresData.map((Card, idx) => (
-            <div
+            <motion.div
+              variants={fadeIn(idx % 2 === 0 ? "right" : "left", 0.2)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
               key={idx}
               className={cn(
                 "flex h-fit flex-col lg:flex-row lg:h-[600px] justify-between items-center shrink-0 self-stretch rounded-[40px] lg:p-0",
@@ -122,7 +128,7 @@ const Features = () => {
                   })}
                 />
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Wrapper>
