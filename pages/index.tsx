@@ -2,11 +2,13 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import DontFallForScam from "@/components/Landing/DontFallForScam";
+import FAQs from "@/components/Landing/FAQs";
 import Features from "@/components/Landing/Features";
 import KeyPoints from "@/components/Landing/KeyPoints";
 import MissionStatement from "@/components/Landing/MissionStatement";
 import Services from "@/components/Landing/Services";
 import Testimonial from "@/components/Landing/Testimonial";
+import { faqData } from "@/libs/constants";
 import Image from "next/image";
 import { useEffect } from "react";
 
@@ -43,6 +45,7 @@ export default function Home() {
           <Services />
           <DontFallForScam />
           <Testimonial />
+          <FAQs faqData={faqData} />
         </main>
       </div>
     </>
