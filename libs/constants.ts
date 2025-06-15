@@ -2,6 +2,9 @@ import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import ConsultationServiceOne from "@/img/consultations/services_1.svg?url";
 import ConsultationServiceTwo from "@/img/consultations/services_2.svg?url";
 import ConsultationServiceThree from "@/img/consultations/services_3.svg?url";
+import FundingServiceOne from "@/img/funding/funding_1.svg?url";
+import FundingServiceTwo from "@/img/funding/funding_2.svg?url";
+import FundingServiceThree from "@/img/funding/funding_3.svg?url";
 
 interface FaqInterface {
   question: string;
@@ -55,5 +58,26 @@ export const consultationServiceData: ServicesInterface[] = [
     description:
       "Get instant feedback on your answers, posture, and tone so you can walk into your appointment 100% ready.",
     image: ConsultationServiceThree,
+  },
+];
+
+export const fundingServiceData: ServicesInterface[] = [
+  {
+    title: "Quick Access to Travel Loans",
+    description:
+      "Whether you're planning to study abroad, attend a conference, or relocate, you can access loan options without pledging property or assets.",
+    image: FundingServiceOne,
+  },
+  {
+    title: "Tailored for Students & First-Time Travelers",
+    description:
+      "Our lending partners specialize in loans for young adults starting their global journey — no corporate credit history required.",
+    image: FundingServiceTwo,
+  },
+  {
+    title: "Low Rates. Transparent Terms",
+    description:
+      "Say goodbye to shady loan sharks. NaijaSpora only partners with licensed financial providers that offer fair interest rates and clear repayment schedules",
+    image: FundingServiceThree,
   },
 ];
