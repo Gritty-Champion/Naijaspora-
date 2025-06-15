@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   
   webpack(config) {
     // Exclude svg from the default Next.js file loader
-    const assetRule = config.module.rules.find((rule) =>
+    const assetRule = config.module.rules.find((rule: any) =>
       rule?.test instanceof RegExp && rule.test.test('.svg')
     );
   

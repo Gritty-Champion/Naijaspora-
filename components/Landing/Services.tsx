@@ -154,7 +154,7 @@ const Services = () => {
           <div className="flex flex-col lg:flex-row w-full items-end gap-2.5">
             <div className="flex max-w-[681px] flex-col items-start gap-2.5 shrink-0 p-2.5">
               <p className="self-stretch text-black font-montserrat text-headline-medium lg:text-display-large font-semibold">
-                More than just consultation. It's your global safety net.
+                More than just consultation. It&apos;s your global safety net.
               </p>
             </div>
 

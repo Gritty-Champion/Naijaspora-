@@ -4,7 +4,7 @@ import faqImage from "@/img/faqImg.svg?url";
 import Image from "next/image";
 import FAQList from "./FaqList";
 import Button from "../Button";
-import { RiArrowDropDownLine, RiArrowDropRightLine } from "@remixicon/react";
+import { RiArrowDropRightLine } from "@remixicon/react";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/libs/motions";
 
@@ -35,7 +35,7 @@ const FAQs = ({
           <div className="flex w-full flex-1 flex-col items-center gap-10 shrink-0">
             <div className="flex justify-center items-center gap-[3px] p-2.5">
               <p className="text-black text-center font-montserrat text-headline-large font-medium">
-                Got Questions? We've Got You Covered
+                Got Questions? We&apos;ve Got You Covered
               </p>
             </div>
             <FAQList faqData={faqData} />

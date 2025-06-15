@@ -108,7 +108,7 @@ const Hero = ({
               {heroBtnText}
             </Button>
 
-            <div className="flex cursor-pointer w-full max-w-[416px] items-center gap-3 rounded-[10px]">
+            <div onClick={vidComClick} className="flex cursor-pointer w-full max-w-[416px] items-center gap-3 rounded-[10px]">
               <RiPlayCircleLine
                 className={cn(
                   "w-12 h-12 shrink-0 aspect-[1/1] ",

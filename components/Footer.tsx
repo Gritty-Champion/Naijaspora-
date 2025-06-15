@@ -4,7 +4,6 @@ import linkedIcon from "@/img/linked.svg";
 import instaIcon from "@/img/insta.svg";
 import twitterIcon from "@/img/twitter.svg";
 import Link from "next/link";
-import Wrapper from "./Wrapper";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/libs/motions";
 

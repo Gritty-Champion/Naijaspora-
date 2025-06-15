@@ -1,6 +1,5 @@
 import React from 'react'
 import {cn} from "@/libs/cn";
-import {useController} from "@/hooks/useController";
 
 interface LogoProps {
   isScrolled: boolean,

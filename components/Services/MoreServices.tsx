@@ -3,7 +3,7 @@ import Button from '../Button';
 import { motion } from 'framer-motion';
 import { fadeIn } from '@/libs/motions';
 export interface MoreServicesInterface {
-  icon: any;
+  icon: React.ComponentType;
   title: string;
   desc: string;
   cta_text: string;

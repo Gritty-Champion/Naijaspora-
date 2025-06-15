@@ -6,13 +6,8 @@ import Logo from './Logo'
 import HeaderMenu from './HeaderMenu'
 import Button from './Button'
 import { RiArrowRightCircleLine, RiMenuLine } from '@remixicon/react'
-import { useController } from '@/hooks/useController'
 import { cn } from '@/libs/cn'
 import {useRouter} from "next/router";
-
-interface HeaderProps {
-
-}
 
 interface HeaderProps {
   isHeroInView: boolean

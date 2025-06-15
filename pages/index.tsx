@@ -1,4 +1,3 @@
-// import Head from "next/head";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -10,8 +9,6 @@ import MissionStatement from "@/components/Landing/MissionStatement";
 import Services from "@/components/Landing/Services";
 import Testimonial from "@/components/Landing/Testimonial";
 import { faqData } from "@/libs/constants";
-import Image from "next/image";
-import {useEffect, useState} from "react";
 import HeroBG from "@/img/defaultHeroBG.svg?url";
 import {useController} from "@/hooks/useController";
 

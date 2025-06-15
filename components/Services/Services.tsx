@@ -1,6 +1,5 @@
 import React from "react";
 import Wrapper from "../Wrapper";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { ServicesInterface } from "@/libs/constants";
 import Image from "next/image";
 import { cn } from "@/libs/cn";
