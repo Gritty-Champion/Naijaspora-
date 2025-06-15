@@ -28,7 +28,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex w-full justify-between items-center self-stretch p-5"
       >
-        <h3 className="text-black text-center font-montserrat text-title-medium font-medium">
+        <h3 className="text-black text-left font-montserrat text-title-medium font-medium">
           {question}
         </h3>
         <span

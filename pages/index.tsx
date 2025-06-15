@@ -1,4 +1,5 @@
 // import Head from "next/head";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import DontFallForScam from "@/components/Landing/DontFallForScam";
@@ -46,6 +47,7 @@ export default function Home() {
           <DontFallForScam />
           <Testimonial />
           <FAQs faqData={faqData} />
+          <Footer />
         </main>
       </div>
     </>
