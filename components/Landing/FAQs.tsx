@@ -3,6 +3,8 @@ import Wrapper from "../Wrapper";
 import faqImage from "@/img/faqImg.svg?url";
 import Image from "next/image";
 import FAQList from "./FaqList";
+import Button from "../Button";
+import { RiArrowDropDownLine, RiArrowDropRightLine } from "@remixicon/react";
 
 const FAQs = ({
   faqData,
@@ -29,6 +31,8 @@ const FAQs = ({
               </p>
             </div>
             <FAQList faqData={faqData} />
+
+            <Button variant="text" iconPosition="right" className="!text-black" icon={<RiArrowDropRightLine />} >See All</Button>
           </div>
         </div>
       </Wrapper>
