@@ -3,11 +3,11 @@ import {cn} from "@/libs/cn";
 import {useController} from "@/hooks/useController";
 
 interface LogoProps {
-    isScrolled: boolean
+  isScrolled: boolean,
+  isHeroInView: boolean
 }
 
-const Logo = ({isScrolled}: LogoProps) => {
-  const {isHeroInView} = useController()
+const Logo = ({ isScrolled, isHeroInView }: LogoProps) => {
   return (
     <div className='flex flex-col items-start gap-2.5 p-2.5'>
       <p className={cn(

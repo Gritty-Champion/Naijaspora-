@@ -13,12 +13,12 @@ import {useController} from "@/hooks/useController";
 import { cn } from "@/libs/cn";
 
 interface HeaderMenuProps {
-  isScrolled: boolean
+  isScrolled: boolean,
+  isHeroInView: boolean
 }
 
-const HeaderMenu = ({isScrolled}: HeaderMenuProps) => {
+const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
   const router = useRouter();
-  const {isHeroInView} = useController();
   const menuItems = [
     {
       label: "Services",

@@ -8,10 +8,19 @@ import Button from './Button'
 import { RiArrowRightCircleLine, RiMenuLine } from '@remixicon/react'
 import { useController } from '@/hooks/useController'
 import { cn } from '@/libs/cn'
+import {useRouter} from "next/router";
 
-const Header = () => {
-  const { isHeroInView } = useController();
+interface HeaderProps {
+
+}
+
+interface HeaderProps {
+  isHeroInView: boolean
+}
+
+const Header = ({isHeroInView}: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,9 +46,9 @@ const Header = () => {
     >
       <Wrapper>
         <div className="flex w-full justify-between items-center py-[8px]">
-          <Logo isScrolled={isScrolled} />
+          <Logo isHeroInView={isHeroInView} isScrolled={isScrolled} />
 
-          <HeaderMenu isScrolled={isScrolled} />
+          <HeaderMenu isHeroInView={isHeroInView} isScrolled={isScrolled} />
 
           <div className="hidden lg:flex items-center gap-[24px]">
             <Button
@@ -52,7 +61,13 @@ const Header = () => {
               Log In
             </Button>
             <Button
-              variant={isScrolled ? "primary" : "blur"}
+              variant={
+                router.pathname === "/"
+                  ? isScrolled
+                    ? "primary"
+                    : "blur"
+                  : "primary"
+              }
               iconPosition="right"
               icon={
                 <RiArrowRightCircleLine
@@ -66,7 +81,7 @@ const Header = () => {
 
           <div className="w-fit h-fit flex lg:hidden justify-center items-center">
             <RiMenuLine
-              className={cn("h-[40px] w-[60px]",{
+              className={cn("h-[40px] w-[60px]", {
                 "text-primary-on_primary": isScrolled || isHeroInView,
                 "text-black": !isHeroInView,
               })}

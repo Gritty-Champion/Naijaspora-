@@ -31,7 +31,6 @@ export const ControllerProvider: React.FC<ControllerProviderProps> = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsHeroInView(entry.isIntersecting);
-        console.log("isHeroInView", entry.isIntersecting);
       },
       {
         threshold: 0.1,

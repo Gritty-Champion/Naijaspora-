@@ -11,13 +11,13 @@ import Services from "@/components/Landing/Services";
 import Testimonial from "@/components/Landing/Testimonial";
 import { faqData } from "@/libs/constants";
 import Image from "next/image";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
+import HeroBG from "@/img/defaultHeroBG.svg?url";
+import {useController} from "@/hooks/useController";
+
 
 export default function Home() {
-
-  useEffect(() => {
-    console.log("Hello, world!")
-  }, [])
+  const { isHeroInView } = useController();
   return (
     <>
       {/* <Head>
@@ -31,7 +31,7 @@ export default function Home() {
           "flex w-full flex-col items-center gap-[50px] bg-white overflow-hidden"
         }
       >
-        <Header />
+        <Header isHeroInView={isHeroInView} />
         <main className="flex w-full flex-col items-center gap-[50px]">
           <Hero
             title={
@@ -43,6 +43,7 @@ export default function Home() {
               </>
             }
             desc="Expert travel planning tailored to your dreams. Let us handle the details while you explore the world effortlessly."
+            heroImage={HeroBG}
           />
           <Features />
           <KeyPoints />
