@@ -7,8 +7,35 @@ import Services from "@/components/Services/Services";
 import { consultationServiceData } from "@/libs/constants";
 import CTA from "@/components/Services/CTA";
 import CTAImg from "@/img/consultations/cta_img.svg?url"
+import MoreServices, { MoreServicesInterface } from "@/components/Services/MoreServices";
+import AlertIcon from "@/img/alert.svg"
+import SupportIcon from "@/img/support.svg"
+import VerifyIcon from "@/img/verify.svg"
 
 const index = () => {
+  const moreToolsData: MoreServicesInterface[] = [
+    {
+      icon: AlertIcon,
+      title: "Agent Verification Services",
+      desc: "Find and connect with verified, trusted travel agents — no more scams.",
+      cta_text: "Learn more",
+      cta_action: () => {},
+    },
+    {
+      icon: SupportIcon,
+      title: "Post-Visa Denial Support",
+      desc: "Get smart insights and next steps from our AI chatbot after a visa denial.",
+      cta_text: "Learn more",
+      cta_action: () => {},
+    },
+    {
+      icon: VerifyIcon,
+      title: "Document Verification",
+      desc: "Ensure your documents are accurate and compliant before submission.",
+      cta_text: "Learn more",
+      cta_action: () => {},
+    },
+  ];
   return (
     <div
       className={
@@ -34,10 +61,12 @@ const index = () => {
           data={consultationServiceData}
         />
 
+        <MoreServices heading="More Services to Help You Secure That Visa Faster" data={moreToolsData} />
+
         <CTA
           description="Join the NaijaSpora community of successful visa applicants"
           cta_text="Learn more"
-          cta_action={() => { }}
+          cta_action={() => {}}
           image={CTAImg}
         />
       </main>

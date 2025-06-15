@@ -1,19 +1,27 @@
-import React from 'react'
-import Wrapper from '../Wrapper';
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
-import { ServicesInterface } from '@/libs/constants';
-import Image from 'next/image';
-import { cn } from '@/libs/cn';
+import React from "react";
+import Wrapper from "../Wrapper";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { ServicesInterface } from "@/libs/constants";
+import Image from "next/image";
+import { cn } from "@/libs/cn";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/libs/motions";
 
 const Services = ({
   heading,
-  data
+  data,
 }: {
-    heading: string;
-    data: ServicesInterface[];
+  heading: string;
+  data: ServicesInterface[];
 }) => {
   return (
-    <section className="w-full h-fit">
+    <motion.section
+      variants={fadeIn("right", 0.2)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      className="w-full h-fit"
+    >
       <Wrapper>
         <div className="flex w-full flex-col justify-center items-center gap-[50px] self-stretch py-2.5">
           <div className="flex w-full items-center gap-2.5 p-2.5">
@@ -23,9 +31,12 @@ const Services = ({
           </div>
 
           {data.map((Item, idx) => (
-            <div key={idx} className={cn("flex w-full items-center", {
-              "flex-row-reverse": idx % 2 !== 0
-            })}>
+            <div
+              key={idx}
+              className={cn("flex w-full items-center", {
+                "flex-row-reverse": idx % 2 !== 0,
+              })}
+            >
               <div className="w-full lg:w-[611px] aspect-[611/456] relative shrink-0">
                 <Image
                   src={Item.image}
@@ -47,8 +58,8 @@ const Services = ({
           ))}
         </div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
-}
+};
 
-export default Services
+export default Services;

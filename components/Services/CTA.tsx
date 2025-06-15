@@ -1,22 +1,30 @@
-import React from 'react'
-import Wrapper from '../Wrapper'
-import Button from '../Button';
-import Image from 'next/image';
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import React from "react";
+import Wrapper from "../Wrapper";
+import Button from "../Button";
+import Image from "next/image";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { fadeIn } from "@/libs/motions";
+import { motion } from "framer-motion";
 
 const CTA = ({
   description,
   cta_text,
   cta_action,
-  image
+  image,
 }: {
-    description: string;
-    cta_text: string;
-    cta_action: () => void;
-    image: StaticImport
+  description: string;
+  cta_text: string;
+  cta_action: () => void;
+  image: StaticImport;
 }) => {
   return (
-    <section className="w-full h-fit">
+    <motion.section
+      variants={fadeIn("right", 0.2)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      className="w-full h-fit"
+    >
       <Wrapper>
         <div className="flex w-full justify-center items-center gap-2.5 p-2.5 rounded-[100px_0px]">
           <div className="flex w-full max-w-[593px] flex-col justify-center items-center gap-[30px] shrink-0 p-2.5">
@@ -38,8 +46,8 @@ const CTA = ({
           </div>
         </div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
-}
+};
 
-export default CTA
+export default CTA;
