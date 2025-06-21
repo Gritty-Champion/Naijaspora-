@@ -13,6 +13,8 @@ import MoreServices, {
 import ToolOne from "@/img/agents/tool_1.svg";
 import ToolTwo from "@/img/alert.svg";
 import ToolThree from "@/img/funding/moretool_2.svg";
+import Pricings from "@/components/Services/Pricings";
+import PricingFeatures, { Category } from "@/libs/pricingFeatures";
 
 const index = () => {
   const moreToolsData: MoreServicesInterface[] = [
@@ -61,6 +63,12 @@ const index = () => {
         <Services
           heading="Why Choose NaijaSpora Agent Verification?"
           data={agentServiceData}
+        />
+
+        <Pricings
+          heading={"Visa Interview Prep Pricing"}
+          description={"Flexible plans for every visa journey."}
+          data={PricingFeatures[Category.Agent]}
         />
 
         <MoreServices
