@@ -15,6 +15,7 @@ import ToolTwo from "@/img/alert.svg";
 import ToolThree from "@/img/funding/moretool_2.svg";
 import Pricings from "@/components/Services/Pricings";
 import PricingFeatures, { Category } from "@/libs/pricingFeatures";
+import HowItWorks from "@/components/Services/HowItWorks";
 
 const index = () => {
   const moreToolsData: MoreServicesInterface[] = [
@@ -69,6 +70,19 @@ const index = () => {
           heading={"Visa Interview Prep Pricing"}
           description={"Flexible plans for every visa journey."}
           data={PricingFeatures[Category.Agent]}
+        />
+
+        <HowItWorks
+          heading={"How Does It Work?"}
+          description={
+            "Four simple steps to verify any travel agent before you commit."
+          }
+          data={[
+            "Share agent name, number, and business details for verification.",
+            "We run database and reputation checks across multiple platforms.",
+            "Our team contacts the agent directly to verify their identity.",
+            "Receive a full report with trust status and recommendations",
+          ]}
         />
 
         <MoreServices

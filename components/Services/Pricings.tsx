@@ -1,22 +1,21 @@
-import { cn } from '@/libs/cn';
-import { fadeIn } from '@/libs/motions'
-import { AgentTier, PricingFeatureItem } from '@/libs/pricingFeatures';
-import { motion } from 'framer-motion'
-import React from 'react'
-import CheckIcon from "@/img/check.svg"
-import Button from '../Button';
-import Wrapper from '../Wrapper';
+import { cn } from "@/libs/cn";
+import { fadeIn } from "@/libs/motions";
+import { AgentTier, PricingFeatureItem } from "@/libs/pricingFeatures";
+import { motion } from "framer-motion";
+import React from "react";
+import CheckIcon from "@/img/check.svg";
+import Button from "../Button";
+import Wrapper from "../Wrapper";
 
-const Pricings = ({ 
+const Pricings = ({
   heading,
   description,
-  data
+  data,
 }: {
-    heading: string;
-    description: string;
-    data: PricingFeatureItem[];
-}
-) => {
+  heading: string;
+  description: string;
+  data: PricingFeatureItem[];
+}) => {
   return (
     <motion.section
       variants={fadeIn("left", 0.2)}
@@ -100,6 +99,6 @@ const Pricings = ({
       </Wrapper>
     </motion.section>
   );
-}
+};
 
-export default Pricings
+export default Pricings;
