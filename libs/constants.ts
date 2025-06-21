@@ -8,6 +8,9 @@ import FundingServiceThree from "@/img/funding/funding_3.svg?url";
 import AgentServiceOne from "@/img/agents/agent_1.svg?url";
 import AgentServiceTwo from "@/img/agents/agent_2.svg?url";
 import AgentServiceThree from "@/img/agents/agent_3.svg?url";
+import VerifyServiceOne from "@/img/verify/verify_1.svg?url";
+import VerifyServiceTwo from "@/img/verify/verify_2.svg?url";
+import VerifyServiceThree from "@/img/verify/verify_3.svg?url";
 
 interface FaqInterface {
   question: string;
@@ -103,5 +106,26 @@ export const agentServiceData: ServicesInterface[] = [
     description:
       "We collect feedback from real users and display honest reviews to help you make better decisions. Choose agents with proven success in your visa type or travel destination.",
     image: AgentServiceThree,
+  },
+];
+
+export const verifyServiceData: ServicesInterface[] = [
+  {
+    title: "Embassy-Grade Checks",
+    description:
+      "We analyze your documents based on embassy-specific requirements for each country and visa type — spotting errors, omissions, or inconsistencies before they cost you a denial.",
+    image: VerifyServiceOne,
+  },
+  {
+    title: "Academic & Financial Accuracy",
+    description:
+      "Whether it's transcripts, bank statements, or sponsorship letters — we make sure every detail is aligned with international standards, reducing your chances of being flagged for scrutiny.",
+    image: VerifyServiceTwo,
+  },
+  {
+    title: "Real-Time Feedback & Fixes",
+    description:
+      "Upload your documents and get instant suggestions on what needs updating, formatting, or clarification — all backed by years of immigration insights.",
+    image: VerifyServiceThree,
   },
 ];

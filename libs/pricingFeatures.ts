@@ -10,6 +10,7 @@ export enum AgentTier {
 
 export enum Category {
   Agent = "agent",
+  Verify = "verify"
 }
 
 export interface PricingFeatureItem {
@@ -57,6 +58,27 @@ const PricingFeatures: PricingFeaturesType = {
           "Live Call Confirmation",
           "Verified Badge Recommendation",
         ],
+      },
+    },
+  ],
+
+  [Category.Verify]: [
+    {
+      type: AgentTier.Basic,
+      image: agents_1,
+      price: "10",
+      features: {
+        title: "Quick checks for key documents.",
+        data: ["Up to 3 documents reviewed"],
+      },
+    },
+    {
+      type: AgentTier.Premium,
+      image: agents_3,
+      price: "40",
+      features: {
+        title: "Comprehensive validation for complex applications.",
+        data: ["Up to 10 documents reviewed"],
       },
     },
   ],

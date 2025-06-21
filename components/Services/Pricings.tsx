@@ -26,7 +26,7 @@ const Pricings = ({
     >
       <Wrapper>
         <div className="flex w-full flex-col justify-center items-center gap-[30px] shrink-0 py-2.5">
-          <div className="flex flex-col items-center gap-2.5 self-stretch p-5">
+          <div className="flex w-full flex-col items-center gap-2.5 self-stretch p-5">
             <p className="text-black font-montserrat text-display-large font-bold">
               {heading}
             </p>
