@@ -11,6 +11,9 @@ import AgentServiceThree from "@/img/agents/agent_3.svg?url";
 import VerifyServiceOne from "@/img/verify/verify_1.svg?url";
 import VerifyServiceTwo from "@/img/verify/verify_2.svg?url";
 import VerifyServiceThree from "@/img/verify/verify_3.svg?url";
+import ReportServiceOne from "@/img/report/report_1.svg?url";
+import ReportServiceTwo from "@/img/report/report_2.svg?url";
+import ReportServiceThree from "@/img/report/report_3.svg?url";
 
 interface FaqInterface {
   question: string;
@@ -127,5 +130,26 @@ export const verifyServiceData: ServicesInterface[] = [
     description:
       "Upload your documents and get instant suggestions on what needs updating, formatting, or clarification — all backed by years of immigration insights.",
     image: VerifyServiceThree,
+  },
+];
+
+export const reportServiceData: ServicesInterface[] = [
+  {
+    title: "Real-Time Scam Alerts",
+    description:
+      "Receive instant notifications about trending visa scams, fake agents, and fraud patterns. Our growing database is updated by real users, our verification team, and AI-powered tracking",
+    image: ReportServiceOne,
+  },
+  {
+    title: "Report a Scammer, Save Someone Else",
+    description:
+      "If you've been targeted by a scammer or spotted suspicious activity, our secure reporting tool lets you anonymously alert the community — and help take them down.",
+    image: ReportServiceTwo,
+  },
+  {
+    title: "Crowd-Verified Safety",
+    description:
+      "See agent flags, scam histories, and verified warnings from other users before you pay anyone. With community-powered protection, you’re never in this alone.",
+    image: ReportServiceThree,
   },
 ];

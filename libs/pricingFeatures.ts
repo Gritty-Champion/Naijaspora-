@@ -10,7 +10,8 @@ export enum AgentTier {
 
 export enum Category {
   Agent = "agent",
-  Verify = "verify"
+  Verify = "verify",
+  Report = "report"
 }
 
 export interface PricingFeatureItem {
@@ -79,6 +80,18 @@ const PricingFeatures: PricingFeaturesType = {
       features: {
         title: "Comprehensive validation for complex applications.",
         data: ["Up to 10 documents reviewed"],
+      },
+    },
+  ],
+
+  [Category.Report]: [
+    {
+      type: AgentTier.Basic,
+      image: agents_1,
+      price: "10",
+      features: {
+        title: "Quick trust check for one agent.",
+        data: ["Submit scammer details"],
       },
     },
   ],
