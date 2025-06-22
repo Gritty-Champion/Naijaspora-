@@ -15,6 +15,7 @@ import ShieldIcon from "@/img/funding/moretool_2.svg";
 import VerifyIcon from "@/img/verify.svg";
 import Pricings from "@/components/Services/Pricings";
 import PricingFeatures, { Category } from "@/libs/pricingFeatures";
+import HowItWorks from "@/components/Services/HowItWorks";
 
 const index = () => {
   const moreToolsData: MoreServicesInterface[] = [
@@ -71,6 +72,19 @@ const index = () => {
             "Choose a plan that fits your travel and financial timeline."
           }
           data={PricingFeatures[Category.Funding]}
+        />
+
+        <HowItWorks
+          heading={"How Does It Work?"}
+          description={
+            "Four quick steps to get a loan — no collateral required."
+          }
+          data={[
+            "Fill out your loan request form in just a few minutes.",
+            "We verify your identity with secure, digital documentation.",
+            "Our system assesses your profile and repayment eligibility instantly.",
+            "Once approved, funds are sent to your account immediately.",
+          ]}
         />
 
         <MoreServices
