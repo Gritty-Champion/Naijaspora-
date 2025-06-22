@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 import React from "react";
 import HeroImg from "@/img/consultations/heroImg.svg?url";
 import Services from "@/components/Services/Services";
-import { consultationServiceData } from "@/libs/constants";
+import { interViewPrepsServiceData } from "@/libs/constants";
 import CTA from "@/components/Services/CTA";
 import CTAImg from "@/img/consultations/cta_img.svg?url"
 import MoreServices, { MoreServicesInterface } from "@/components/Services/MoreServices";
@@ -13,6 +13,7 @@ import SupportIcon from "@/img/support.svg"
 import VerifyIcon from "@/img/verify.svg"
 import Pricings from "@/components/Services/Pricings";
 import PricingFeatures, { Category } from "@/libs/pricingFeatures";
+import HowItWorks from "@/components/Services/HowItWorks";
 
 const index = () => {
   const moreToolsData: MoreServicesInterface[] = [
@@ -60,15 +61,24 @@ const index = () => {
 
         <Services
           heading="Turn visa stress into success with expert-led interview coaching"
-          data={consultationServiceData}
+          data={interViewPrepsServiceData}
         />
 
         <Pricings
-          heading={"Professional quality and simple pricing"}
-          description={
-            "Choose the right plan to connect with safe, verified travel agents."
-          }
+          heading={"Visa Interview Prep Pricing"}
+          description={"Flexible plans for every visa journey."}
           data={PricingFeatures[Category.InterviewPreps]}
+        />
+
+        <HowItWorks
+          heading={"How Does It Work?"}
+          description={"Four simple steps to get visa-ready with confidence."}
+          data={[
+            "Choose your visa type and country. Schedule a session that fits your availability",
+            "Connect with an expert — an ex-visa officer or relocation specialist — for a  1-on-1 session.",
+            "Practice real embassy questions, get coached on tone, posture and answer structure",
+            "Receive honest feedback, correction tips, and a checklist to finalize your documents",
+          ]}
         />
 
         <MoreServices

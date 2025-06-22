@@ -13,6 +13,8 @@ import MoreServices, {
 import VisaPrepIcon from "@/img/funding/moretool_1.svg";
 import ShieldIcon from "@/img/funding/moretool_2.svg";
 import VerifyIcon from "@/img/verify.svg";
+import Pricings from "@/components/Services/Pricings";
+import PricingFeatures, { Category } from "@/libs/pricingFeatures";
 
 const index = () => {
   const moreToolsData: MoreServicesInterface[] = [
@@ -61,6 +63,14 @@ const index = () => {
         <Services
           heading="Secure the funds you need for your travel dreams — no property, no guarantor, no stress."
           data={fundingServiceData}
+        />
+
+        <Pricings
+          heading={"Professional quality and simple pricing"}
+          description={
+            "Choose a plan that fits your travel and financial timeline."
+          }
+          data={PricingFeatures[Category.Funding]}
         />
 
         <MoreServices

@@ -49,7 +49,7 @@ export const faqData: FaqInterface[] = [
   },
 ]; 
 
-export const consultationServiceData: ServicesInterface[] = [
+export const interViewPrepsServiceData: ServicesInterface[] = [
   {
     title: "Affordable, Professional Coaching",
     description:

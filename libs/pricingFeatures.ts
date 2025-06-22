@@ -12,7 +12,8 @@ export enum Category {
   Agent = "agent",
   Verify = "verify",
   Report = "report",
-  InterviewPreps = "InterviewPreps"
+  InterviewPreps = "interview",
+  Funding = "funding"
 }
 
 export interface PricingFeatureItem {
@@ -133,6 +134,27 @@ const PricingFeatures: PricingFeaturesType = {
           "Red flag training",
           "Bonus eBook",
         ],
+      },
+    },
+  ],
+
+  [Category.Funding]: [
+    {
+      type: AgentTier.Basic,
+      image: agents_1,
+      price: "10",
+      features: {
+        title: "Quick trust check for one agent.",
+        data: ["Loan Amount: ₦200,000 – ₦3,000,000"],
+      },
+    },
+    {
+      type: AgentTier.Premium,
+      image: agents_3,
+      price: "40",
+      features: {
+        title: "For high-stakes visa journeys.",
+        data: ["Loan Amount: ₦300,000 – ₦5,000,000"],
       },
     },
   ],
