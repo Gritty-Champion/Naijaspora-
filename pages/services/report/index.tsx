@@ -76,14 +76,12 @@ const index = () => {
 
         <HowItWorks
           heading={"How Does It Work?"}
-          description={
-            "Report scams and protect others in just four simple steps."
-          }
+          description={"Four simple steps to get visa-ready with confidence."}
           data={[
-            "Share scammer details and provide any supporting evidence you have.",
-            "Our team reviews the case and verifies the submitted information.",
-            "Track the review process and receive timely investigation feedback.",
-            "We update our scam database and notify the NaijaSpora community.",
+            "Choose your visa type and country. Schedule a session that fits your availability",
+            "Connect with an expert — an ex-visa officer or relocation specialist — for a  1-on-1 session.",
+            "Practice real embassy questions, get coached on tone, posture and answer structure",
+            "Receive honest feedback, correction tips, and a checklist to finalize your documents",
           ]}
         />
 

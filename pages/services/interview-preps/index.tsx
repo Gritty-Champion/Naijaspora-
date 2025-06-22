@@ -11,6 +11,8 @@ import MoreServices, { MoreServicesInterface } from "@/components/Services/MoreS
 import AlertIcon from "@/img/alert.svg"
 import SupportIcon from "@/img/support.svg"
 import VerifyIcon from "@/img/verify.svg"
+import Pricings from "@/components/Services/Pricings";
+import PricingFeatures, { Category } from "@/libs/pricingFeatures";
 
 const index = () => {
   const moreToolsData: MoreServicesInterface[] = [
@@ -61,7 +63,18 @@ const index = () => {
           data={consultationServiceData}
         />
 
-        <MoreServices heading="More Services to Help You Secure That Visa Faster" data={moreToolsData} />
+        <Pricings
+          heading={"Professional quality and simple pricing"}
+          description={
+            "Choose the right plan to connect with safe, verified travel agents."
+          }
+          data={PricingFeatures[Category.InterviewPreps]}
+        />
+
+        <MoreServices
+          heading="More Services to Help You Secure That Visa Faster"
+          data={moreToolsData}
+        />
 
         <CTA
           description="Join the NaijaSpora community of successful visa applicants"

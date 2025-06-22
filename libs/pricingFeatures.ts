@@ -11,7 +11,8 @@ export enum AgentTier {
 export enum Category {
   Agent = "agent",
   Verify = "verify",
-  Report = "report"
+  Report = "report",
+  InterviewPreps = "InterviewPreps"
 }
 
 export interface PricingFeatureItem {
@@ -92,6 +93,46 @@ const PricingFeatures: PricingFeaturesType = {
       features: {
         title: "Quick trust check for one agent.",
         data: ["Submit scammer details"],
+      },
+    },
+  ],
+
+  [Category.InterviewPreps]: [
+    {
+      type: AgentTier.Basic,
+      image: agents_1,
+      price: "10",
+      features: {
+        data: [
+          "30-min 1-on-1 coaching",
+          "General interview tips",
+          "Sample Q&A guide",
+        ],
+      },
+    },
+    {
+      type: AgentTier.Standard,
+      image: agents_2,
+      price: "25",
+      features: {
+        data: [
+          "60-min mock interview",
+          "Instant feedback",
+          "3-day follow-up support",
+        ],
+      },
+    },
+    {
+      type: AgentTier.Premium,
+      image: agents_3,
+      price: "40",
+      features: {
+        data: [
+          "90-min full coaching",
+          "Doc checklist review",
+          "Red flag training",
+          "Bonus eBook",
+        ],
       },
     },
   ],
