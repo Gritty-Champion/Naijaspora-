@@ -8,7 +8,7 @@ interface LogoProps {
 
 const Logo = ({ isScrolled, isHeroInView }: LogoProps) => {
   return (
-    <div className='flex flex-col items-start gap-2.5 p-2.5'>
+    <div className='flex flex-col items-start gap-2.5 lg:p-2.5'>
       <p className={cn(
         "!text-display-small font-semibold",
         {

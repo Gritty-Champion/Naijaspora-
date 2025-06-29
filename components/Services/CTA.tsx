@@ -28,9 +28,9 @@ const CTA = ({
       className="w-full h-fit"
     >
       <Wrapper>
-        <div className="flex w-full justify-center items-center gap-2.5 p-2.5 rounded-[100px_0px]">
+        <div className="flex w-full flex-col lg:flex-row gap-[30px] justify-center items-center lg:gap-2.5 p-2.5 rounded-[100px_0px]">
           <div className="flex w-full max-w-[593px] flex-col justify-center items-center gap-[30px] shrink-0 p-2.5">
-            <p className="text-black text-center font-montserrat text-display-large font-bold">
+            <p className="text-black text-center font-montserrat text-title-medium md:text-headline-large font-bold">
               {description}
             </p>
 
@@ -42,7 +42,7 @@ const CTA = ({
             <Button onClick={cta_action}>{cta_text}</Button>
           </div>
 
-          <div className="w-[642px] relative aspect-[642/543]">
+          <div className="w-full lg:w-[642px] relative aspect-[642/543]">
             <Image
               src={image}
               alt=""

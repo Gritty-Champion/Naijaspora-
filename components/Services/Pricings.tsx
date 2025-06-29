@@ -1,7 +1,5 @@
 import { cn } from "@/libs/cn";
-import { fadeIn } from "@/libs/motions";
 import { AgentTier, PricingFeatureItem } from "@/libs/pricingFeatures";
-import { motion } from "framer-motion";
 import React from "react";
 import CheckIcon from "@/img/check.svg";
 import Button from "../Button";
@@ -17,25 +15,19 @@ const Pricings = ({
   data: PricingFeatureItem[];
 }) => {
   return (
-    <motion.section
-      variants={fadeIn("left", 0.2)}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      className="w-full h-fit bg-neutral-variant-95"
-    >
+    <section className="w-full h-fit bg-neutral-variant-95">
       <Wrapper>
         <div className="flex w-full flex-col justify-center items-center gap-[30px] shrink-0 py-2.5">
           <div className="flex w-full flex-col items-center gap-2.5 self-stretch p-5">
-            <p className="text-black font-montserrat text-display-large font-bold">
+            <p className="w-fit shrink-0 text-black text-headline-small md:text-display-small font-montserrat font-semibold">
               {heading}
             </p>
-            <p className="text-black font-montserrat text-headline-large font-medium">
+            <p className="text-black font-montserrat text-title-medium md:text-headline-large font-medium">
               {description}
             </p>
           </div>
 
-          <div className="flex justify-center items-start gap-2.5 flex-[1_0_0]">
+          <div className="flex flex-col lg:flex-row justify-center items-start gap-[40px] lg:gap-2.5 flex-[1_0_0]">
             {data.map((Item, idx) => (
               <div
                 key={idx}
@@ -43,7 +35,7 @@ const Pricings = ({
               >
                 <div
                   className={cn(
-                    "flex flex-col items-center gap-2.5 self-stretch px-[100px] py-[50px] rounded-t-[10px]",
+                    "flex flex-col items-center gap-2.5 self-stretch lg:px-[100px] py-[50px] rounded-t-[10px]",
                     {
                       "bg-[conic-gradient(from_180deg_at_50%_50%,#9BA4FF_169.61538791656494deg,#5D6299_302.88461208343506deg)]":
                         Item.type === AgentTier.Basic,
@@ -103,7 +95,7 @@ const Pricings = ({
           </div>
         </div>
       </Wrapper>
-    </motion.section>
+    </section>
   );
 };
 

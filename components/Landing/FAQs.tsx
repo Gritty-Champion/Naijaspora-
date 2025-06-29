@@ -22,7 +22,7 @@ const FAQs = ({
       viewport={{ once: true, amount: 0.3 }}
     >
       <Wrapper>
-        <div className="flex w-full items-center gap-5 px-[50px] py-5">
+        <div className="flex w-full items-center gap-5 lg:px-[50px] py-5">
           <div className="hidden lg:flex w-full flex-1 lg:max-w-[608px] aspect-square justify-between items-center shrink-0 rounded-[20px]">
             <Image
               src={faqImage}
@@ -33,7 +33,7 @@ const FAQs = ({
           </div>
 
           <div className="flex w-full flex-1 flex-col items-center gap-10 shrink-0">
-            <div className="flex justify-center items-center gap-[3px] p-2.5">
+            <div className="flex justify-center items-center gap-[3px] md:p-2.5">
               <p className="text-black text-center font-montserrat text-headline-large font-medium">
                 Got Questions? We&apos;ve Got You Covered
               </p>

@@ -92,6 +92,12 @@ const index = () => {
           cta_action={() => {}}
           image={CTAImg}
         />
+
+        {/* 
+
+        
+
+         */}
       </main>
       <Footer />
     </div>

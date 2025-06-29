@@ -10,6 +10,7 @@ import { RiArrowDropDownFill } from "@remixicon/react";
 import { useRouter } from "next/router";
 import Button from "./Button";
 import { cn } from "@/libs/cn";
+import { path } from "@/routes";
 
 interface HeaderMenuProps {
   isScrolled: boolean,
@@ -25,19 +26,19 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
         {
           label: "Visa Interview Preparation",
           icon: MenuPlane,
-          link: "#",
+          link: path.interviewPreps,
           desc: "Ace your interview",
         },
         {
           label: "Zero Collateral Loans",
           icon: MenuMoney,
-          link: "#",
+          link: path.funding,
           desc: "Quick, backed loans for tuition & travel",
         },
         {
           label: "Agent Verification Services",
           icon: MenuAgent,
-          link: "#",
+          link: path.verifyDocuments,
           desc: "Connect with trusted, licensed agents",
         },
       ],
@@ -150,7 +151,7 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
                   ))}
 
                   {menu.label === "Services" && (
-                    <Button variant="text">View all</Button>
+                    <Button variant="text" onClick={() => router.push(path.services)}>View all</Button>
                   )}
                 </div>
 

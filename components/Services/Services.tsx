@@ -22,9 +22,9 @@ const Services = ({
       className="w-full h-fit"
     >
       <Wrapper>
-        <div className="flex w-full flex-col justify-center items-center gap-[50px] self-stretch py-2.5">
+        <div className="flex w-full flex-col justify-center items-center gap-[30px] lg:gap-[50px] self-stretch py-2.5">
           <div className="flex w-full justify-center items-center gap-2.5 p-2.5">
-            <p className="w-fit shrink-0 text-black text-display-small font-montserrat font-semibold">
+            <p className="w-fit shrink-0 text-black text-headline-small md:text-display-small font-montserrat font-semibold">
               {heading}
             </p>
           </div>
@@ -32,8 +32,8 @@ const Services = ({
           {data.map((Item, idx) => (
             <div
               key={idx}
-              className={cn("flex w-full items-center", {
-                "flex-row-reverse": idx % 2 !== 0,
+              className={cn("flex w-full flex-col lg:flex-row items-center", {
+                "lg:flex-row-reverse": idx % 2 !== 0,
               })}
             >
               {Item.image && (
@@ -48,10 +48,10 @@ const Services = ({
               )}
 
               <div className="flex w-full flex-col justify-center items-center gap-5 p-2.5">
-                <p className="self-stretch text-black font-montserrat text-display-medium font-semibold">
+                <p className="self-stretch text-black font-montserrat text-headline-small md:text-display-medium font-semibold">
                   {Item.title}
                 </p>
-                <p className="self-stretch text-black font-montserrat text-headline-small font-normal">
+                <p className="self-stretch text-black font-montserrat text-title-small md:text-headline-small font-normal">
                   {Item.description}
                 </p>
               </div>

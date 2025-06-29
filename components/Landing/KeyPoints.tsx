@@ -84,11 +84,7 @@ const KeyPoints = () => {
             </div>
 
             {/* Bottom */}
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+            <div
               className="grid h-fit gap-y-7 gap-x-7 shrink-0 self-stretch grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             >
               {cardData.map((Data, idx) => (
@@ -116,7 +112,7 @@ const KeyPoints = () => {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </Wrapper>
       </div>

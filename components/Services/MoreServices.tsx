@@ -30,16 +30,16 @@ const MoreServices = ({
       <Wrapper>
         <div className="flex w-full flex-col items-center gap-[30px] py-2.5">
           <div className="flex justify-center items-center gap-2.5 self-stretch p-2.5">
-            <p className="text-white text-center font-montserrat text-display-large font-bold">
+            <p className="text-white text-center font-montserrat text-headline-small md:text-display-small font-bold">
               {heading}
             </p>
           </div>
 
-          <div className="flex h-[500px] justify-between items-center shrink-0 self-stretch p-2.5">
+          <div className="flex h-fit lg:h-[500px] flex-col gap-[30px] lg:flex-row justify-between items-center shrink-0 self-stretch p-2.5">
             {data.map((Item, idx) => (
               <div
                 key={idx}
-                className="flex h-full max-w-[352px] flex-col justify-between items-center p-5"
+                className="flex h-full gap-[20px] w-full lg:max-w-[352px] flex-col justify-between items-center p-5"
               >
                 <Item.icon />
 
