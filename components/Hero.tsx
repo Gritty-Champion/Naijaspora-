@@ -1,5 +1,4 @@
 import React from 'react'
-import Wrapper from './Wrapper'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import Image from 'next/image'
 import Button from './Button'
@@ -21,7 +20,8 @@ type heroProps = {
   vidComClasses?: string;
   heroBackgroundClassName?: string;
   textStyles?: string;
-  contentImage?: StaticImport | undefined
+  contentImage?: StaticImport | undefined;
+  heroBGOverlayClasses?: string;
 };
 
 const Hero = ({
@@ -35,7 +35,8 @@ const Hero = ({
   vidComClick = () => {},
   vidComText = "Everything you need to know about NaijaSpora",
   textStyles = "text-white",
-  vidComClasses = "text-surface-container"
+  vidComClasses = "text-surface-container",
+  heroBGOverlayClasses = "[background:rgba(255,255,255,0.15)]",
 }: heroProps) => {
   const { heroRef } = useController();
   return (
@@ -63,7 +64,12 @@ const Hero = ({
             />
           </div>
 
-          <div className="flex w-full z-0 h-full items-start gap-2.5 absolute top-0 left-0 [background:rgba(255,255,255,0.15)] p-2.5" />
+          <div
+            className={cn(
+              "flex w-full z-0 h-full items-start gap-2.5 absolute top-0 left-0 p-2.5",
+              heroBGOverlayClasses
+            )}
+          />
         </>
       )}
 

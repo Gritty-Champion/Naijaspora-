@@ -83,12 +83,18 @@ const Pricings = ({
 
                   <div className="w-full lg:w-[272px] h-[1px] shrink-0 bg-black" />
 
-                  <p className="font-montserrat text-display-large text-black font-bold">
-                    ${Item.price}
-                    <span className="text-headline-medium font-medium">
-                      /month
-                    </span>
-                  </p>
+                  {typeof Item.price === "string" ? (
+                    <p className="font-montserrat text-center text-display-small text-black font-bold">
+                      {Item.price}
+                    </p>
+                  ) : (
+                    <p className="font-montserrat text-display-large text-black font-bold">
+                      ${Item.price}
+                      <span className="text-headline-medium font-medium">
+                        /month
+                      </span>
+                    </p>
+                  )}
                 </div>
 
                 <Button>Get Started</Button>

@@ -23,7 +23,7 @@ interface FaqInterface {
 export interface ServicesInterface {
   title: string;
   description: string;
-  image: StaticImport;
+  image?: StaticImport;
 }
 
 export const faqData: FaqInterface[] = [
@@ -151,5 +151,189 @@ export const reportServiceData: ServicesInterface[] = [
     description:
       "See agent flags, scam histories, and verified warnings from other users before you pay anyone. With community-powered protection, you’re never in this alone.",
     image: ReportServiceThree,
+  },
+];
+
+export const denialFeaturesData: ServicesInterface[] = [
+  {
+    title: "Second-Chance Strategy.",
+    description: "Get a tailored action plan that includes revised documents, alternate visa options, and reapplication timelines.",
+  },
+  {
+    title: "Rejection Debrief Sessions",
+    description: "Book a quick session with a visa prep expert to understand what to change for your next interview.",
+  },
+  {
+    title: "Reapplication Assistance",
+    description: "We help you gather updated documents, refine your statements, and prepare a stronger case.",
+  },
+  {
+    title: "Letter of Explanation Templates",
+    description: "Use professionally crafted samples to write compelling reapplication cover letters or appeals.",
+  },
+  {
+    title: "Support from real people.",
+    description: "Talk to relocation experts who’ve helped others bounce back after rejections—because we’ve been there too.",
+  },
+];
+
+export const denialHowToData: { title: string; description: string }[] = [
+  {
+    title: "Share your rejection details.",
+    description: "Upload your refusal notice and interview experience",
+  },
+  {
+    title: "Let our agent explain what went wrong",
+    description: "You'll get an instant breakdown with smart next steps.",
+  },
+  {
+    title: "Meet with a visa strategist.",
+    description: "We’ll help you pivot and prepare for your next shot.",
+  },
+  {
+    title: "Submit stronger documents",
+    description: "Fix your weak spots and fill the gaps in your application.",
+  },
+  {
+    title: "Reapply with confidence",
+    description: "Take your next chance, this time better equipped.",
+  },
+];
+
+export const projectManagementFeaturesData: ServicesInterface[] = [
+  {
+    title: "Property Development",
+    description:
+      "Oversee construction, repairs, and upgrades—from land clearing to final finishing.",
+  },
+  {
+    title: "Business Setup & Operations",
+    description:
+      "Launch and run ventures like farms, salons, or rental properties with a dedicated local manager.",
+  },
+  {
+    title: "Assigned Local Project Manager",
+    description:
+      "A certified professional negotiates with vendors, supervises work crews, and enforces quality standards.",
+  },
+  {
+    title: "Transparent Financial Tracking",
+    description:
+      "Access itemized receipts, budget breakdowns, and payment logs—no surprises, ever.",
+  },
+  {
+    title: "Verified Vendors & Artisans.",
+    description:
+      "We partner only with pre‐vetted contractors—no inflated costs, no shoddy work.",
+  },
+];
+
+export const projectManagementHowToData: { title: string; description: string }[] = [
+  {
+    title: "Submit Your Project Brief.",
+    description:
+      "Tell us your goals, budget, and timeline—land purchase, renovation, or business launch.",
+  },
+  {
+    title: "Match with a Local Manager.",
+    description:
+      "Get an initial plan, vendor shortlist, and estimated schedule for your approval.",
+  },
+  {
+    title: "Receive Kickoff Report.",
+    description:
+      "Get an initial plan, vendor shortlist, and estimated schedule for your approval.",
+  },
+  {
+    title: "Approve Milestones Online.",
+    description:
+      "Every phase—from material procurement to finishing touches—is logged and sent for your review.",
+  },
+  {
+    title: "Finalize & Complete.",
+    description:
+      "Once the project meets your specifications, we hand over all documents, keys, and project files.",
+  },
+];
+
+export const consultationFeaturesData: { title: string; description: string }[] = [
+  {
+    title: "Visa Pathway Assessment",
+    description:
+      "Find out which visa routes are open to you based on your profile, education, financials, and travel history.",
+  },
+  {
+    title: "Document Checklist Review",
+    description:
+      "Have an expert double-check your academic, financial, or identity documents to avoid red flags.",
+  },
+  {
+    title: "Country-Specific Guidance",
+    description:
+      "Get insights into embassy behavior, application timelines, and success strategies based on your destination.",
+  },
+  {
+    title: "Rejection Diagnosis",
+    description:
+      "If you’ve faced denial before, we’ll help you understand what went wrong and how to improve on your next attempt.",
+  },
+  {
+    title: "Study/Work/Family Route Planning",
+    description:
+      "Explore the best relocation options based on your goals, including sponsorships, skilled migration, or student visas.",
+  },
+];
+
+export const consultationHowToData: {
+  title: string;
+  description: string;
+}[] = [
+  {
+    title: "Choose Your Session Type",
+    description:
+      "Select from Express Q&A (15 min), Full Strategy (30–45 min), or Ongoing Guidance (monthly plan).",
+  },
+  {
+    title: "Match with a Verified Consultant",
+    description:
+      "Based on your profile and migration goal, we assign a seasoned advisor in your destination region.",
+  },
+  {
+    title: "Join the Virtual Call",
+    description:
+      "Sessions are held via Zoom, Google Meet, or voice call—your preference.",
+  },
+  {
+    title: "Receive a Summary & Action Plan",
+    description:
+      "After your session, get a written summary with checklists, links, and your next steps.",
+  }
+];
+
+export const postRelocationFeaturesData: ServicesInterface[] = [
+  {
+    title: "Housing and Shelter Assistance",
+    description:
+      "We’ll guide you in finding affordable, safe housing options—short-term or long-term—near your school or workplace.",
+  },
+  {
+    title: "Legal Aid and Immigration Help",
+    description:
+      "Need to understand your residency rights, work eligibility, or face legal issues abroad? We connect you to affordable legal professionals who specialize in migration law.",
+  },
+  {
+    title: "Emergency Contact Resources",
+    description:
+      "Gain access to trusted embassies, campus advisors, and local help centers in case of emergencies.",
+  },
+  {
+    title: "Nigerian Diaspora Circles",
+    description:
+      "Join regional groups of fellow Nigerians to share tips, job leads, cooking parties, emotional support, and more.",
+  },
+  {
+    title: "Employment and Career Tips",
+    description:
+      "Get updates on part-time jobs, career events, and CV writing workshops from within your local community.",
   },
 ];

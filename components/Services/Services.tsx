@@ -36,14 +36,16 @@ const Services = ({
                 "flex-row-reverse": idx % 2 !== 0,
               })}
             >
-              <div className="w-full lg:w-[611px] aspect-[611/456] relative shrink-0">
-                <Image
-                  src={Item.image}
-                  alt={Item.title}
-                  fill
-                  objectFit="cover"
-                />
-              </div>
+              {Item.image && (
+                <div className="w-full lg:w-[611px] aspect-[611/456] relative shrink-0">
+                  <Image
+                    src={Item.image}
+                    alt={Item.title}
+                    fill
+                    objectFit="cover"
+                  />
+                </div>
+              )}
 
               <div className="flex w-full flex-col justify-center items-center gap-5 p-2.5">
                 <p className="self-stretch text-black font-montserrat text-display-medium font-semibold">

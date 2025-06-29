@@ -11,11 +11,13 @@ const CTA = ({
   cta_text,
   cta_action,
   image,
+  addText
 }: {
-  description: string;
-  cta_text: string;
-  cta_action: () => void;
-  image: StaticImport;
+    description: string;
+    cta_text: string;
+    cta_action: () => void;
+    image: StaticImport;
+    addText?: string;
 }) => {
   return (
     <motion.section
@@ -32,6 +34,11 @@ const CTA = ({
               {description}
             </p>
 
+            {addText && (
+              <p className="w-full text-black text-center font-montserrat text-headline-small font-regular">
+                {addText}
+              </p>
+            )}
             <Button onClick={cta_action}>{cta_text}</Button>
           </div>
 

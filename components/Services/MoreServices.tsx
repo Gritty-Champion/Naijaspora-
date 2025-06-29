@@ -2,6 +2,7 @@ import Wrapper from '../Wrapper'
 import Button from '../Button';
 import { motion } from 'framer-motion';
 import { fadeIn } from '@/libs/motions';
+import { cn } from '@/libs/cn';
 export interface MoreServicesInterface {
   icon: React.ComponentType;
   title: string;
@@ -11,10 +12,12 @@ export interface MoreServicesInterface {
 }
 const MoreServices = ({
   heading,
-  data
+  data,
+  sectionClasses = "bg-secondary-on_secondary_container",
 }: {
-    heading: string;
-    data: MoreServicesInterface[]
+  heading: string;
+  data: MoreServicesInterface[];
+  sectionClasses?: string;
 }) => {
   return (
     <motion.section
@@ -22,7 +25,7 @@ const MoreServices = ({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="w-full h-fit bg-secondary-on_secondary_container"
+      className={cn("w-full h-fit", sectionClasses)}
     >
       <Wrapper>
         <div className="flex w-full flex-col items-center gap-[30px] py-2.5">
@@ -56,6 +59,6 @@ const MoreServices = ({
       </Wrapper>
     </motion.section>
   );
-}
+};
 
 export default MoreServices
