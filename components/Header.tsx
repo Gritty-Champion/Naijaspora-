@@ -9,7 +9,6 @@ import { RiArrowRightCircleLine, RiCloseLine, RiMenuLine } from '@remixicon/reac
 import { cn } from '@/libs/cn'
 import {useRouter} from "next/router";
 import Link from 'next/link'
-import { it } from 'node:test'
 import { path } from '@/routes'
 
 interface HeaderProps {

@@ -13,7 +13,7 @@ import Seven from "@/img/points/seven.svg?url";
 import Eight from "@/img/points/eight.svg?url";
 import Nine from "@/img/points/nine.svg?url";
 import { motion } from 'framer-motion';
-import { fadeIn, staggerContainer } from '@/libs/motions';
+import { fadeIn} from '@/libs/motions';
 
 
 const KeyPoints = () => {
