@@ -61,10 +61,10 @@ const HowTo = ({
         <div className="flex w-full flex-col justify-center items-center gap-[50px] py-2.5">
           {/* Heading */}
           <div className="flex w-full max-w-[938px] flex-col items-center gap-[30px]">
-            <p className="self-stretch text-black text-center font-montserrat text-display-medium font-semibold">
+            <p className="self-stretch text-black text-center font-montserrat text-headline-small md:text-display-small font-semibold">
               {title}
             </p>
-            <p className="self-stretch text-center text-black font-montserrat text-headline-large font-medium">
+            <p className="self-stretch text-center text-black font-montserrat text-title-medium md:text-headline-large font-medium">
               {subheading}
             </p>
           </div>
@@ -78,7 +78,7 @@ const HowTo = ({
           >
             {type === "flex" && (
               <>
-                <div className="flex-1 w-[544px] h-[1033px] relative shrink-0">
+                <div className="hidden lg:block w-[544px] h-[1033px] relative shrink-0">
                   <Image
                     src={img}
                     alt=""
@@ -91,12 +91,12 @@ const HowTo = ({
                   {data &&
                     data.map((feature, idx) => (
                       <div key={idx} className="flex w-full items-start gap-6">
-                        <WorksArrow />
+                        <WorksArrow className="hidden lg:block" />
                         <div className="flex flex-col items-start gap-2.5 flex-[1_0_0]">
-                          <p className="self-stretch text-black font-montserrat text-display-small font-medium">
+                          <p className="self-stretch text-black font-montserrat text-headline-small md:text-display-small font-medium">
                             {feature.title}
                           </p>
-                          <p className="self-stretch text-black font-montserrat text-headline-small font-regular">
+                          <p className="self-stretch text-black font-montserrat text-title-small md:text-headline-small font-regular">
                             {feature.description}
                           </p>
                         </div>
@@ -107,19 +107,19 @@ const HowTo = ({
             )}
 
             {type === "grid" && (
-                <div className="grid gap-y-5 justify-center items-center flex-[1_0_0] self-stretch grid-cols-3 place-items-center">
+              <div className="flex flex-col lg:grid gap-y-5 justify-center items-center flex-[1_0_0] self-stretch grid-cols-3 place-items-center">
                 {datas.map((Data, idx) => (
                   <div
-                  key={idx}
-                  className="flex w-[400px] h-[246px] flex-col items-center gap-[30px] bg-[#E0E0FF] p-10"
+                    key={idx}
+                    className="flex w-full max-w-[400px] lg:w-[400px] h-[246px] flex-col items-center gap-[30px] bg-[#E0E0FF] p-10"
                   >
-                  <Data.img />
-                  <p className="max-w-[306px] text-black font-inter font-medium text-display-small text-center">
-                    {Data.desc}
-                  </p>
+                    <Data.img />
+                    <p className="max-w-[306px] text-black font-inter font-medium text-display-small text-center">
+                      {Data.desc}
+                    </p>
                   </div>
                 ))}
-                </div>
+              </div>
             )}
           </div>
         </div>

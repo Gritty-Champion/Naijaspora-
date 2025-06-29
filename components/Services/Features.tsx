@@ -32,10 +32,10 @@ const Features = ({
         <div className="flex w-full h-full flex-col justify-center items-center gap-[50px] py-2.5">
           {/* Heading */}
           <div className="flex w-full max-w-[938px] flex-col items-center gap-[30px]">
-            <p className="self-stretch text-black text-center font-montserrat text-display-medium font-semibold">
+            <p className="self-stretch text-black text-center font-montserrat text-headline-small md:text-display-small font-semibold">
               {title}
             </p>
-            <p className="self-stretch text-center text-black font-montserrat text-headline-large font-medium">
+            <p className="self-stretch text-center text-black font-montserrat text-title-medium md:text-headline-large font-medium">
               {subheading}
             </p>
           </div>
@@ -47,7 +47,7 @@ const Features = ({
               contentClasses
             )}
           >
-            <div className="w-[544px] h-[1033px] relative shrink-0">
+            <div className="hidden lg:block w-[544px] h-[1033px] relative shrink-0">
               <Image
                 src={img}
                 alt=""
@@ -59,12 +59,12 @@ const Features = ({
             <div className="flex-[1_0_0] flex flex-col items-start gap-[50px] px-5 py-2.5 h-full">
               {data.map((feature, idx) => (
                 <div key={idx} className="flex w-full items-start gap-6">
-                  <WorksArrow />
+                  <WorksArrow className="hidden lg:block" />
                   <div className="flex flex-col items-start gap-2.5 flex-[1_0_0]">
-                    <p className="self-stretch text-black font-montserrat text-display-small font-medium">
+                    <p className="self-stretch text-black font-montserrat text-headline-small md:text-display-small font-medium">
                       {feature.title}
                     </p>
-                    <p className="self-stretch text-black font-montserrat text-headline-small font-regular">
+                    <p className="self-stretch text-black font-montserrat text-title-small md:text-headline-small font-regular">
                       {feature.description}
                     </p>
                   </div>

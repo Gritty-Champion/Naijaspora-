@@ -6,6 +6,7 @@ import twitterIcon from "@/img/twitter.svg";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/libs/motions";
+import { path } from "@/routes";
 
 const Footer = () => {
   const socialLinks = [
@@ -21,19 +22,39 @@ const Footer = () => {
       links: [
         {
           title: "Visa Prep Services",
-          link: "",
+          link: path.interviewPreps,
         },
         {
           title: "Zero Collateral Loans",
-          link: "",
+          link: path.funding,
         },
         {
           title: "Agent Verification",
-          link: "",
+          link: path.agents,
         },
         {
           title: "Document Checks",
-          link: "",
+          link: path.verifyDocuments,
+        },
+        {
+          title: "Consultations",
+          link: path.consultations,
+        },
+        {
+          title: "Visa Denial",
+          link: path.denial,
+        },
+        {
+          title: "Post Relocation",
+          link: path.postRelocation,
+        },
+        {
+          title: "Scam Alert",
+          link: path.report,
+        },
+        {
+          title: "Project Management",
+          link: path.projectManagement,
         },
         {
           title: "Emergency Services",
