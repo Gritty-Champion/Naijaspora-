@@ -3,7 +3,6 @@ import Wrapper from "../Wrapper";
 import Button from "../Button";
 import Image from "next/image";
 import contact3 from "@/img/contact_us/contact3.svg?url";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { fadeIn } from "@/libs/motions";
 import { motion } from "framer-motion";
 
@@ -25,10 +24,10 @@ const ContactCTA = () => {
 
             
               <p className="w-full text-black text-center font-montserrat text-headline-small font-regular">
-              Let's discuss how NaijaSpora can support your relocation journey, simplify your visa process, and help you thrive anywhere in the world.
+              Let&apos;s discuss how NaijaSpora can support your relocation journey, simplify your visa process, and help you thrive anywhere in the world.
               </p>
 
-              <p className="text-[28px]">Get in touch today — we're here to help.</p>
+              <p className="text-[28px]">Get in touch today — we&apos;re here to help.</p>
             
             <Button>Get Started</Button>
           </div>

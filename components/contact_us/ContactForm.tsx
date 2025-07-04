@@ -82,7 +82,7 @@ export default function Contact() {
       alert('Thank you for your message! We\'ll be in touch soon.');
       setFormData({ name: '', email: '', message: '', captcha: '', });
       setErrors({});
-    } catch (error) {
+    } catch {
       alert('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -166,7 +166,7 @@ export default function Contact() {
             <div className="bg-white rounded-2xl md:p-8">
               <div className="text-center mb-8">
                 <h1 className="text-[45px] font-medium text-gray-900 mb-2">How can we help?</h1>
-                <p className="text-gray-600">Please, drop a message using the form below. We'll be in touch!</p>
+                <p className="text-gray-600">Please, drop a message using the form below. We&apos;ll be in touch!</p>
               </div>
               
               <form onSubmit={handleSubmit} className="space-y-6">

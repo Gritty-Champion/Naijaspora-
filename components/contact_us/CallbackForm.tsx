@@ -96,7 +96,7 @@ export default function RequestCallback({
         captcha: "",
       });
       setErrors({});
-    } catch (error) {
+    } catch {
       alert("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);

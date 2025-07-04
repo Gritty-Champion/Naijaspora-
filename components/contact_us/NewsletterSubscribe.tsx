@@ -44,9 +44,9 @@ const NewsletterSubscribe: React.FC = () => {
 
       <div className="text-[14px]">
         <p className="text-xs text-gray-500">
-          We promise not to bombard you, we'll never pass on your email to a
+          We promise not to bombard you, we&apos;ll never pass on your email to a
           third party, and you can obviously unsubscribe at any time. Read more
-          on our{" "}
+          on our
           <a href="/privacy-policy" className="underline hover:text-gray-700">
             privacy policy
           </a>
