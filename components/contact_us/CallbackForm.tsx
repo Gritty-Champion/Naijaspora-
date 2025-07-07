@@ -116,14 +116,14 @@ export default function RequestCallback({
           {/* Left Section - Form */}
           <div className="order-2 lg:order-1">
             <div className="max-w-md mx-auto lg:mx-0">
-              <div className="text-center lg:text-left mb-8">
-                <h1 className="text-[45px] font-medium text-gray-900 mb-2">
+              <div className="text-center mb-8">
+                <h1 className="sm:text-[45px] text-[28px] font-medium text-black mb-2">
                   Request a Callback
                 </h1>
-                <p className="text-gray-600 mb-2 text-center">
+                <p className="text-black font-medium text-[14px]">
                   Need help? Let us call you.
                 </p>
-                <p className="text-sm text-gray-500 text-center">
+                <p className="text-black font-medium text-[14px]">
                   Fill out this quick form and a NaijaSpora advisor will reach
                   out within 24 hours.
                 </p>
@@ -133,7 +133,7 @@ export default function RequestCallback({
                 <div>
                   <label
                     htmlFor="callback-name"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm sm:text-[28px] font-medium text-neutral-20 mb-2"
                   >
                     Name
                   </label>
@@ -144,7 +144,7 @@ export default function RequestCallback({
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Name"
-                    className={`w-full px-4 py-3 bg-[#F3F0F4] focus:outline-none rounded-lg focus:ring-2 focus:ring-[#d3eaf2] focus:border-transparent transition-colors ${
+                    className={`w-full px-4 py-3 bg-neutral-95 focus:outline-none rounded-lg focus:ring-2 focus:ring-neutral-90 focus:border-transparent transition-colors ${
                       errors.name ? "border-red-500 bg-red-50" : ""
                     }`}
                   />
@@ -156,7 +156,7 @@ export default function RequestCallback({
                 <div>
                   <label
                     htmlFor="callback-phone"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm sm:text-[28px] font-medium text-neutral-20 mb-2"
                   >
                     Phone Number
                   </label>
@@ -167,7 +167,7 @@ export default function RequestCallback({
                     value={formData.phoneNumber}
                     onChange={handleChange}
                     placeholder="Phone Number"
-                    className={`w-full px-4 py-3 bg-[#F3F0F4] focus:outline-none rounded-lg focus:ring-2 focus:ring-[#d3eaf2] focus:border-transparent transition-colors ${
+                    className={`w-full px-4 py-3 bg-neutral-95 focus:outline-none rounded-lg focus:ring-2 focus:ring-neutral-90 focus:border-transparent transition-colors ${
                       errors.phoneNumber ? "border-red-500 bg-red-50" : ""
                     }`}
                   />
@@ -181,7 +181,7 @@ export default function RequestCallback({
                 <div>
                   <label
                     htmlFor="callback-reason"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm sm:text-[28px] font-medium text-neutral-20 mb-2"
                   >
                     Reason for Call
                   </label>
@@ -192,7 +192,7 @@ export default function RequestCallback({
                     onChange={handleChange}
                     rows={4}
                     placeholder="Please describe what you need help with..."
-                    className={`w-full px-4 py-3 bg-[#F3F0F4] focus:outline-none rounded-lg focus:ring-2 focus:ring-[#d3eaf2] focus:border-transparent transition-colors resize-none ${
+                    className={`w-full px-4 py-3 bg-neutral-95 focus:outline-none rounded-lg focus:ring-2 focus:ring-neutral-90 focus:border-transparent transition-colors resize-none ${
                       errors.reasonForCall ? "border-red-500 bg-red-50" : ""
                     }`}
                   />

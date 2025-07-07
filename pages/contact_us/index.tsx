@@ -3,8 +3,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/contact_us/ContactHero";
 import ContactForm from "@/components/contact_us/ContactForm";
 import CallbackForm from "@/components/contact_us/CallbackForm";
-
-import React from "react";
+import Whatsapp from "@/components/contact_us/Whatsapp";
 import HeroImg from "@/img/contact_us/Herormbg.png";
 import ContactCTA from "@/components/contact_us/ContactCTA";
 
@@ -26,6 +25,8 @@ const index = () => {
         />
 
         <ContactForm />
+
+        <Whatsapp />
 
         <CallbackForm />
 

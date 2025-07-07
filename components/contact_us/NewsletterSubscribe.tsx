@@ -14,8 +14,8 @@ const NewsletterSubscribe: React.FC = () => {
   return (
     <div className="w-full text-center p-4">
       <div className="flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-8 mb-4">
-        <div className="text-center">
-          <h2 className="text-2xl md:text-3xl text-primary-base mb-1">
+        <div className="text-center font-regular text-[22px]">
+          <h2 className="text-2xl md:text-[22px] text-primary-base mb-1">
             Keen to know the latest Updates?
           </h2>
           <p>Keep up to date with NaijaSpora news via email</p>
@@ -23,7 +23,7 @@ const NewsletterSubscribe: React.FC = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="w-full max-w-md flex items-center bg-[#F3F0F4] rounded-full h-12 shadow-md"
+          className="sm:w-full max-w-md flex items-center bg-neutral-95 rounded-full h-12 shadow-md"
         >
           <input
             type="email"
@@ -42,13 +42,13 @@ const NewsletterSubscribe: React.FC = () => {
         </form>
       </div>
 
-      <div className="text-[14px]">
-        <p className="text-xs text-gray-500">
+      <div className="text-[14px] text-black">
+        <p>
           We promise not to bombard you, we&apos;ll never pass on your email to a
           third party, and you can obviously unsubscribe at any time. Read more
-          on our
-          <a href="/privacy-policy" className="underline hover:text-gray-700">
-            privacy policy
+          on our&nbsp;
+          <a href="/privacy-policy" className="underline">
+             privacy policy
           </a>
           .
         </p>

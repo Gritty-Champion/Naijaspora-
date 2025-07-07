@@ -76,8 +76,8 @@ const ContactHero = ({
              
             )}
           >
-           <p className='text-[#3444F1] mb-2'>CONTACT US</p>  
-            Connect with the NaijaSpora team today
+           <p className='text-primary-base mb-2 text-[45px]'>CONTACT US</p>  
+           <p className='font-bold fon-[57px]'>Connect with the NaijaSpora team today</p> 
           </div>
 
          
