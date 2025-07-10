@@ -26,7 +26,7 @@ const ContactHero = ({
     <motion.section
       ref={heroRef}
       className={cn(
-        "flex relative w-full h-screen flex-col justify-center items-center gap-2.5 px-[10px] md:px-[20px] xl:px-[100px] py-[100px] lg:py-[150px]",
+        "flex relative w-full h-[70svh] sm:h-screen flex-col justify-center items-center gap-2.5 px-[10px] md:px-[20px] xl:px-[100px] py-[100px] lg:py-[150px]",
         heroBackgroundClassName
       )}
       variants={fadeIn("left", 0.2)}
@@ -72,10 +72,10 @@ const ContactHero = ({
               "self-stretch font-montserrat text-[42px] font-semibold leading-[normal] text-center"
             )}
           >
-            <p className="text-primary-base mb-2 text-display-medium font-medium">
+            <p className="text-primary-base mb-2  text-headline-large md:text-display-medium font-medium">
               CONTACT US
             </p>
-            <p className="font-bold text-display-large">
+            <p className="font-bold text-headline-large md:text-display-large">
               Connect with the NaijaSpora team today
             </p>
           </div>
