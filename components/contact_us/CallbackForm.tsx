@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { fadeIn } from "@/libs/motions";
 import contact2 from "@/img/contact_us/contact2.svg?url";
 import Image from "next/image";
+import InputField from "@/components/contact_us/Input";
+import TextareaField from "@/components/contact_us/TextArea";
+import Button from "@/components/Button";
 
 interface CallbackFormData {
   name: string;
@@ -111,105 +114,66 @@ export default function RequestCallback({
       viewport={{ once: true, amount: 0.3 }}
       className={`w-full md:py-8 px-4 sm:px-6 lg:px-8 ${className}`}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto font-montserrat">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Section - Form */}
           <div className="order-2 lg:order-1">
             <div className="max-w-md mx-auto lg:mx-0">
               <div className="text-center mb-8">
-                <h1 className="sm:text-[45px] text-[28px] font-medium text-black mb-2">
+                <h1 className="sm:text-display-medium text-headline-medium font-medium text-black mb-2">
                   Request a Callback
                 </h1>
-                <p className="text-black font-medium text-[14px]">
+                <p className="text-black font-medium text-label-large">
                   Need help? Let us call you.
                 </p>
-                <p className="text-black font-medium text-[14px]">
+                <p className="text-black font-medium text-label-large">
                   Fill out this quick form and a NaijaSpora advisor will reach
                   out within 24 hours.
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label
-                    htmlFor="callback-name"
-                    className="block text-sm sm:text-[28px] font-medium text-neutral-20 mb-2"
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="callback-name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Name"
-                    className={`w-full px-4 py-3 bg-neutral-95 focus:outline-none rounded-lg focus:ring-2 focus:ring-neutral-90 focus:border-transparent transition-colors ${
-                      errors.name ? "border-red-500 bg-red-50" : ""
-                    }`}
-                  />
-                  {errors.name && (
-                    <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-                  )}
-                </div>
+                <InputField
+                  label="Name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  error={errors.name}
+                  placeholder="Name"
+                  className="focus:ring-2 focus:ring-neutral-90"
+                />
 
-                <div>
-                  <label
-                    htmlFor="callback-phone"
-                    className="block text-sm sm:text-[28px] font-medium text-neutral-20 mb-2"
-                  >
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="callback-phone"
-                    name="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                    placeholder="Phone Number"
-                    className={`w-full px-4 py-3 bg-neutral-95 focus:outline-none rounded-lg focus:ring-2 focus:ring-neutral-90 focus:border-transparent transition-colors ${
-                      errors.phoneNumber ? "border-red-500 bg-red-50" : ""
-                    }`}
-                  />
-                  {errors.phoneNumber && (
-                    <p className="mt-1 text-sm text-red-600">
-                      {errors.phoneNumber}
-                    </p>
-                  )}
-                </div>
+                <InputField
+                  label="Phone Number"
+                  name="phoneNumber"
+                  type="tel"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                  error={errors.phoneNumber}
+                  placeholder="Phone Number"
+                  className="focus:ring-2 focus:ring-neutral-90"
+                />
 
-                <div>
-                  <label
-                    htmlFor="callback-reason"
-                    className="block text-sm sm:text-[28px] font-medium text-neutral-20 mb-2"
-                  >
-                    Reason for Call
-                  </label>
-                  <textarea
-                    id="callback-reason"
-                    name="reasonForCall"
-                    value={formData.reasonForCall}
-                    onChange={handleChange}
-                    rows={4}
-                    placeholder="Please describe what you need help with..."
-                    className={`w-full px-4 py-3 bg-neutral-95 focus:outline-none rounded-lg focus:ring-2 focus:ring-neutral-90 focus:border-transparent transition-colors resize-none ${
-                      errors.reasonForCall ? "border-red-500 bg-red-50" : ""
-                    }`}
-                  />
-                  {errors.reasonForCall && (
-                    <p className="mt-1 text-sm text-red-600">
-                      {errors.reasonForCall}
-                    </p>
-                  )}
-                </div>
+                <TextareaField
+                  label="Reason for Call"
+                  name="reasonForCall"
+                  value={formData.reasonForCall}
+                  onChange={handleChange}
+                  error={errors.reasonForCall}
+                  placeholder="Please describe what you need help with..."
+                  rows={4}
+                />
 
-                <button
+                <Button
                   type="submit"
+                  size="lg"
+                  variant="primary"
                   disabled={isSubmitting}
-                  className="bg-primary-base text-primary-on py-3 px-10 rounded-full font-medium hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  loading={isSubmitting}
+                  className="!rounded-full"
                 >
-                  {isSubmitting ? "Requesting..." : "Request call back"}
-                </button>
+                  Request call back
+                </Button>
 
                 {/* Honeypot field for spam protection */}
                 <div className="hidden">

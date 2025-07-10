@@ -1,27 +1,25 @@
-import React from 'react'
-import { StaticImport } from 'next/dist/shared/lib/get-img-props'
-import Image from 'next/image'
-import SVGCurve from "@/img/curveSVGWhite.svg?url"
-import { useController } from '@/hooks/useController'
-import { motion } from 'framer-motion'
-import { fadeIn } from '@/libs/motions'
-import { cn } from '@/libs/cn'
+import React from "react";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import Image from "next/image";
+import SVGCurve from "@/img/curveSVGWhite.svg?url";
+import { useController } from "@/hooks/useController";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/libs/motions";
+import { cn } from "@/libs/cn";
 
 type heroProps = {
   heroImage?: StaticImport | undefined;
-  
+
   heroBackgroundClassName?: string;
-  
+
   contentImage?: StaticImport | undefined;
-  
 };
 
 const ContactHero = ({
   heroImage,
- 
+
   contentImage,
   heroBackgroundClassName = "",
- 
 }: heroProps) => {
   const { heroRef } = useController();
   return (
@@ -51,8 +49,7 @@ const ContactHero = ({
 
           <div
             className={cn(
-              "flex w-full z-0 h-full items-start gap-2.5 absolute top-0 left-0 p-2.5",
-              
+              "flex w-full z-0 h-full items-start gap-2.5 absolute top-0 left-0 p-2.5"
             )}
           />
         </>
@@ -72,34 +69,33 @@ const ContactHero = ({
         <div className="flex  w-full flex-1 max-w-[751px] h-full flex-col items-start gap-[36px] shrink-0 justify-center">
           <div
             className={cn(
-              "self-stretch font-montserrat text-[42px] font-semibold leading-[normal] text-center",
-             
+              "self-stretch font-montserrat text-[42px] font-semibold leading-[normal] text-center"
             )}
           >
-           <p className='text-primary-base mb-2 text-[45px]'>CONTACT US</p>  
-           <p className='font-bold fon-[57px]'>Connect with the NaijaSpora team today</p> 
+            <p className="text-primary-base mb-2 text-display-medium font-medium">
+              CONTACT US
+            </p>
+            <p className="font-bold text-display-large">
+              Connect with the NaijaSpora team today
+            </p>
           </div>
-
-         
-
         </div>
 
         {contentImage && (
           <div className="relative hidden lg:flex items-end justify-end flex-1 mr-[-55px] mb-24">
-          <Image
-            src={contentImage}
-            alt="Descriptive text here"
-            width={1850}
-            height={450}
-            className="object-contain scale-[1.2]"
-            priority
-          />
-        </div>
-        
+            <Image
+              src={contentImage}
+              alt="Descriptive text here"
+              width={1850}
+              height={450}
+              className="object-contain scale-[1.2]"
+              priority
+            />
+          </div>
         )}
       </div>
     </motion.section>
   );
 };
 
-export default ContactHero
+export default ContactHero;

@@ -5,19 +5,22 @@ import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { fadeIn } from "@/libs/motions";
 import { motion } from "framer-motion";
+import { cn } from "@/libs/cn";
 
 const CTA = ({
   description,
   cta_text,
   cta_action,
   image,
-  addText
+  addText,
+  imageClassName
 }: {
-    description: string;
-    cta_text: string;
-    cta_action: () => void;
-    image: StaticImport;
-    addText?: string;
+  description: string;
+  cta_text: string;
+  cta_action: () => void;
+  image: StaticImport;
+  addText?: string | React.ReactNode;
+  imageClassName?: string;
 }) => {
   return (
     <motion.section
@@ -35,9 +38,9 @@ const CTA = ({
             </p>
 
             {addText && (
-              <p className="w-full text-black text-center font-montserrat text-headline-small font-regular">
-                {addText}
-              </p>
+              <div className="w-full text-black text-center font-montserrat text-headline-small font-regular space-y-6">
+                {typeof addText === "string" ? <p>{addText}</p> : addText}
+              </div>
             )}
             <Button onClick={cta_action}>{cta_text}</Button>
           </div>
@@ -46,7 +49,7 @@ const CTA = ({
             <Image
               src={image}
               alt=""
-              className="rounded-[0px_0px_100px_0px]"
+              className={cn("rounded-[0px_0px_100px_0px]", imageClassName)}
               fill
               objectFit="cover"
             />
