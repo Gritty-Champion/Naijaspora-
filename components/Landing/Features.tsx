@@ -75,14 +75,14 @@ const Features = () => {
                   "[background:linear-gradient(235deg,rgba(62,134,230,0.21)_55.88%,rgba(35,87,197,0.07)_65.98%)]":
                     idx === 3,
                 },
-                { "flex items-start gap-[50px] self-stretch": idx === 1 }
+                { "flex items-start lg:gap-[50px] self-stretch": idx === 1 }
               )}
             >
               <div
                 className={cn(
                   "flex w-full lg:max-w-[620px] p-[20px] lg:p-[46px] flex-col items-start gap-[20px] lg:gap-[48px]",
                   {
-                    "rounded-[40px] h-full [background:linear-gradient(90deg,rgba(107,33,168,0.20)_0%,rgba(94,60,154,0.20)_31.04%,rgba(75,98,134,0.20)_54.25%,rgba(59,130,118,0.20)_74.04%)]":
+                    "lg:rounded-[40px] rounded-b-[40px] h-full [background:linear-gradient(90deg,rgba(107,33,168,0.20)_0%,rgba(94,60,154,0.20)_31.04%,rgba(75,98,134,0.20)_54.25%,rgba(59,130,118,0.20)_74.04%)]":
                       idx === 1,
                   }
                 )}
@@ -110,7 +110,7 @@ const Features = () => {
                 className={cn(
                   "relative w-full h-[300px] lg:h-full lg:max-w-[50%]",
                   {
-                    "flex flex-col justify-center items-center gap-2 self-stretch rounded-[40px] [background:linear-gradient(180deg,rgba(107,33,168,0.50)_39.42%,rgba(217,100,239,0.50)_66.35%)]":
+                    "flex flex-col justify-center items-center gap-2 self-stretch lg:rounded-[40px] rounded-t-[40px] [background:linear-gradient(180deg,rgba(107,33,168,0.50)_39.42%,rgba(217,100,239,0.50)_66.35%)]":
                       idx === 1,
                   }
                 )}

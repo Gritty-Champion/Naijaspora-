@@ -34,20 +34,20 @@ const FAQs = ({
 
           <div className="flex w-full flex-1 flex-col items-center gap-10 shrink-0">
             <div className="flex justify-center items-center gap-[3px] md:p-2.5">
-              <p className="text-black text-center font-montserrat text-headline-large font-medium">
+              <p className="text-black text-center font-montserrat text-headline-large font-medium lg:text-display-small lg:font-semibold">
                 Got Questions? We&apos;ve Got You Covered
               </p>
             </div>
             <FAQList faqData={faqData} />
 
-            <Button
+            {/* <Button
               variant="text"
               iconPosition="right"
               className="!text-black"
               icon={<RiArrowDropRightLine />}
             >
               See All
-            </Button>
+            </Button> */}
           </div>
         </div>
       </Wrapper>

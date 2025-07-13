@@ -9,9 +9,7 @@ import Three from "@/img/points/three.svg?url";
 import Four from "@/img/points/four.svg?url";
 import Five from "@/img/points/five.svg?url";
 import Six from "@/img/points/six.svg?url";
-import Seven from "@/img/points/seven.svg?url";
-import Eight from "@/img/points/eight.svg?url";
-import Nine from "@/img/points/nine.svg?url";
+
 import { motion } from 'framer-motion';
 import { fadeIn} from '@/libs/motions';
 
@@ -29,7 +27,7 @@ const KeyPoints = () => {
     },
     {
       img: Three,
-      desc: "Access Directory of Verified agents",
+      desc: "Verified partner directory",
     },
     {
       img: Four,
@@ -37,65 +35,47 @@ const KeyPoints = () => {
     },
     {
       img: Five,
-      desc: "Visa Interview preparation",
+      desc: "Post-visa and post-relocation care",
     },
     {
       img: Six,
       desc: "Real humans and real results",
     },
-    {
-      img: Seven,
-      desc: "Post Visa denial service",
-    },
-    {
-      img: Nine,
-      desc: "Diaspora project Management",
-    },
-    {
-      img: Eight,
-      desc: "Ensure authenticity of documents",
-    },
   ];
   return (
     <motion.section className="flex w-full flex-col">
-      <div className="w-full relative">
+      <div className="w-full relative hidden lg:block">
         <Image
           src={curveSVG}
           alt="Curve decoration"
           width={1000}
           height={50}
-          style={{ width: "100%" }}
+          style={{ width: "100vw" }}
         />
       </div>
       <div className="flex w-full h-fit flex-col items-start gap-[40px] self-stretch bg-neutral-10 py-[40px]">
         <Wrapper>
           <div className="flex w-full h-fit flex-col items-start gap-[40px] self-stretch bg-neutral-10">
             {/* Top */}
-            <div className="flex w-full items-start gap-2.5 self-stretch border-b-secondary-on_secondary_fixed_variant pb-2.5 py-[23px] lg:py-[46px] border-b border-solid">
-              <div className="flex max-w-[554px] flex-col items-start gap-[18px] lg:gap-[36px]">
+            <div className="flex w-full items-center justify-center gap-2.5 self-stretch pb-2.5 py-[23px] lg:py-[46px]">
+              <div className="flex max-w-[554px] flex-col items-center gap-[18px] lg:gap-[36px]">
                 <p className="max-w-[554px] text-white font-montserrat font-semibold text-display-medium lg:text-display-large">
                   With Naijaspora
                 </p>
-                <p className="max-w-[369px] text-surface-container font-montserrat text-title-medium font-bold ">
-                  A truly global support system
+                <p className="max-w-[369px] text-center text-surface-container font-montserrat text-title-medium font-bold ">
+                  A truly global support system bigger and more centralized.
                 </p>
                 <Button>Get Started</Button>
               </div>
             </div>
 
             {/* Bottom */}
-            <div
-              className="grid h-fit gap-y-7 gap-x-7 shrink-0 self-stretch grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-            >
+            <div className="flex flex-wrap w-full max-w-[1240px] h-full gap-y-7 gap-x-7 justify-center mx-auto">
               {cardData.map((Data, idx) => (
                 <motion.div
-                  key={idx}
-                  variants={fadeIn("bottom", idx * 0.1)}
-                  className="flex relative w-full max-w-[360px] h-[380px] flex-col justify-center items-center gap-[22px] shrink-0 mx-auto"
+                  className="flex w-[394.667px] flex-col justify-center items-center gap-[22px] rounded-[16px] bg-[#15183A] shadow-[0px_4px_6px_-4px_rgba(0,0,0,0.10),0px_10px_15px_-3px_rgba(0,0,0,0.10)] py-[30px]"
                 >
-                  <div className="flex w-full h-full flex-col items-start gap-2.5 z-0 absolute top-0 left-0 rounded-[16px] [background:rgba(255,255,255,0.05)] backdrop-blur-[6px] p-2.5" />
-
-                  <div className="flex relative z-1 w-full h-[271px] flex-col items-start gap-2.5 shrink-0 rounded-[16px_16px_0px_0px]">
+                  <div className="flex relative z-1 w-[150px] h-[150px] shrink-0">
                     <Image
                       src={Data.img}
                       alt={Data.desc}
@@ -105,8 +85,11 @@ const KeyPoints = () => {
                     />
                   </div>
 
-                  <div className="flex relative px-[36px] py-[10px] z-1 flex-col justify-center items-center gap-2.5 shrink-0 self-stretch">
-                    <p className="self-stretch text-center text-white text-title-medium font-montserrat font-medium">
+                  <div className="flex px-[36px] flex-col justify-center items-start gap-2.5 self-stretch py-[10px]">
+                    <p className="text-primary-on_primary text-headline-large font-montserrat font-medium">
+                      0{idx + 1}—
+                    </p>
+                    <p className="self-stretch text-primary-on_primary font-inter text-headline-medium font-medium ">
                       {Data.desc}
                     </p>
                   </div>

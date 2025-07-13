@@ -15,6 +15,7 @@ import Nine from "@/img/services/Service Nine.png";
 import Button from "../Button";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/libs/motions";
+import PlainLogo from "@/img/plainLogo.svg"
 
 const Services = () => {
   const servicesData = [
@@ -88,15 +89,15 @@ const Services = () => {
   const startX = React.useRef(0);
   const scrollLeft = React.useRef(0);
 
-  // Scroll button click
   const handleScroll = (direction: "left" | "right") => {
     if (!containerRef.current) return;
-    const scrollAmount = 800;
+    const isMobile = window.innerWidth < 1024;
+    const scrollAmount = isMobile ? containerRef.current.offsetWidth : 800;
     containerRef.current.scrollBy({
       left: direction === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",
     });
-  };
+  };  
 
   // Mouse drag-to-scroll
   React.useEffect(() => {
@@ -153,7 +154,8 @@ const Services = () => {
         <div className="flex w-full flex-col items-center gap-[50px] bg-white">
           <div className="flex flex-col lg:flex-row w-full items-end gap-2.5">
             <div className="flex max-w-[681px] flex-col items-start gap-2.5 shrink-0 p-2.5">
-              <p className="self-stretch text-black font-montserrat text-headline-medium lg:text-display-large font-semibold">
+              <PlainLogo />
+              <p className="self-stretch text-black font-montserrat text-headline-medium lg:text-display-medium font-semibold">
                 More than just consultation. It&apos;s your global safety net.
               </p>
             </div>
@@ -184,7 +186,7 @@ const Services = () => {
               {servicesData.map((item, idx) => (
                 <div
                   key={idx}
-                  className="relative flex-shrink-0 w-full max-w-[800px] h-[560px] flex flex-col items-start gap-[50px] rounded-[16px] overflow-hidden p-[45px] text-white"
+                  className="relative flex-shrink-0 w-full max-w-[800px] h-[450px] flex flex-col items-start gap-[50px] rounded-[16px] overflow-hidden p-[45px] text-white"
                 >
                   {/* Background Image */}
                   <Image
@@ -198,11 +200,11 @@ const Services = () => {
                   <div className="absolute inset-0 bg-[rgba(17,40,91,0.7)] z-10" />
 
                   {/* Content */}
-                  <div className="relative z-20 flex max-w-[615px] h-[368px] flex-col justify-between items-start shrink-0">
-                    <p className="w-full font-montserrat text-headline-small lg:text-display-small font-medium">
+                  <div className="relative z-20 flex max-w-[615px] gap-[40px] lg:h-[275px] flex-col justify-between items-start shrink-0">
+                    <p className="w-full font-montserrat text-headline-small">
                       {item.title}
                     </p>
-                    <p className="font-montserrat text-headline-medium lg:text-display-medium font-semibold">
+                    <p className="font-montserrat text-headline-medium font-medium">
                       {item.desc}
                     </p>
                   </div>
