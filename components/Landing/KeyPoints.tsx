@@ -9,9 +9,7 @@ import Three from "@/img/points/three.svg?url";
 import Four from "@/img/points/four.svg?url";
 import Five from "@/img/points/five.svg?url";
 import Six from "@/img/points/six.svg?url";
-
 import { motion } from 'framer-motion';
-import { fadeIn} from '@/libs/motions';
 
 
 const KeyPoints = () => {
@@ -73,6 +71,7 @@ const KeyPoints = () => {
             <div className="flex flex-wrap w-full max-w-[1240px] h-full gap-y-7 gap-x-7 justify-center mx-auto">
               {cardData.map((Data, idx) => (
                 <motion.div
+                  key={idx}
                   className="flex w-[394.667px] flex-col justify-center items-center gap-[22px] rounded-[16px] bg-[#15183A] shadow-[0px_4px_6px_-4px_rgba(0,0,0,0.10),0px_10px_15px_-3px_rgba(0,0,0,0.10)] py-[30px]"
                 >
                   <div className="flex relative z-1 w-[150px] h-[150px] shrink-0">

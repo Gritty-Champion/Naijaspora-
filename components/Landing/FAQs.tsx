@@ -3,8 +3,6 @@ import Wrapper from "../Wrapper";
 import faqImage from "@/img/faqImg.svg?url";
 import Image from "next/image";
 import FAQList from "./FaqList";
-import Button from "../Button";
-import { RiArrowDropRightLine } from "@remixicon/react";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/libs/motions";
 
