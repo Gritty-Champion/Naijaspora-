@@ -106,7 +106,7 @@ const Testimonial = () => {
 
                       {/* Desc */}
                       <div className="flex flex-col flex-1 h-full gap-[40px] lg:justify-between items-center  self-stretch p-2.5">
-                        <p className="w-full max-w-[551px] text-white font-montserrat text-title-small md:text-headline-small xl:text-headline-large font-medium">
+                        <p className="w-full max-w-[551px] text-white font-montserrat text-title-medium md:text-headline-small xl:text-headline-large font-medium">
                           {data.desc}
                         </p>
                         <p className="w-full max-w-[551px] text-white font-montserrat text-title-medium lg:text-headline-large font-medium">

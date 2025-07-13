@@ -12,11 +12,11 @@ const MissionStatement = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="w-full h-fit bg-[rgba(35,87,197,0.20)]"
+      className="w-full h-fit bg-primary-container"
     >
       <Wrapper>
-        <div className="flex flex-col lg:flex-row w-full min-h-[490px] justify-center items-center gap-[30px] lg:gap-[70px] py-8 lg:py-0 lg:pt-8">
-          <div className="flex w-full lg:w-[678px] h-auto lg:h-[490px] flex-col justify-center items-start gap-[20px] lg:gap-[46px] px-4 lg:px-0 py-4 lg:py-[46px]">
+        <div className="flex flex-col lg:flex-row w-full justify-center items-center gap-[30px] lg:gap-[70px] py-8 lg:py-0 lg:pt-8">
+          <div className="flex w-full h-auto flex-col justify-center items-start gap-[20px] lg:gap-[46px] px-4 lg:px-0 py-4 lg:py-[46px]">
             <p className="self-stretch text-surface-on font-montserrat text-[28px] lg:text-display-medium font-semibold">
               Making a difference together
             </p>
@@ -31,7 +31,7 @@ const MissionStatement = () => {
             </p>
           </div>
 
-          <div className="w-[300px] lg:w-[403px] h-auto lg:h-[490px] shrink-0 rounded-[30px]">
+          <div className="w-[300px] h-full shrink-0 rounded-[30px]">
             <Image
               src={MissionStatementImg}
               alt="Mission Statement Illustration"

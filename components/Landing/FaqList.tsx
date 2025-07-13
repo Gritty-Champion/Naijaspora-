@@ -28,7 +28,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex w-full justify-between items-center self-stretch py-2 lg:p-5"
       >
-        <h3 className="text-black text-left font-montserrat text-title-medium font-medium">
+        <h3 className="text-black text-left font-montserrat text-title-large font-medium">
           {question}
         </h3>
         <span
@@ -44,7 +44,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
         style={{ height }}
         className="lg:px-5 overflow-hidden transition-all duration-300 ease-in-out"
       >
-        <div className=" text-black text-left font-inter text-title-small font-regular">
+        <div className=" text-black text-left font-inter text-title-medium font-regular">
           {answer}
         </div>
       </div>

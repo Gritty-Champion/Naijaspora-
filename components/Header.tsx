@@ -1,21 +1,25 @@
-import { headerMotion } from '@/libs/motions'
-import { motion } from 'framer-motion'
-import React, { useEffect, useState } from 'react'
-import Wrapper from './Wrapper'
-import Logo from './Logo'
-import HeaderMenu from './HeaderMenu'
-import Button from './Button'
-import { RiArrowRightCircleLine, RiCloseLine, RiMenuLine } from '@remixicon/react'
-import { cn } from '@/libs/cn'
-import {useRouter} from "next/router";
-import Link from 'next/link'
-import { path } from '@/routes'
+import { headerMotion } from "@/libs/motions";
+import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import Wrapper from "./Wrapper";
+import Logo from "./Logo";
+import HeaderMenu from "./HeaderMenu";
+import Button from "./Button";
+import {
+  RiArrowRightCircleLine,
+  RiCloseLine,
+  RiMenuLine,
+} from "@remixicon/react";
+import { cn } from "@/libs/cn";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { path } from "@/routes";
 
 interface HeaderProps {
-  isHeroInView: boolean
+  isHeroInView: boolean;
 }
 
-const Header = ({isHeroInView}: HeaderProps) => {
+const Header = ({ isHeroInView }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -43,14 +47,13 @@ const Header = ({isHeroInView}: HeaderProps) => {
     },
   ];
 
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY !== 0);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -58,7 +61,7 @@ const Header = ({isHeroInView}: HeaderProps) => {
       variants={headerMotion}
       initial="initial"
       animate="animate"
-      className={cn("flex w-full h-fit fixed top-0 left-0 z-[1000]", {
+      className={cn("flex w-full fixed top-0 left-0 z-[1000]", {
         "bg-transparent": isHeroInView && !isScrolled,
         "bg-[rgba(255,255,255,0.10)]] backdrop-blur-sm shadow-[0px_1px_2px_-1px_rgba(0,0,0,0.10),0px_1px_3px_0px_rgba(0,0,0,0.10)]":
           isScrolled,
@@ -168,6 +171,6 @@ const Header = ({isHeroInView}: HeaderProps) => {
       </Wrapper>
     </motion.header>
   );
-}
+};
 
-export default Header
+export default Header;
