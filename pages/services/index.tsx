@@ -162,9 +162,8 @@ const Services = () => {
         </motion.section>
 
         {servicesPages.map((Service, index) => (
-          <Wrapper>
+          <Wrapper key={index}>
             <section
-              key={index}
               className={cn(
                 "flex w-fit flex-col lg:flex-row lg:h-[527px] items-center gap-2.5 self-stretch py-[20px]",
                 `${index % 2 !== 0 ? "bg-[#F2EFFA]" : "bg-white"}`
@@ -190,7 +189,12 @@ const Services = () => {
                 <p className="self-stretch text-[#ABAAB4] font-montserrat text-headline-medium font-medium">
                   {Service.desc}
                 </p>
-                <Button className="lg:w-fit w-full" onClick={() => router.push(Service.route)}>Explore Service</Button>
+                <Button
+                  className="lg:w-fit w-full"
+                  onClick={() => router.push(Service.route)}
+                >
+                  Explore Service
+                </Button>
               </div>
             </section>
           </Wrapper>
