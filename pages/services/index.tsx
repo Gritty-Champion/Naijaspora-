@@ -5,7 +5,7 @@ import HeroImg from "@/img/allServices.svg?url";
 import Button from "@/components/Button";
 import { cn } from "@/libs/cn";
 import { fadeIn } from "@/libs/motions";
-import { RiArrowRightCircleLine, RiPlayCircleLine } from "@remixicon/react";
+import { RiPlayCircleLine } from "@remixicon/react";
 import { motion } from "framer-motion";
 import { useController } from "@/hooks/useController";
 import Image from "next/image";
