@@ -182,6 +182,13 @@ const MigrationTipsSection: React.FC = () => {
     }
   };
 
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+
   const startIndex = (currentPage - 1) * cardsPerPage;
   const currentTips = migrationTips.slice(
     startIndex,
@@ -203,6 +210,15 @@ const MigrationTipsSection: React.FC = () => {
 
       {/* Pagination */}
       <div className="flex justify-center items-center gap-4">
+        <Button
+          onClick={handlePrevious}
+          size="lg"
+          variant={currentPage === 1 ? "secondary" : "primary"}
+          disabled={currentPage === 1}
+          className="text-white"
+        >
+          ← Previous
+        </Button>
         <div className="rounded-full border border-gray-300 px-4 py-1 text-sm">
           {currentPage}/{totalPages}
         </div>
