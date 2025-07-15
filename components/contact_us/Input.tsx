@@ -7,6 +7,7 @@ interface InputFieldProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   className?: string;
+  labelClassName?: string;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -18,10 +19,11 @@ const InputField: React.FC<InputFieldProps> = ({
   onChange,
   placeholder,
   className,
+  labelClassName
 }) => {
   return (
     <div>
-      <label htmlFor={name} className="block text-sm sm:text-[28px] font-medium text-neutral-20 mb-2">
+      <label htmlFor={name} className={`lock text-sm sm:text-[28px] font-medium text-neutral-20 mb-2 ${labelClassName ?? ''}`}>
         {label}
       </label>
       <input
