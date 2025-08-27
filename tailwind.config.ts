@@ -93,7 +93,7 @@ const config: Config = {
       montserrat: ["var(--font-montserrat)"],
     },
   },
-  plugins: [addVariablesForColors, require("tailwind-scrollbar-hide")],
+  plugins: [addVariablesForColors, require("tailwind-scrollbar-hide"), require('@tailwindcss/typography'),],
 };
 
 export default config;

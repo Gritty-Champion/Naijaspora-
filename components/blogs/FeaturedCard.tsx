@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 
 interface FeaturedCardProps {
   image: StaticImageData;
@@ -6,6 +7,7 @@ interface FeaturedCardProps {
   description: string;
   authorName: string;
   authorAvatar: StaticImageData;
+  slug: string;
 }
 
 const FeaturedCard = ({
@@ -14,10 +16,14 @@ const FeaturedCard = ({
   description,
   authorName,
   authorAvatar,
+  slug,
 }: FeaturedCardProps) => {
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm max-w-4xl w-full mx-auto p-4 my-4">
-      {/* Cover Image */}
+  <Link 
+        href={`/blog/${slug}`} 
+        className="block bg-white rounded-2xl overflow-hidden shadow-sm max-w-4xl w-full mx-auto p-4 my-4 hover:shadow-lg transition-shadow duration-300"
+    >
+       {/* Cover Image */}
       <div className="w-full h-[220px] sm:h-[280px] relative">
         <Image
           src={image}
@@ -47,7 +53,9 @@ const FeaturedCard = ({
           <span className="text-headline-medium font-medium">{authorName}</span>
         </div>
       </div>
-    </div>
+    
+
+    </Link>
   );
 };
 
