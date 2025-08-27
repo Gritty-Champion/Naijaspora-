@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaArrowUp } from "react-icons/fa";
+import { RiArrowUpLine } from "@remixicon/react";
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,7 +36,7 @@ const ScrollToTopButton = () => {
           className="bg-primary-base text-white rounded-full p-4 shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-opacity duration-300"
           aria-label="Go to top"
         >
-          <FaArrowUp />
+          <RiArrowUpLine className="h-5 w-5" />
         </button>
       )}
     </div>
