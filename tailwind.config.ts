@@ -47,6 +47,13 @@ const config: Config = {
         disabled: colors.secondary.disabled,
         on_disabled: colors.secondary.on_disabled,
       },
+      tertiary: {
+        ...colors.tertiary,
+        base: colors.tertiary.base,
+        on: colors.tertiary.on_tertiary,
+        container: colors.tertiary.tertiary_container,
+        on_container: colors.tertiary.on_tertiary_container,
+      },
       surface: {
         base: colors.tertiary.on_tertiary,
         on: colors.neutral[10],
