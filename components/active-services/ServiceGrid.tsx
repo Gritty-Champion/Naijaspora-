@@ -1,5 +1,4 @@
 import ServiceCard from "@/components/active-services/ServiceCard";
-// Import your background images for all 9 cards
 import VisaImage from "@/img/services/Service 7.png";
 import LoanImage from "@/img/services/Service Nine.png";
 import AgentVerificationImage from "@/img/services/Service One.png";
@@ -79,8 +78,8 @@ const servicesData = [
 ];
 
 // Helper function to group data into chunks
-function chunkArray(array: any[], size: number) {
-  const chunks = [];
+function chunkArray<T>(array: T[], size: number): T[][] {
+  const chunks: T[][] = [];
   for (let i = 0; i < array.length; i += size) {
     chunks.push(array.slice(i, i + size));
   }

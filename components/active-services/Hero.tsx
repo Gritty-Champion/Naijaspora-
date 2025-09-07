@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Hand from "@/img/services/hand.svg";
 import Hand1 from "@/img/services/hand.png";
 import Image from "next/image";
 const services = [
