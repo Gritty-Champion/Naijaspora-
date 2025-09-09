@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import Button from "./Button";
 import { cn } from "@/libs/cn";
 import { path } from "@/routes";
+import Link from "next/link";
 
 interface HeaderMenuProps {
   isScrolled: boolean,
@@ -79,7 +80,7 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
         {
           label: "Blog",
           icon: MenuBlog,
-          link: "#",
+          link: path.blog,
           desc: "Tips, trends & updates on moving abroad.",
         },
         {
@@ -151,7 +152,9 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
                   ))}
 
                   {menu.label === "Services" && (
-                    <Button variant="text" onClick={() => router.push(path.services)}>View all</Button>
+                    <Link href={path.activeServices}>
+                    <Button variant="text">View all</Button>
+                    </Link>
                   )}
                 </div>
 

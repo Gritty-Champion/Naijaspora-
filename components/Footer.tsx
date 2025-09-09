@@ -10,10 +10,10 @@ import { path } from "@/routes";
 
 const Footer = () => {
   const socialLinks = [
-    { icon: fbIcon, link: "" },
-    { icon: linkedIcon, link: "" },
-    { icon: instaIcon, link: "" },
-    { icon: twitterIcon, link: "" },
+    { icon: fbIcon, link: "/" },
+    { icon: linkedIcon, link: "/" },
+    { icon: instaIcon, link: "/" },
+    { icon: twitterIcon, link: "/" },
   ];
 
   const footerLinks = [
@@ -58,42 +58,42 @@ const Footer = () => {
         },
         {
           title: "Emergency Services",
-          link: "",
+          link: "/",
         },
       ],
     },
     {
       heading: "COMPANY",
       links: [
-        { title: "About Us", link: "" },
-        { title: "Careers", link: "" },
-        { title: "Blog", link: "" },
-        { title: "Contact", link: "" },
+        { title: "About Us", link: "/" },
+        { title: "Careers", link: "/" },
+        { title: "Blog", link: path.blog },
+        { title: "Contact", link: "/" },
       ],
     },
     {
       heading: "LIFESTYLE",
       links: [
-        { title: "For Agents", link: "" },
-        { title: "For Nigerians in Diaspora", link: "" },
-        { title: "For Japa Hopefuls", link: "" },
-        { title: "Join the community", link: "" },
+        { title: "For Agents", link: "/" },
+        { title: "For Nigerians in Diaspora", link: "/" },
+        { title: "For Japa Hopefuls", link: "/" },
+        { title: "Join the community", link: "/" },
       ],
     },
     {
       heading: "LEGAL",
       links: [
-        { title: "Privacy Policy", link: "" },
-        { title: "Terms of Service", link: "" },
-        { title: "Scam Policy", link: "" },
+        { title: "Privacy Policy", link: "/" },
+        { title: "Terms of Service", link: "/" },
+        { title: "Scam Policy", link: "/" },
       ],
     },
     {
       heading: "SUPPORT",
       links: [
-        { title: "Help Center", link: "" },
-        { title: "Video Guides", link: "" },
-        { title: "FAQ", link: "" },
+        { title: "Help Center", link: "/" },
+        { title: "Video Guides", link: "/" },
+        { title: "FAQ", link: "/" },
       ],
     },
   ];
