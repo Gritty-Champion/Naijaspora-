@@ -76,6 +76,7 @@ const Header = ({ isHeroInView }: HeaderProps) => {
           <HeaderMenu isHeroInView={isHeroInView} isScrolled={isScrolled} />
 
           <div className="hidden lg:flex items-center gap-[24px]">
+            <Link href={path.login}>
             <Button
               variant="text"
               className={cn({
@@ -85,6 +86,9 @@ const Header = ({ isHeroInView }: HeaderProps) => {
             >
               Log In
             </Button>
+            </Link>
+
+            <Link href={path.signup}>
             <Button
               variant={
                 router.pathname === "/"
@@ -102,6 +106,7 @@ const Header = ({ isHeroInView }: HeaderProps) => {
             >
               Get started
             </Button>
+            </Link>
           </div>
 
           <div className="w-fit h-fit flex lg:hidden justify-center items-center">

@@ -1,7 +1,11 @@
+import { log } from "console";
 
 export const path = Object.freeze({
   home: "/",
   services: "/services",
+  blog: "/blog",
+  login: "/auth/login",
+  signup: "/auth/signup",
   interviewPreps: "/services/interview-preps",
   agents: "/services/agents",
   consultations: "/services/consultations",
