@@ -3,6 +3,7 @@ import { log } from "console";
 export const path = Object.freeze({
   home: "/",
   services: "/services",
+  activeServices: "/active-services",
   blog: "/blog",
   login: "/auth/login",
   signup: "/auth/signup",

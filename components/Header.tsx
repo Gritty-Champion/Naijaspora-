@@ -37,7 +37,7 @@ const Header = ({ isHeroInView }: HeaderProps) => {
       title: "Learn",
       content: [
         { name: "Help center", link: "#" },
-        { name: "Blog", link: "#" },
+        { name: "Blog", link: path.blog },
         { name: "Videos", link: "#" },
       ],
     },
