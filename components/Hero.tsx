@@ -105,13 +105,15 @@ const Hero = ({
             </p>
           </div>
 
-          <Button
-            iconPosition="right"
-            icon={<RiArrowRightCircleLine size={20} />}
-            onClick={heroBtnClick}
-          >
-            {heroBtnText}
-          </Button>
+          {heroBtnText && (
+            <Button
+              iconPosition="right"
+              icon={<RiArrowRightCircleLine size={20} />}
+              onClick={heroBtnClick}
+            >
+              {heroBtnText}
+            </Button>
+          )}
 
           <div
             onClick={vidComClick}
