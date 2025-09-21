@@ -59,6 +59,10 @@ const config: Config = {
         on: colors.neutral[10],
         container: colors["neutral-variant"][95],
       },
+      error: {
+        ...colors.error,
+        base: colors.error.base,
+      },
       neutral: colors.neutral,
       "neutral-variant": colors["neutral-variant"],
     },
