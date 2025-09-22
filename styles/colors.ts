@@ -99,6 +99,9 @@ const palettes = {
     "99": "#FFFBFF",
     "100": "#FFFFFF",
   },
+  error: {
+    "40": "#FF0000",
+  },
 };
 
 const schemes = {
@@ -144,6 +147,9 @@ const schemes = {
     base: palettes.tertiary["100"],
     on_surface: palettes.neutral["10"],
     surface_container: palettes["neutral-variant"][95],
+  },
+  error: {
+    base: palettes.error["40"],
   },
 };
 
