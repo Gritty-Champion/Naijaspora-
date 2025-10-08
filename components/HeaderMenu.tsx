@@ -12,7 +12,6 @@ import Button from "./Button";
 import { cn } from "@/libs/cn";
 import { path } from "@/routes";
 import Link from "next/link";
-import { link } from "fs";
 
 interface HeaderMenuProps {
   isScrolled: boolean,
