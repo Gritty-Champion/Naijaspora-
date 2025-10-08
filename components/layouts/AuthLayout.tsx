@@ -13,7 +13,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       <div className="flex flex-col items-center sm:w-1/2 mx-auto  py-6 px-12  bg-surface-base">
         <div className="w-full max-w-">
           <div className="mb-8">
-            <Logo isHeroInView={false} isScrolled={true} />
+            <Logo />
           </div>
           {children}
         </div>

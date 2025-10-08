@@ -12,6 +12,7 @@ import Button from "./Button";
 import { cn } from "@/libs/cn";
 import { path } from "@/routes";
 import Link from "next/link";
+import { link } from "fs";
 
 interface HeaderMenuProps {
   isScrolled: boolean,
@@ -86,7 +87,7 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
         {
           label: "Videos",
           icon: MenuVideo,
-          link: "#",
+          link: path.videos,
           desc: "Watch guides to use NaijaSpora with ease",
         },
       ],
@@ -95,7 +96,8 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
     },
 
     {
-      label: "Company",
+      label: "About Us",
+      link: "#",
       hasChildren: false,
       hasSider: false,
     },
