@@ -1,12 +1,16 @@
 import Image from "next/image";
 import Logo from "@/components/Logo";
 import AuthImage from "@/img/auth/authimage.png";
+import CollectUserInfos from "../CollectUserInfos";
+import { Dispatch, SetStateAction } from "react";
 
 interface AuthLayoutProps {
   children: React.ReactNode;
+  collectInfo?: boolean;
+  setCollectInfo?: Dispatch<SetStateAction<boolean>>
 }
 
-const AuthLayout = ({ children }: AuthLayoutProps) => {
+const AuthLayout = ({ children, collectInfo}: AuthLayoutProps) => {
   return (
     <main className="flex lg:h-screen lg:overflow-hidden font-montserrat">
       {/* Left Column: Form/Content */}
@@ -30,6 +34,8 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
           className="object-cover"
         />
       </div>
+
+      <CollectUserInfos open={collectInfo !== undefined && collectInfo} />
     </main>
   );
 };

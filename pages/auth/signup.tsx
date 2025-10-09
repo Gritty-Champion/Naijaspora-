@@ -9,6 +9,8 @@ import InputField from "@/components/contact_us/Input";
 const SignUpPage = () => {
   const [formData, setFormData] = useState({ email: '', terms: false, marketing: false });
   const [errors, setErrors] = useState<{ email?: string, terms?: string }>({});
+  const [collectInfo, setCollectInfo] = useState<boolean>(false);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -41,10 +43,10 @@ const SignUpPage = () => {
   };
 
   return (
-    <AuthLayout>
+    <AuthLayout collectInfo={collectInfo} setCollectInfo={setCollectInfo}>
       <div className="flex flex-col gap-6">
         <h1 className="text-headline-large font-medium text-black">Sign Up</h1>
-        
+
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <InputField
             variant="auth"
@@ -73,7 +75,7 @@ const SignUpPage = () => {
             </div>
             {errors.terms && <span className="mt-1 text-[11px] text-[#ef4444]">{errors.terms}</span>}
           </div>
-          
+
           <div className="flex items-center gap-3">
             <input
               type="checkbox"
@@ -88,7 +90,7 @@ const SignUpPage = () => {
             </label>
           </div>
 
-          <Button type="submit" variant="primary" className="w-full justify-center ">
+          <Button onClick={() => {setCollectInfo(true)}} type="submit" variant="primary" className="w-full justify-center ">
             Continue
           </Button>
         </form>

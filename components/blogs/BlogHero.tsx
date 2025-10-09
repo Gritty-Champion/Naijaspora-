@@ -48,7 +48,7 @@ const BlogHero = ({
       )}
 
       <div className="hidden xl:flex flex-col w-full h-[140px] z-0 items-start absolute right-0 bottom-[-2px]">
-        <img
+        <Image
           src={SVGCurve}
           alt="Curve Decoration"
           className="w-full h-full object-cover"
