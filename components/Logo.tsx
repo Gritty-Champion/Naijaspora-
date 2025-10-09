@@ -1,23 +1,20 @@
-import React from 'react'
-import {cn} from "@/libs/cn";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-interface LogoProps {
-  isScrolled: boolean,
-  isHeroInView: boolean
-}
+const Logo = () => {
 
-const Logo = ({ isScrolled, isHeroInView }: LogoProps) => {
   return (
-    <div className='flex flex-col items-start gap-2.5 lg:p-2.5'>
-      <p className={cn(
-        "!text-display-small font-semibold",
-        {
-          "text-primary-on_primary": isScrolled || isHeroInView,
-          "text-black": !isHeroInView
-        }
-      )}>NaijaSpora</p>
-    </div>
-  )
-}
+    <Link href="/" className='flex flex-col items-start gap-2.5 lg:p-2.5'>
+      <Image 
+        src="/logo.svg"
+        alt="NaijaSpora Logo"
+        width={200}
+        height={60}
+        priority
+      />
+    </Link>
+  );
+};
 
-export default Logo
+export default Logo;

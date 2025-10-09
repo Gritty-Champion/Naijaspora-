@@ -86,7 +86,7 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
         {
           label: "Videos",
           icon: MenuVideo,
-          link: "#",
+          link: path.videos,
           desc: "Watch guides to use NaijaSpora with ease",
         },
       ],
@@ -95,7 +95,8 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
     },
 
     {
-      label: "Company",
+      label: "About Us",
+      link: "#",
       hasChildren: false,
       hasSider: false,
     },

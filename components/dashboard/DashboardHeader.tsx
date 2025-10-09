@@ -10,7 +10,7 @@ const DashboardHeader = () => {
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <div className="flex-shrink-0">
-                        <Logo isHeroInView={false} isScrolled={true} />
+                        <Logo />
                     </div>
 
                     {/* Search Bar */}

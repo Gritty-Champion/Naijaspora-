@@ -5,6 +5,7 @@ export const path = Object.freeze({
   services: "/services",
   activeServices: "/active-services",
   blog: "/blog",
+  videos: "/videos",
   login: "/auth/login",
   signup: "/auth/signup",
   interviewPreps: "/services/interview-preps",

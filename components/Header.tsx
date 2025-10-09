@@ -38,7 +38,7 @@ const Header = ({ isHeroInView }: HeaderProps) => {
       content: [
         { name: "Help center", link: "#" },
         { name: "Blog", link: path.blog },
-        { name: "Videos", link: "#" },
+        { name: "Videos", link: path.videos },
       ],
     },
     {
@@ -71,7 +71,7 @@ const Header = ({ isHeroInView }: HeaderProps) => {
     >
       <Wrapper>
         <div className="flex relative w-full justify-between items-center py-[8px]">
-          <Logo isHeroInView={isHeroInView} isScrolled={isScrolled} />
+          <Logo  />
 
           <HeaderMenu isHeroInView={isHeroInView} isScrolled={isScrolled} />
 
@@ -132,7 +132,7 @@ const Header = ({ isHeroInView }: HeaderProps) => {
           >
             {/* Top */}
             <div className="flex relative w-full justify-between items-center py-[8px]">
-              <Logo isHeroInView={false} isScrolled={true} />
+              <Logo />
 
               <div className="w-fit h-fit flex lg:hidden justify-center items-center">
                 <RiCloseLine
