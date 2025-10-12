@@ -6,6 +6,8 @@ export const path = Object.freeze({
   activeServices: "/active-services",
   blog: "/blog",
   videos: "/videos",
+  about: "/about",
+  contactUs: "/contact_us",
   login: "/auth/login",
   signup: "/auth/signup",
   interviewPreps: "/services/interview-preps",
@@ -20,4 +22,8 @@ export const path = Object.freeze({
   forAgents: "/discover/for-agents",
   forDiaspora: "/discover/for-diaspora",
   forHopefuls: "/discover/japa-hopefuls",
+  privacyPolicy: "/legal/privacy-policy",
+  termsOfService: "/legal/terms-of-service",
+  acceptableUse: "/legal/acceptable-use-policy",
+  infoSecurity: "/legal/information-security-policy",
 });
