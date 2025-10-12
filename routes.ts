@@ -16,5 +16,8 @@ export const path = Object.freeze({
   postRelocation: "/services/post-relocation",
   projectManagement: "/services/project-management",
   report: "/services/report",
-  verifyDocuments: "/services/verify-documents"
+  verifyDocuments: "/services/verify-documents",
+  forAgents: "/discover/for-agents",
+  forDiaspora: "/discover/for-diaspora",
+  forHopefuls: "/discover/japa-hopefuls",
 });
