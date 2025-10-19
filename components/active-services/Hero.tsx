@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Hand1 from "@/img/services/hand.png";
@@ -77,7 +75,7 @@ const Hero = () => {
               {`${services[index].substring(0, subIndex)}`}{" "}
                <span className="animate-ping">|</span>
             </div>
-           
+
           </div>
         </motion.div>
       </div>

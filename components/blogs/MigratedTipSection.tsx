@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import MigrationTipCard from "@/components/blogs/MigrationTipCard";
 import Image1 from "@/img/blogs/sample1.png";
