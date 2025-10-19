@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import FeaturedCard  from "@/components/blogs/FeaturedCard";
 import Image1 from "@/img/blogs/sample1.png";
@@ -13,7 +11,7 @@ const blogData = {
     {
       image: Image1,
       title: "How to Secure a Student Visa Without Getting Scammed!",
-      slug: "how-to-secure-a-student-visa", 
+      slug: "how-to-secure-a-student-visa",
       description:
         "Learn smart tips on identifying legitimate agents, verifying documents, and using NaijaSpora's scam protection toolkit.",
       authorName: "Halima Okoye",
@@ -209,7 +207,7 @@ const FeaturedTabs = () => {
       {currentData?.map((blog, idx) => (
   <FeaturedCard key={idx} {...blog} />
 ))}
-      
+
       </div>
     </section>
   );

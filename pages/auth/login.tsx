@@ -1,6 +1,3 @@
-// app/login/page.tsx
-"use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import AuthLayout from "@/components/layouts/AuthLayout";
@@ -44,7 +41,7 @@ const LoginPage = () => {
     <AuthLayout>
       <div className="flex flex-col gap-6">
         <h1 className="text-headline-large font-medium text-black">Log In</h1>
-        
+
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <InputField
             variant="auth"
@@ -66,8 +63,8 @@ const LoginPage = () => {
             error={errors.password}
             labelClassName="text-headline-medium"
             rightIcon={
-              <button 
-                type="button" 
+              <button
+                type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 className="text-black"
                 aria-label={showPassword ? "Hide password" : "Show password"}
