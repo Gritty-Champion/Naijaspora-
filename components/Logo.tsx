@@ -6,7 +6,7 @@ const Logo = () => {
 
   return (
     <Link href="/" className='flex flex-col items-start gap-2.5 lg:p-2.5'>
-      <Image 
+      <Image
         src="/logo.svg"
         alt="NaijaSpora Logo"
         width={200}
