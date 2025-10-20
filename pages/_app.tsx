@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { ControllerProvider } from "@/providers/Controller";
+import { AuthProvider } from "@/providers/AuthProvider";
 
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -11,10 +12,15 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ControllerProvider>
-      <AnimatePresence>
-        <GlobalStyle />
-        <Component {...pageProps} key={router.route} />
-      </AnimatePresence>
+      <AuthProvider>
+        <AnimatePresence>
+          <GlobalStyle />
+          <Component
+            {...pageProps}
+            key={router.route}
+          />
+        </AnimatePresence>
+      </AuthProvider>
     </ControllerProvider>
   );
 }
