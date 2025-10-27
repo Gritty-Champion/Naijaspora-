@@ -9,52 +9,57 @@ import { useAuth } from "@/hooks/useAuth";
 const LoginPage = () => {
   const { user, setUser, loginMutation } = useAuth();
   const userLoginDetails = user.login;
-  const [errors, setErrors] = useState<{ email?: string, password?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [showPassword, setShowPassword] = useState(false);
 
+  const validate = () => {
+    const newErrors: { email?: string; password?: string } = {};
+
+    if (!userLoginDetails.email) {
+      newErrors.email = "Email is required.";
+    } else if (!/\S+@\S+\.\S+/.test(userLoginDetails.email)) {
+      newErrors.email = "Email is invalid.";
+    }
+
+    if (!userLoginDetails.password) {
+      newErrors.password = "Password is required.";
+    } else if (userLoginDetails.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters.";
+    }
+
+    return newErrors;
+  };
+
   const handleLoginFormLogic = () => {
+
+    const validationErrors = validate();
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     loginMutation.mutate({
       email: user.login.email ?? "",
       password: user.login.password ?? "",
     });
   };
-    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //   const { name, value } = e.target;
-    //   setFormData((prev) => ({ ...prev, [name]: value }));
-    //   if (errors[name as keyof typeof errors]) {
-    //     setErrors((prev) => ({ ...prev, [name]: undefined }));
-    //   }
-    // };
+
   const handleFormInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUser(prev => ({
+    setUser((prev) => ({
       ...prev,
       login: {
         ...prev.login,
-        [name]: value
-      }
-    }))
+        [name]: value,
+      },
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: undefined,
+    }));
   };
-
-
-  // const validate = () => {
-  //   const newErrors: { email?: string, password?: string } = {};
-  //   if (!formData.email) newErrors.email = "Email is required.";
-  //   else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email is invalid.";
-  //   if (!formData.password) newErrors.password = "Password is required.";
-  //   return newErrors;
-  // };
-
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   const newErrors = validate();
-  //   if (Object.keys(newErrors).length > 0) {
-  //     setErrors(newErrors);
-  //   } else {
-  //     console.log("Form Submitted:", formData);
-  //     // Handle login API call here
-  //   }
-  // };
 
   return (
     <AuthLayout>
@@ -110,6 +115,8 @@ const LoginPage = () => {
             type="submit"
             variant="primary"
             className="w-full justify-center mt-4"
+            loading={loginMutation.isPending}
+            disabled={loginMutation.isPending}
           >
             Log in
           </Button>
