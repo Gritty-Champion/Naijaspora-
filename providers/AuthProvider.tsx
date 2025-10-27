@@ -1,4 +1,4 @@
-import { getUserToken } from "@/services/auth.services";
+import { getUserDetails, getUserToken } from "@/services/auth.services";
 import { useMutation, UseMutationResult, useQuery } from "@tanstack/react-query";
 import { createContext, useState, useEffect, ReactNode } from "react";
 
@@ -25,6 +25,8 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userToken, setUserToken] = useState<string | null>(null);
+
+  const token = (userToken) ?? "";
   const [user, setUser] = useState<User>({
     login: {
       email: null,
@@ -35,13 +37,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const loginMutation = useMutation({
     mutationFn: getUserToken,
     onSuccess: (data) => {
-      console.log("Logged in:", data);
-      localStorage.setItem("token", data.token);
+      setUserToken(data.accessToken)
+      localStorage.setItem("user_access", data.accessToken);
     },
     onError: (error) => {
+      setUserToken(null)
       console.error("Login error:", error);
     },
   });
+
+  const {
+    data: userProfileData,
+    isLoading: loadingUserProfile,
+    error: userProfileDataError,
+  } = useQuery({
+    queryKey: ["userDetails", token],
+    queryFn: () => getUserDetails(token),
+    enabled: !!token,
+  });
+
+  useEffect(() => {
+    console.log(userProfileData)
+  }, [userProfileData]);
 
   return (
     <AuthContext.Provider
