@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { ControllerProvider } from "@/providers/Controller";
 import { AuthProvider } from "@/providers/AuthProvider";
 import {QueryClientProvider, QueryClient} from "@tanstack/react-query"
+import { ProductsProvider } from "@/providers/ProductsProvider";
 
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -14,15 +15,17 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <ControllerProvider>
-          <AnimatePresence>
-            <GlobalStyle />
-            <Component
-              {...pageProps}
-              key={router.route}
-            />
-          </AnimatePresence>
-        </ControllerProvider>
+        <ProductsProvider>
+          <ControllerProvider>
+            <AnimatePresence>
+              <GlobalStyle />
+              <Component
+                {...pageProps}
+                key={router.route}
+              />
+            </AnimatePresence>
+          </ControllerProvider>
+        </ProductsProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

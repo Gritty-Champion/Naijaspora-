@@ -256,7 +256,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isAuthenticated = !!userToken && !!userProfileData?.email;
 
-  console.log(isAuthenticated)
   return (
     <AuthContext.Provider
       value={{
