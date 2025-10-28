@@ -5,8 +5,11 @@ import Button from "@/components/Button";
 import InputField from "@/components/contact_us/Input"; // Use your universal InputField
 import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/router";
+import { path } from "@/routes";
 
 const LoginPage = () => {
+  const router = useRouter();
   const { user, setUser, loginMutation } = useAuth();
   const userLoginDetails = user.login;
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
@@ -39,10 +42,20 @@ const LoginPage = () => {
       return;
     }
 
-    loginMutation.mutate({
-      email: user.login.email ?? "",
-      password: user.login.password ?? "",
-    });
+    loginMutation.mutate(
+      {
+        email: user.login.email ?? "",
+        password: user.login.password ?? "",
+      },
+      {
+        onSuccess: () => {
+          const nextUrl = (router.query.next as string) || path.activeServices;
+          console.log(cookieStore)
+          router.push(nextUrl);
+        },
+      },
+    );
+
   };
 
   const handleFormInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
