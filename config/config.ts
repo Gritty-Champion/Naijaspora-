@@ -33,4 +33,4 @@ const getURL = (): EnvironmentConfig => {
 export const { API_SERVER_URL, CURRENT_ENV } = getURL();
 
 export const INCLUDE_CREDENTIALS =
-  CURRENT_ENV === "production" || CURRENT_ENV === "staging" ? "include" : undefined;
+  CURRENT_ENV === "production" || CURRENT_ENV === "staging" ? "include" : "include";

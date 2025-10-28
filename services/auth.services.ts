@@ -51,3 +51,26 @@ export async function getUserDetails(token: string) {
     return null;
   }
 }
+
+export async function refreshToken() {
+  try {
+    const res = await fetch(`${API_SERVER_URL}/auth/refresh`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      console.error(`Token refresh failed: ${res.status}`);
+      return null;
+    }
+
+    const result = await res.json();
+    return result
+  } catch (error) {
+    console.error("Error refreshing token:", error);
+    return null;
+  }
+}

@@ -2,6 +2,8 @@ import Header from "@/components/Header"; // Assuming your standard header
 import Footer from "@/components/Footer"; // Assuming your standard footer
 import Hero from "@/components/active-services/Hero";
 import ServiceGrid from "@/components/active-services/ServiceGrid";
+import { AuthGuard } from "@/components/AuthGuard";
+import { path } from "@/routes";
 
 const ServicesPage = () => {
   return (
@@ -16,4 +18,4 @@ const ServicesPage = () => {
   );
 };
 
-export default ServicesPage;
+export default AuthGuard(ServicesPage, {redirectTo: path.login});
