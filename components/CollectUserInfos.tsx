@@ -20,11 +20,70 @@ type Question = {
 };
 
 const CollectUserInfos = ({ open }: { open: boolean }) => {
-  const { productType } = useProducts();
-
+  const { submitProduct, productType } = useProducts();
   const [questionStep, setQuestionStep] = useState(0);
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [visaType, setVisaType] = useState<string | null>(null);
+
+  const handleSubmit = () => {
+    if (productType === ProductTyping.VISA_PREPS) {
+      const data: VisaPrepsProps = {
+        visa_type: (answers["What type of visa are you applying for?"] as string) || "",
+        destination_country: (answers["What country are you applying to?"] as string) || "",
+        is_admitted: (answers["Are you admitted to a program/institution?"] as string) === "Yes",
+        institution_name: answers["Name of institution / school"] as string,
+        program_name: answers["Program name & level"] as string,
+        program_start_date: answers["Program start date"]
+          ? new Date(answers["Program start date"] as string)
+          : undefined,
+        offer_type: answers["Type of offer received"] as string,
+        tuition_paid: answers["Is your tuition paid / deposit paid?"] as string,
+        scholarship: {
+          hasScholarship:
+            (answers["Did you receive any scholarships/financial aid?"] as string) === "Yes",
+          details:
+            (answers["Did you receive any scholarships/financial aid?"] as string) === "Yes"
+              ? "Yes"
+              : "No",
+        },
+        proof_of_funds_help:
+          (answers["Do you need help with proof of funds or no-collateral loan?"] as string) ===
+          "Yes",
+        previous_travel: {
+          hasTraveled: (answers["Have you previously traveled abroad?"] as string) === "Yes",
+          details: answers["List countries visited in last 10 years"] as string,
+        },
+        visa_refused:
+          (answers["Have you ever been refused a visa for any country?"] as string) === "Yes",
+        banned:
+          (answers["Have you ever been banned from entering  any country?"] as string) === "Yes",
+        deported:
+          (answers["Have you ever been deported or removed from a country?"] as string) === "Yes",
+        pending_asylum:
+          (answers[
+            "Do you have any pending immigration or asylum applications elsewhere?"
+          ] as string) === "Yes",
+        overstayed: (answers["Have you previously overstayed a visa?"] as string) === "Yes",
+        interview_booked: (answers["Have you booked your visa interview yet?"] as string) === "Yes",
+        interview_date: answers["If yes, what is your interview date?"]
+          ? new Date(answers["If yes, what is your interview date?"] as string)
+          : undefined,
+        areas_of_help: answers["What areas do you feel you need help with most?"] as
+          | string[]
+          | undefined,
+        interview_format: answers["Which interview format would you like?"] as string[] | undefined,
+        platform: answers["Preferred platform for the session"] as string[] | undefined,
+        agreed_terms:
+          (answers[
+            "Have you read and agreed to Naijaspora’s Terms of Service and Privacy Policy?"
+          ] as string) === "I agree",
+      };
+
+      console.log("Submitting structured Visa Preps data:", data);
+      submitProduct(data);
+    }
+  };
+
 
   const handleAnswer = (question: string, value: string | string[]) => {
     setAnswers((prev) => ({ ...prev, [question]: value }));
@@ -124,7 +183,7 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
                     {questionStep < steps.length - 1 ? (
                       <Button onClick={() => handleQuestionsStep("next")}>Continue</Button>
                     ) : (
-                      <Button onClick={() => console.log("Submit responses:", answers)}>
+                      <Button onClick={() => handleSubmit()}>
                         Submit
                       </Button>
                     )}
