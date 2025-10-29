@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import ReactFlagsSelect from "react-flags-select";
 import { motion, AnimatePresence } from "framer-motion";
 import { RiArrowLeftLine } from "@remixicon/react";
@@ -20,7 +20,7 @@ type Question = {
 };
 
 const CollectUserInfos = ({ open }: { open: boolean }) => {
-  const { submitProduct, productType } = useProducts();
+  const { submitProduct, productType, submitSuccess } = useProducts();
   const [questionStep, setQuestionStep] = useState(0);
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [visaType, setVisaType] = useState<string | null>(null);
@@ -78,12 +78,61 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
             "Have you read and agreed to Naijaspora’s Terms of Service and Privacy Policy?"
           ] as string) === "I agree",
       };
-
-      console.log("Submitting structured Visa Preps data:", data);
       submitProduct(data);
     }
-  };
 
+    if (productType === ProductTyping.AGENT_VERIFICATION) {
+      const data: AgentVerificationProps = {
+        agent_name: (answers["Full Name of the Agent or Agency"] as string) || "",
+        agent_phone: (answers["Agent's Phone Number(s)"] as string) || "",
+        agent_email: (answers["Agent's Email Address"] as string) || "",
+        agent_address: (answers["Agent's Office Address or Location"] as string) || "",
+        service_offered: (answers["What service is the agent offering?"] as string) || "",
+        referral_source: (answers["How did you find this agent?"] as string) || "",
+        website_or_social: (answers["Agent's Website or Social Media Handle"] as string) || "",
+        claims_affiliation:
+          (answers[
+            "Does the agent claim to be affiliated with any company, school, or embassy?"
+          ] as string) === "Yes",
+        affiliated_company:
+          (answers["If yes, please provide the name of the organization or company"] as string) ||
+          "",
+        has_license:
+          (answers[
+            "Has the agent provided you with any business identification, license, or certificate?"
+          ] as string) === "Yes",
+        requested_service:
+          (answers["What service is the agent providing for you?"] as string) || "",
+        related_country:
+          (answers["What country or city is this service related to?"] as string) || "",
+        upfront_payment:
+          (answers["Has the agent asked for any upfront payment or deposit?"] as string) === "Yes",
+        payment_amount: (answers["If yes, how much and in what currency?"] as string) || "",
+        payment_method:
+          (answers["What payment method was suggested by the agent?"] as string) || "",
+        // money_paid: (answers["Has any money already been paid?"] as string) === "Yes",
+        // paid_amount: (answers["If Yes, How Much"] as string) || "",
+        payment_proof: (answers["If yes, do you have any proof of payment?"] as string) === "Yes",
+        signed_agreement:
+          (answers["Was any formal agreement, receipt, or contract signed?"] as string) === "Yes",
+        allow_contact_agent:
+          (answers[
+            "Would you like Naijaspora to contact the agent directly as part of the verification process?"
+          ] as string) === "Yes",
+        keep_confidential:
+          (answers[
+            "Do you want your identity kept confidential during the verification?"
+          ] as string) === "Yes",
+        agreed_terms:
+          (answers[
+            "Have you read and agreed to Naijaspora's Terms of Service and Privacy Policy?"
+          ] as string) === "I agree",
+      };
+
+      submitProduct(data);
+    }
+
+  };
 
   const handleAnswer = (question: string, value: string | string[]) => {
     setAnswers((prev) => ({ ...prev, [question]: value }));
@@ -133,6 +182,23 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
   const safeQuestion = current?.question || "";
   const safeHelp = current?.helpText || "";
 
+  const currentAnswer = answers[safeQuestion];
+  const isContinueDisabled =
+    !currentAnswer || (Array.isArray(currentAnswer) && currentAnswer.length === 0);
+  const isSubmitDisabled = !(
+    answers["Have you read and agreed to Naijaspora’s Terms of Service and Privacy Policy?"] ===
+    "I agree"
+  );
+
+
+  useEffect(() => {
+    if (!open || submitSuccess) {
+      setQuestionStep(0);
+      setAnswers({});
+      setVisaType(null);
+    }
+  }, [open, submitSuccess]);
+
   return (
     <div
       className={cn(
@@ -181,9 +247,27 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
                     />
 
                     {questionStep < steps.length - 1 ? (
-                      <Button onClick={() => handleQuestionsStep("next")}>Continue</Button>
+                      <Button
+                        onClick={() => handleQuestionsStep("next")}
+                        className={cn(
+                          isContinueDisabled ? "!opacity-50 !cursor-not-allowed" : "!opacity-100",
+                        )}
+                        disabled={
+                          !answers[safeQuestion] ||
+                          (Array.isArray(answers[safeQuestion]) &&
+                            answers[safeQuestion].length === 0)
+                        }
+                      >
+                        Continue
+                      </Button>
                     ) : (
-                      <Button onClick={() => handleSubmit()}>
+                      <Button
+                        onClick={() => handleSubmit()}
+                        // className={cn(
+                        //   isSubmitDisabled ? "!opacity-50 !cursor-not-allowed" : "!opacity-100",
+                        // )}
+                        // disabled={isSubmitDisabled}
+                      >
                         Submit
                       </Button>
                     )}

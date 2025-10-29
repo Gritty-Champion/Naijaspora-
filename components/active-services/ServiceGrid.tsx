@@ -9,7 +9,7 @@ import ConsultationImage from "@/img/services/Services Two.png";
 import ProjectManagementImage from "@/img/services/Service three.png";
 import PostRelocationImage from "@/img/services/Service Six.png";
 import CollectUserInfos from "../CollectUserInfos";
-import React from "react";
+import React, { useEffect } from "react";
 import { ProductTyping } from "@/providers/ProductsProvider";
 import { useProducts } from "@/hooks/useProducts";
 
@@ -24,7 +24,7 @@ function chunkArray<T>(array: T[], size: number): T[][] {
 }
 
 const ServiceGrid = () => {
-  const {setProductType} = useProducts()
+  const {setProductType, submitSuccess} = useProducts()
   const [collectInfo, setCollectInfo] = React.useState<boolean>(false);
 
   const triggerInfoCollection = (type: ProductTyping) => {
@@ -98,6 +98,11 @@ const ServiceGrid = () => {
       onClick: () => {},
     },
   ];
+
+
+  useEffect(() => {
+    setCollectInfo(false)
+  }, [submitSuccess])
 
   const serviceGroups = chunkArray(servicesData, 3);
   return (

@@ -36,7 +36,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
       case ProductTyping.LOAN_POF:
         return loanProofOfFundsService({ data });
       case ProductTyping.AGENT_VERIFICATION:
-        return agentVerificationService({ data });
+        return agentVerificationService({ data, token: userToken as string });
       default:
         throw new Error("Unsupported product type or missing selection");
     }
@@ -50,6 +50,8 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   } = useMutation({
     mutationFn: serviceSelector,
     onSuccess: (res) => {
+      const paymentUri = res.authorizationUrl;
+      window.open(paymentUri, "_blank")
       console.log("Product submitted successfully:", res);
     },
     onError: (err) => {
