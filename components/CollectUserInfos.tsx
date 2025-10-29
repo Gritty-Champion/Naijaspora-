@@ -132,6 +132,145 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
       submitProduct(data);
     }
 
+    if (productType === ProductTyping.DOCUMENTS_VERIFICATION) {
+      const docTypes =
+        (answers[
+          "What type of document or certificate would you like us to verify?"
+        ] as string[]) || [];
+
+      const issuerName = (answers["Who issued the document you want verified?"] as string) || "";
+      const issuerCountry =
+        (answers["What country is the issuing institution or organization based in?"] as string) ||
+        "";
+
+      const receivedViaRaw =
+        (answers[
+          "Did you receive the document directly from the organization or through an intermediary?"
+        ] as string) || "Direct";
+
+      // Normalize to the backend enum
+      const received_via: DocumentVerificationProps["received_via"] =
+        receivedViaRaw === "Through intermediary" ? "Intermediary" : "Direct";
+
+      // The intermediary question expects "full name, email, and phone number" in a single text input per earlier suggestion.
+      // If your UI captures them separately, map accordingly. Here we attempt to parse a comma-separated string.
+      const intermediaryRaw =
+        (answers[
+          "If through someone else, provide their full name, email, and phone number"
+        ] as string) || "";
+
+      let intermediary_name: string | undefined;
+      let intermediary_email: string | undefined;
+      let intermediary_phone: string | undefined;
+
+      if (intermediaryRaw) {
+        // Try to split by comma (name, email, phone). Fallback to putting entire string in name.
+        const parts = intermediaryRaw
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean);
+        if (parts.length === 1) {
+          intermediary_name = parts[0];
+        } else if (parts.length === 2) {
+          intermediary_name = parts[0];
+          intermediary_email = parts[1];
+        } else if (parts.length >= 3) {
+          intermediary_name = parts[0];
+          intermediary_email = parts[1];
+          intermediary_phone = parts.slice(2).join(", ");
+        }
+      }
+
+      const verification_checks =
+        (answers["What do you want Naijaspora to verify specifically?"] as string[]) || [];
+
+      const data: DocumentVerificationProps = {
+        document_types: docTypes,
+        issuer_name: issuerName,
+        issuer_country: issuerCountry,
+        received_via,
+        intermediary_name,
+        intermediary_email,
+        intermediary_phone,
+        uploaded_file: (answers["Upload the document you want verified"] as string) || undefined,
+        verification_checks,
+        urgency:
+          (answers[
+            "How urgent is your verification request?"
+          ] as string as DocumentVerificationProps["urgency"]) || "2-3 days",
+        allow_contact_issuer:
+          (answers[
+            "Do you want Naijaspora to contact the issuing organization directly on your behalf?"
+          ] as string) === "Yes",
+        keep_confidential:
+          (answers["Should we keep your identity confidential when contacting them?"] as string) ===
+          "Yes",
+        confirm_ownership:
+          (answers[
+            "I confirm that all documents submitted are mine or provided with the owner's consent"
+          ] as string) === "I confirm",
+      };
+
+      // optional: basic validation before submit
+      if (!data.document_types.length || !data.issuer_name || !data.issuer_country) {
+        console.warn("Missing required document verification fields", data);
+        // show UI error or prevent submission
+        return;
+      }
+
+      submitProduct(data);
+    }
+
+    if (productType === ProductTyping.LOAN_POF) {
+      const data: LoanApplicationProps = {
+        institution_name: (answers["Name of school or institution"] as string) || "",
+        country_of_school: (answers["Country of school / destination country"] as string) || "",
+        program_level: (answers["Program level"] as string) || "",
+        program_name: (answers["Program name"] as string) || "",
+        program_start_date: new Date(answers["Program start date"] as string),
+        tuition_and_living_cost: Number(answers["How much is your tuition and living cost?"]),
+        offer_status:
+          (answers["Is your offer conditional or unconditional?"] as
+            | "Conditional"
+            | "Unconditional") || "Conditional",
+        financial_help: (answers["What type of financial help do you need?"] as string[]) || [],
+        total_amount_needed:
+          (answers["Total amount needed (in either ₦ or foreign currency)"] as string) || "",
+        has_guarantor_abroad:
+          (answers[
+            "Do you have a guarantor or next of kin who is Permanent Resident or citizen of another country besides Nigeria (not collateral)?"
+          ] as string) === "Yes",
+        authorize_verification:
+          (answers[
+            "Do you authorize Naijaspora to verify your documents and share them with partner lenders or financial institutions for assessment?"
+          ] as string) === "I agree",
+        fraud_history:
+          (answers[
+            "Have you or your sponsor ever been involved in any fraudulent activity, loan default, or financial dispute?"
+          ] as string) === "Yes",
+        understands_disqualification:
+          (answers[
+            "Do you understand that falsified documents or incomplete information may lead to disqualification?"
+          ] as string) === "I understand",
+        agreed_terms:
+          (answers[
+            "Have you read and agreed to Naijaspora's Terms of Service and Privacy Policy?"
+          ] as string) === "I agree",
+      };
+
+      // Optional validation
+      if (
+        !data.institution_name ||
+        !data.country_of_school ||
+        !data.program_name ||
+        !data.total_amount_needed
+      ) {
+        console.warn("Missing required loan application fields", data);
+        return;
+      }
+
+      submitProduct(data);
+    }
   };
 
   const handleAnswer = (question: string, value: string | string[]) => {
@@ -243,6 +382,7 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
                       options={current.answer}
                       multiple={current.multiple}
                       question={safeQuestion}
+                      value={answers[safeQuestion]}
                       onChange={handleAnswer}
                     />
 
@@ -336,17 +476,26 @@ const DynamicInput = ({
   options = [],
   multiple,
   question,
+  value,
   onChange,
 }: {
   type: string;
   options?: string[];
   multiple?: boolean;
   question: string;
+  value?: string | string[];
   onChange: (question: string, value: string | string[]) => void;
 }) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
 
-  switch (type) {
+  // ✅ Keep internal state synced with external value (for checkboxes)
+  useEffect(() => {
+    if (Array.isArray(value)) {
+      setSelectedValues(value);
+    }
+  }, [value]);
+
+  switch (type.toLowerCase()) {
     case "radio":
       return (
         <div className="flex flex-col gap-2">
@@ -360,6 +509,7 @@ const DynamicInput = ({
                 type="radio"
                 name={question}
                 value={opt}
+                checked={value === opt} // ✅ keep checked if previously selected
                 onChange={() => onChange(question, opt)}
               />
             </label>
@@ -378,7 +528,7 @@ const DynamicInput = ({
               <span>{opt}</span>
               <input
                 type="checkbox"
-                checked={selectedValues.includes(opt)}
+                checked={selectedValues.includes(opt)} // ✅ restore selection
                 onChange={(e) => {
                   const newValues = e.target.checked
                     ? [...selectedValues, opt]
@@ -396,6 +546,7 @@ const DynamicInput = ({
       return (
         <select
           className="w-full border border-secondary-base rounded-lg px-3 py-2"
+          value={typeof value === "string" ? value : ""} // ✅ keep selected
           onChange={(e) => onChange(question, e.target.value)}
         >
           <option value="">Select an option</option>
@@ -413,7 +564,7 @@ const DynamicInput = ({
     case "country":
       return (
         <ReactFlagsSelect
-          selected="NG"
+          selected={(typeof value === "string" && value) || "NG"} // ✅ keep previous flag
           onSelect={(val) => onChange(question, val)}
         />
       );
@@ -423,6 +574,7 @@ const DynamicInput = ({
         <input
           type="date"
           className="w-full border border-secondary-base rounded-lg px-3 py-2"
+          value={typeof value === "string" ? value : ""}
           onChange={(e) => onChange(question, e.target.value)}
         />
       );
@@ -433,6 +585,7 @@ const DynamicInput = ({
         <input
           type="text"
           className="w-full border border-secondary-base rounded-lg px-3 py-2"
+          value={typeof value === "string" ? value : ""} // ✅ persist text value
           onChange={(e) => onChange(question, e.target.value)}
         />
       );

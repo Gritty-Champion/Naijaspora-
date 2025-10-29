@@ -52,3 +52,38 @@ interface AgentVerificationProps {
   keep_confidential?: boolean;
   agreed_terms: boolean;
 }
+
+type UrgencyOption = "24h" | "2-3 days" | "1 week";
+
+interface DocumentVerificationProps {
+  document_types: string[]; // required
+  issuer_name: string; // required
+  issuer_country: string; // required
+  received_via: "Direct" | "Intermediary"; // required
+  intermediary_name?: string;
+  intermediary_email?: string;
+  intermediary_phone?: string;
+  uploaded_file?: string; // URL or file identifier depending on your upload flow
+  verification_checks?: string[]; // e.g., ["Confirm authenticity", ...]
+  urgency?: UrgencyOption;
+  allow_contact_issuer?: boolean;
+  keep_confidential?: boolean;
+  confirm_ownership: boolean; // required
+}
+
+interface LoanApplicationProps {
+  institution_name: string;
+  country_of_school: string;
+  program_level: string;
+  program_name: string;
+  program_start_date: Date;
+  tuition_and_living_cost: number;
+  offer_status: "Conditional" | "Unconditional";
+  financial_help: string[];
+  total_amount_needed: string;
+  has_guarantor_abroad: boolean;
+  authorize_verification: boolean;
+  fraud_history: boolean;
+  understands_disqualification: boolean;
+  agreed_terms: boolean;
+}

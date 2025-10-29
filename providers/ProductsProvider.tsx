@@ -1,6 +1,6 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { visaPrepsService, loanProofOfFundsService, agentVerificationService } from "@/services/products.services";
+import { visaPrepsService, loanProofOfFundsService, agentVerificationService, documentVerificationService } from "@/services/products.services";
 import { useAuth } from "@/hooks/useAuth";
 
 
@@ -34,9 +34,11 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
       case ProductTyping.VISA_PREPS:
         return visaPrepsService({ data, token: userToken as string });
       case ProductTyping.LOAN_POF:
-        return loanProofOfFundsService({ data });
+        return loanProofOfFundsService({ data, token: userToken as string });
       case ProductTyping.AGENT_VERIFICATION:
         return agentVerificationService({ data, token: userToken as string });
+      case ProductTyping.DOCUMENTS_VERIFICATION:
+        return documentVerificationService({data, token: userToken as string})
       default:
         throw new Error("Unsupported product type or missing selection");
     }
@@ -52,7 +54,6 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     onSuccess: (res) => {
       const paymentUri = res.authorizationUrl;
       window.open(paymentUri, "_blank")
-      console.log("Product submitted successfully:", res);
     },
     onError: (err) => {
       console.error("Product submission failed:", err);
