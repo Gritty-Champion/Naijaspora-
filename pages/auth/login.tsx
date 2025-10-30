@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import {useState } from "react";
 import Link from "next/link";
 import AuthLayout from "@/components/layouts/AuthLayout";
 import Button from "@/components/Button";

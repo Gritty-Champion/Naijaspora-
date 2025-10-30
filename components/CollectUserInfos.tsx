@@ -314,7 +314,7 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
 
   const steps = useMemo(
     () => getQuestionSteps(productType || ProductTyping.VISA_PREPS),
-    [productType, visaType],
+    [productType, visaType, getQuestionSteps],
   );
   const current = steps[questionStep];
 
@@ -324,10 +324,10 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
   const currentAnswer = answers[safeQuestion];
   const isContinueDisabled =
     !currentAnswer || (Array.isArray(currentAnswer) && currentAnswer.length === 0);
-  const isSubmitDisabled = !(
-    answers["Have you read and agreed to Naijaspora’s Terms of Service and Privacy Policy?"] ===
-    "I agree"
-  );
+  // const isSubmitDisabled = !(
+  //   answers["Have you read and agreed to Naijaspora’s Terms of Service and Privacy Policy?"] ===
+  //   "I agree"
+  // );
 
 
   useEffect(() => {
@@ -380,7 +380,7 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
                     <DynamicInput
                       type={current.type}
                       options={current.answer}
-                      multiple={current.multiple}
+                      // multiple={current.multiple}
                       question={safeQuestion}
                       value={answers[safeQuestion]}
                       onChange={handleAnswer}
@@ -474,14 +474,14 @@ const QuestionsHolder = ({ title, subTitle }: { title: string; subTitle?: string
 const DynamicInput = ({
   type,
   options = [],
-  multiple,
+  // multiple,
   question,
   value,
   onChange,
 }: {
   type: string;
   options?: string[];
-  multiple?: boolean;
+  // multiple?: boolean;
   question: string;
   value?: string | string[];
   onChange: (question: string, value: string | string[]) => void;

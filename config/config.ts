@@ -10,7 +10,7 @@ const getURL = (): EnvironmentConfig => {
       CURRENT_ENV: "production",
     },
     staging: {
-      API_SERVER_URL: process.env.NEXT_PUBLIC_API_URL || "",
+      API_SERVER_URL: "http://167.99.191.115:3001/api",
       CURRENT_ENV: "staging",
     },
     development: {
@@ -31,6 +31,3 @@ const getURL = (): EnvironmentConfig => {
 };
 
 export const { API_SERVER_URL, CURRENT_ENV } = getURL();
-
-export const INCLUDE_CREDENTIALS =
-  CURRENT_ENV === "production" || CURRENT_ENV === "staging" ? "include" : "include";
