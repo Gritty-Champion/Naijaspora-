@@ -1,6 +1,5 @@
 import Image, { StaticImageData } from "next/image";
 import { cn } from "@/libs/cn";
-import { ProductTyping } from "@/providers/ProductsProvider";
 
 interface ServiceCardProps {
   bgImage: StaticImageData;

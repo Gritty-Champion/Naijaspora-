@@ -1,4 +1,4 @@
-import { API_SERVER_URL, CURRENT_ENV, INCLUDE_CREDENTIALS } from "@/config/config";
+import { API_SERVER_URL } from "@/config/config";
 
 
 export async function getUserToken({ email, password }: { email: string; password: string }) {
@@ -10,7 +10,7 @@ export async function getUserToken({ email, password }: { email: string; passwor
   try {
     const res = await fetch(`${API_SERVER_URL}/auth/login`, {
       method: "POST",
-      credentials: INCLUDE_CREDENTIALS,
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -33,7 +33,7 @@ export async function getUserDetails(token: string) {
   try {
     const res = await fetch(`${API_SERVER_URL}/user/me`, {
       method: "GET",
-      credentials: INCLUDE_CREDENTIALS,
+      credentials: "include",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
