@@ -3,17 +3,17 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
-  
+
   webpack(config) {
     // Exclude svg from the default Next.js file loader
     const assetRule = config.module.rules.find((rule: any) =>
       rule?.test instanceof RegExp && rule.test.test('.svg')
     );
-  
+
     if (assetRule) {
       assetRule.exclude = /\.svg$/i;
     }
-  
+
     // Add custom rules
     config.module.rules.push(
       // Handle SVGs imported with ?url as a static file
@@ -30,10 +30,10 @@ const nextConfig: NextConfig = {
         use: ['@svgr/webpack'],
       }
     );
-  
+
     return config;
   }
-  
+
 };
 
 export default nextConfig;

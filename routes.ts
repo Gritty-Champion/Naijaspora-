@@ -1,5 +1,3 @@
-import { log } from "console";
-
 export const path = Object.freeze({
   home: "/",
   services: "/services",

@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import AuthLayout from "@/components/layouts/AuthLayout";
@@ -9,7 +7,6 @@ import InputField from "@/components/contact_us/Input";
 const SignUpPage = () => {
   const [formData, setFormData] = useState({ email: '', terms: false, marketing: false });
   const [errors, setErrors] = useState<{ email?: string, terms?: string }>({});
-  const [collectInfo, setCollectInfo] = useState<boolean>(false);
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +40,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <AuthLayout collectInfo={collectInfo} setCollectInfo={setCollectInfo}>
+    <AuthLayout>
       <div className="flex flex-col gap-6">
         <h1 className="text-headline-large font-medium text-black">Sign Up</h1>
 
@@ -90,7 +87,7 @@ const SignUpPage = () => {
             </label>
           </div>
 
-          <Button onClick={() => {setCollectInfo(true)}} type="submit" variant="primary" className="w-full justify-center ">
+          <Button onClick={() => {}} type="submit" variant="primary" className="w-full justify-center ">
             Continue
           </Button>
         </form>
