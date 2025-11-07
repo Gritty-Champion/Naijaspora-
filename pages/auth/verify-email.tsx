@@ -17,7 +17,7 @@ const VerifyEmailPage = () => {
         setStatus("success");
         setMessage(res.message);
       })
-      .catch((err) => {
+      .catch(() => {
         setStatus("error");
         setMessage("Verification failed or expired.");
       });

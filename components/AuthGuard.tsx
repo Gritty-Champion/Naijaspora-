@@ -50,7 +50,7 @@ export function AuthGuard<P extends object>(
        }
        router.replace(redirectUrl);
      }
-   }, [isAuthenticated, router, user, userToken]);
+   }, [isAuthenticated, isAuthenticating, router, user, userToken, redirectTo, preserveRedirect]);
 
 
     // Show loading state during authentication check
