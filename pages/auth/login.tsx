@@ -7,13 +7,25 @@ import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import { path } from "@/routes";
+import { resendVerificationEmail } from "@/services/auth.services";
+import { useMutation } from "@tanstack/react-query";
 
 const LoginPage = () => {
   const router = useRouter();
-  const { user, setUser, loginMutation } = useAuth();
+  const { user, setUser, loginMutation, authError, setAuthError } = useAuth();
   const userLoginDetails = user.login;
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [showPassword, setShowPassword] = useState(false);
+  const [resendSuccess, setResendSuccess] = useState(false);
+
+  const resendMutation = useMutation({
+    mutationFn: (email: string) => resendVerificationEmail(email),
+    onSuccess: () => {
+      setResendSuccess(true);
+    },
+  });
+
+  const isEmailNotVerified = authError?.includes("verify your email");
 
   const validate = () => {
     const newErrors: { email?: string; password?: string } = {};
@@ -26,8 +38,6 @@ const LoginPage = () => {
 
     if (!userLoginDetails.password) {
       newErrors.password = "Password is required.";
-    } else if (userLoginDetails.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters.";
     }
 
     return newErrors;
@@ -48,10 +58,12 @@ const LoginPage = () => {
         password: user.login.password ?? "",
       },
       {
-        onSuccess: () => {
-          const nextUrl = (router.query.next as string) || path.activeServices;
-          console.log(cookieStore)
-          router.push(nextUrl);
+        onSuccess: (data) => {
+          // Only navigate if login was successful
+          if (!data.error) {
+            const nextUrl = (router.query.next as string) || path.activeServices;
+            router.push(nextUrl);
+          }
         },
       },
     );
@@ -72,6 +84,16 @@ const LoginPage = () => {
       ...prev,
       [name]: undefined,
     }));
+
+    // Clear auth error when user starts typing
+    if (authError) {
+      setAuthError(null);
+    }
+
+    // Clear resend success message
+    if (resendSuccess) {
+      setResendSuccess(false);
+    }
   };
 
   return (
@@ -124,6 +146,39 @@ const LoginPage = () => {
             Forgot password?
           </Link>
 
+          {authError && (
+            <div className="mt-2">
+              <p className="text-error-base text-sm">
+                {authError}
+              </p>
+
+              {isEmailNotVerified && !resendSuccess && (
+                <Button
+                  type="button"
+                  variant="text"
+                  className="text-primary-base mt-2"
+                  onClick={() => resendMutation.mutate(userLoginDetails.email ?? "")}
+                  disabled={resendMutation.isPending || !userLoginDetails.email}
+                  loading={resendMutation.isPending}
+                >
+                  Resend verification email
+                </Button>
+              )}
+
+              {resendSuccess && (
+                <p className="text-green-600 text-sm mt-2">
+                  Verification email sent! Please check your inbox.
+                </p>
+              )}
+
+              {resendMutation.isError && (
+                <p className="text-error-base text-sm mt-2">
+                  {resendMutation.error?.message || "Failed to resend email. Please try again."}
+                </p>
+              )}
+            </div>
+          )}
+
           <Button
             type="submit"
             variant="primary"
@@ -133,6 +188,8 @@ const LoginPage = () => {
           >
             Log in
           </Button>
+
+          
         </form>
 
         <p className="text-center text-body-large text-neutral-30">

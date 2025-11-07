@@ -6,6 +6,7 @@ export const path = Object.freeze({
   videos: "/videos",
   login: "/auth/login",
   signup: "/auth/signup",
+  verifyEmail: "/auth/verify-email",
   interviewPreps: "/services/interview-preps",
   agents: "/services/agents",
   consultations: "/services/consultations",

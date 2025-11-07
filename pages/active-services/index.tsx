@@ -9,7 +9,7 @@ const ServicesPage = () => {
   return (
     <div className="bg-white font-montserrat">
       <Header isHeroInView={false} />
-      <main className="mt-10 sm:mt-20">
+      <main className="">
         <Hero />
         <ServiceGrid />
       </main>

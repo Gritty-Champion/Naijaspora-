@@ -1,29 +1,42 @@
-
-import Link from "next/link";
+import { useRouter } from "next/router";
+import { verifyEmailToken } from "@/services/auth.services";
+import { useEffect, useState } from "react";
 import AuthLayout from "@/components/layouts/AuthLayout";
-import mail from "@/img/auth/mail.png";
-import Image from "next/image";
+import Button from "@/components/Button";
 
 const VerifyEmailPage = () => {
-  //would typically get the email from query params or state management
-  const userEmail = "oluwasusitimilehin1@gmail.com";
+  const router = useRouter();
+  const { token } = router.query;
+  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (!token) return;
+    verifyEmailToken(token as string)
+      .then((res) => {
+        setStatus("success");
+        setMessage(res.message);
+      })
+      .catch((err) => {
+        setStatus("error");
+        setMessage("Verification failed or expired.");
+      });
+  }, [token]);
 
   return (
     <AuthLayout>
-      <div className="flex flex-col gap-6 text-black mt-6 ">
-         <Image src={mail} alt="Mail Icon" width={24} height={24} />
-       
-        <h1 className="text-headline-large font-medium text-black">
-          Verify your email
-        </h1>
-        
-        <p className="text-headline-medium font-regular">
-          We sent a verification email to <span className="font-medium">{userEmail}</span>. Please check your email to verify your account.
-        </p>
-        
-        <Link href="/login" className="text-headline-small font-medium text-primary-base hover:underline mt-4">
-          Go to Log in
-        </Link>
+      <div className="flex flex-col gap-6 text-black mt-6">
+        {status === "loading" && <p>Verifying your email... Check your Inbox</p>}
+        {status === "success" && (
+          <>
+            <h1>Email Verified</h1>
+            <p>{message}</p>
+            <Button variant="primary" onClick={() => router.push("/auth/login")}>
+              Go to Login
+            </Button>
+          </>
+        )}
+        {status === "error" && <p className="text-red-500">{message}</p>}
       </div>
     </AuthLayout>
   );

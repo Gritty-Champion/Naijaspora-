@@ -1,5 +1,5 @@
 import { path } from "@/routes";
-import { getUserDetails, getUserToken, refreshToken } from "@/services/auth.services";
+import { getUserDetails, getUserToken, refreshToken, registerUser } from "@/services/auth.services";
 import { useMutation, UseMutationResult, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { createContext, useState, useEffect, ReactNode, useCallback, useRef } from "react";
@@ -17,7 +17,10 @@ interface User {
 }
 
 interface TokenResponse {
-  accessToken: string;
+  accessToken?: string;
+  error?: boolean;
+  message?: string;
+  status?: number;
 }
 
 interface AuthContextType {
@@ -29,11 +32,18 @@ interface AuthContextType {
     { email: string; password: string },
     unknown
   >;
+    registerMutation: UseMutationResult<
+    any,
+    Error,
+    { first_name: string; last_name: string; email: string; password: string },
+    unknown
+  >;
   logout: () => void;
   userToken: string | null;
   isAuthenticating: boolean;
   isAuthenticated: boolean;
   authError: string | null;
+  setAuthError: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -102,15 +112,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         // Attempt to refresh token
         console.log("No stored token, attempting refresh...");
         const refreshResponse = await refreshToken();
-        const token = refreshResponse.accessToken;
 
-        if (token) {
+        if (refreshResponse?.accessToken) {
           console.log("Token refresh successful");
-          setUserToken(token);
-          localStorage.setItem("user_access", token);
+          setUserToken(refreshResponse.accessToken);
+          localStorage.setItem("user_access", refreshResponse.accessToken);
           refreshAttemptsRef.current = 0;
         } else {
-          console.warn("Token refresh returned invalid data");
+          console.warn("No refresh token available");
           clearAuthState();
         }
       } catch (error) {
@@ -129,6 +138,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const loginMutation = useMutation({
     mutationFn: getUserToken,
     onSuccess: (data) => {
+      // Check if response contains an error
+      if (data.error) {
+        console.error("Login failed:", data.message);
+        setAuthError(data.message);
+        // Don't clear the form inputs on login error, only clear token
+        setUserToken(null);
+        clearStoredToken();
+        return;
+      }
+
       const token = data.accessToken;
 
       if (token) {
@@ -140,16 +159,47 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       } else {
         console.error("Invalid token received from login");
         setAuthError("Invalid authentication response");
-        clearAuthState();
+        setUserToken(null);
+        clearStoredToken();
       }
     },
     onError: (error) => {
       console.error("Login error:", error);
       const errorMessage = error instanceof Error ? error.message : "Login failed";
       setAuthError(errorMessage);
-      clearAuthState();
+      setUserToken(null);
+      clearStoredToken();
     },
   });
+
+  // Register mutation
+  const registerMutation = useMutation({
+  mutationFn: registerUser,
+  onSuccess: (data, variables) => {
+    // Check if response contains an error
+    if (data.error) {
+      console.error("Registration failed:", data.message);
+      setAuthError(data.message);
+      return;
+    }
+
+    console.log("Registration success:", data);
+    // Clear any previous errors
+    setAuthError(null);
+    // redirect to verification page with the email from registration form
+    router.push({
+      pathname: path.verifyEmail,
+      query: { email: variables.email },
+    });
+  },
+  onError: (error) => {
+    console.error("Registration error:", error);
+    const errorMessage = error instanceof Error ? error.message : "Registration failed";
+    setAuthError(errorMessage);
+  },
+});
+
+
 
   // Fetch user profile when token is available
   const {
@@ -207,12 +257,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       try {
         const refreshResponse = await refreshToken();
-        const newToken = refreshResponse.accessToken;
 
-        if (newToken) {
+        if (refreshResponse?.accessToken) {
           console.log("Token refresh successful");
-          setUserToken(newToken);
-          localStorage.setItem("user_access", newToken);
+          setUserToken(refreshResponse.accessToken);
+          localStorage.setItem("user_access", refreshResponse.accessToken);
           setAuthError(null);
           refreshAttemptsRef.current = 0;
         } else {
@@ -262,11 +311,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         user,
         setUser,
         loginMutation,
+        registerMutation,
         logout,
         userToken,
         isAuthenticating,
         isAuthenticated,
         authError,
+        setAuthError,
       }}
     >
       {children}
