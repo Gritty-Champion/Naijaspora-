@@ -16,12 +16,16 @@ const VerifyEmailPage = () => {
       .then((res) => {
         setStatus("success");
         setMessage(res.message);
+        // Auto-redirect to login after 2 seconds
+        setTimeout(() => {
+          router.push("/auth/login");
+        }, 2000);
       })
       .catch(() => {
         setStatus("error");
         setMessage("Verification failed or expired.");
       });
-  }, [token]);
+  }, [token, router]);
 
   return (
     <AuthLayout>
@@ -31,8 +35,9 @@ const VerifyEmailPage = () => {
           <>
             <h1>Email Verified</h1>
             <p>{message}</p>
+            <p className="text-sm text-gray-600">Redirecting to login page...</p>
             <Button variant="primary" onClick={() => router.push("/auth/login")}>
-              Go to Login
+              Go to Login Now
             </Button>
           </>
         )}

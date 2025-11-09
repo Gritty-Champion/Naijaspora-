@@ -57,7 +57,9 @@ export async function getUserDetails(token: string) {
     });
 
     if (!res.ok) {
-      throw new Error(`Failed to fetch user details: ${res.status}`);
+      // Don't throw error - just log and return null to avoid Next.js error overlay
+      console.error(`Failed to fetch user details: ${res.status}`);
+      return null;
     }
 
     const result = await res.json();

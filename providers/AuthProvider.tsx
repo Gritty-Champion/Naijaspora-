@@ -206,6 +206,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     data: userProfileData,
     error: profileError,
     isError: isProfileError,
+    isFetching: isProfileFetching,
   } = useQuery({
     queryKey: ["userDetails", userToken],
     queryFn: () => {
@@ -305,6 +306,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isAuthenticated = !!userToken && !!userProfileData?.email;
 
+  // Consider user as "authenticating" if initial auth is running OR if we have a token but profile is still loading
+  // This prevents race conditions when refreshing protected pages
+  const isStillAuthenticating = isAuthenticating || (!!userToken && isProfileFetching);
+
   return (
     <AuthContext.Provider
       value={{
@@ -314,7 +319,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         registerMutation,
         logout,
         userToken,
-        isAuthenticating,
+        isAuthenticating: isStillAuthenticating,
         isAuthenticated,
         authError,
         setAuthError,
