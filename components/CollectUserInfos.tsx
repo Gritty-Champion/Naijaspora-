@@ -271,6 +271,137 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
 
       submitProduct(data);
     }
+
+    if (productType === ProductTyping.SCAM_ALERT) {
+      const data: ScamAlertProps = {
+        reporting_for: (answers["Are you reporting this scam for:"] as string) === "Yourself" ? "Yourself" : "Someone else",
+        current_location: (answers["Where are you currently located?"] as string) || "",
+        country_if_abroad: answers["If abroad, which country?"] as string,
+        scammer_name: answers["Name of the person/company/agency involved (if known)"] as string,
+        scammer_phone: answers["Scammer's phone number(s)"] as string,
+        scammer_email: answers["Scammer's email address (if available)"] as string,
+        scammer_social: answers["Scammer's social media handle(s) / website (if any)"] as string,
+        service_claimed: answers["What service did the scammer claim to offer?"] as string,
+        scammer_location: answers["Where is the scammer located (city/state/country)?"] as string,
+        connection_source: answers["How did you find or get connected to this person/agent?"] as string[],
+        incident_date: answers["When did the incident occur?"] as string,
+        incident_description: (answers["Describe what happened"] as string) || "",
+        registration_documents: (answers["Did the scammer provide registration documents?"] as string) === "Yes",
+        payment_made: (answers["Did you make any payment?"] as string) === "Yes",
+        payment_amount: answers["If yes, how much did you pay and in what currency?"] as string,
+        payment_method: answers["How did you pay?"] as string[],
+        payment_proof: (answers["Do you have proof of payment?"] as string) === "Yes",
+        loss_type: answers["Did you lose money or personal documents?"] as string[],
+        interaction_result: answers["What was the result of the interaction?"] as string[],
+        desired_action: answers["What would you like Naijaspora to do?"] as string[],
+        allow_contact_scammer: (answers["Would you like Naijaspora to contact the person/agency directly?"] as string) === "Yes",
+        keep_confidential: (answers["Should we keep your identity confidential?"] as string) === "Yes",
+        contact_preference: answers["How would you prefer us to contact you?"] as string[],
+        confirm_truth: (answers["I confirm that the information I provided is true to the best of my knowledge"] as string) === "I agree",
+        agreed_terms: (answers["Have you read and agreed to Naijaspora's Terms of Service and Privacy Policy?"] as string) === "I agree",
+      };
+
+      submitProduct(data);
+    }
+
+    if (productType === ProductTyping.POST_VISA_DENIAL) {
+      const data: PostVisaDenialProps = {
+        denial_country: (answers["What country did you apply to?"] as string) || "",
+        banned_from_applying: (answers["Did you get banned from applying?"] as string) === "Yes",
+        visa_type: answers["What type of visa were you applying for?"] as string[],
+        used_agent: (answers["Did an agent or consultant assist you with your application?"] as string) === "Yes",
+        agent_naijaspora_verified: (answers["Is the agent an approved Naijaspora verified agent?"] as string) === "Yes",
+        attended_physical_interview: (answers["Did you attend a physical interview?"] as string) === "Yes",
+        interview_location: answers["If yes, where? (City/Location)"] as string,
+        first_refusal: (answers["Was this your first visa refusal?"] as string) === "Yes",
+        previous_denials_count: answers["If no, how many times have you been denied before? (Country & year)"] as string,
+        denial_reasons: answers["What reason(s) were given for your denial?"] as string[],
+        applied_with_dependents: answers["Did you apply alone or with dependents?"] as string,
+        support_needed: answers["What support do you need from Naijaspora?"] as string[],
+        consultation_format: answers["Preferred consultation format"] as string[],
+        confirm_truth: (answers["I confirm that the information provided is true"] as string) === "I agree",
+        agreed_terms: (answers["Have you read and agreed to Naijaspora's Terms of Service and Privacy Policy?"] as string) === "I agree",
+      };
+
+      submitProduct(data);
+    }
+
+    if (productType === ProductTyping.CONSULTATION) {
+      const data: ConsultationProps = {
+        current_location: (answers["Are you currently in Nigeria or abroad?"] as string) || "",
+        country_if_abroad: answers["If abroad, which country?"] as string,
+        consultation_type: (answers["What type of consultation do you need?"] as string[]) || [],
+        target_country: answers["What country are you seeking guidance for?"] as string,
+        situation_description: (answers["Briefly describe your situation (why you are booking this consultation)"] as string) || "",
+        main_questions: answers["What are your main questions or concerns?"] as string,
+        urgency: answers["How urgent is your consultation request?"] as string,
+        consultation_style: answers["Preferred consultation style"] as string[],
+        contact_method: answers["Preferred communication method"] as string[],
+        preferred_datetime: answers["Preferred date/time for consultation"] as string,
+        keep_confidential: (answers["Would you like your identity kept confidential during follow-up actions?"] as string) === "Yes",
+        referral_source: answers["How did you hear about Naijaspora?"] as string[],
+        confirm_accuracy: (answers["I confirm that all information given is accurate"] as string) === "I agree",
+        agreed_terms: (answers["Have you read and agreed to Naijaspora's Terms of Service and Privacy Policy?"] as string) === "I agree",
+      };
+
+      submitProduct(data);
+    }
+
+    if (productType === ProductTyping.POST_RELOCATION) {
+      const data: PostRelocationProps = {
+        relocation_country: (answers["Country you relocated to"] as string) || "",
+        city_state: answers["City/State of residence"] as string,
+        arrival_date: answers["Date of arrival (approx.)"] as string,
+        visa_type: answers["What type of visa did you enter with?"] as string[],
+        relocated_with_dependents: answers["Did you relocate alone or with dependants?"] as string,
+        accommodation_situation: answers["What is your current accommodation situation?"] as string[],
+        used_agent: (answers["Did you use an agent or organization for relocation?"] as string) === "Yes",
+        agent_naijaspora_verified: (answers["If yes, is the agent an approved/verified Naijaspora agent?"] as string) === "Yes",
+        agent_details: answers["If yes, provide agent name/contacts"] as string,
+        job_help_needed: answers["Do you need help finding:"] as string[],
+        services_needed: answers["What other post-relocation services do you need help with?"] as string[],
+        challenges_faced: answers["What challenges are you currently facing?"] as string[],
+        consultation_format: answers["Preferred consultation format"] as string[],
+        preferred_time: answers["Preferred time for consultation"] as string,
+        referral_source: answers["How did you hear about Naijaspora?"] as string[],
+        additional_comments: answers["Any additional comments or details we should know?"] as string,
+        confirm_accuracy: (answers["I confirm that the information submitted is accurate"] as string) === "I agree",
+        agreed_terms: (answers["Have you read and agreed to Naijaspora's Terms of Service and Privacy Policy?"] as string) === "I agree",
+      };
+
+      submitProduct(data);
+    }
+
+    if (productType === ProductTyping.DIASPORA_PROJECT) {
+      const data: DiasporaProjectProps = {
+        country_of_residence: (answers["Country of residence"] as string) || "",
+        contact_method: answers["Preferred communication method"] as string[],
+        project_type: (answers["What type of project do you want Naijaspora to manage?"] as string[]) || [],
+        project_description: (answers["Briefly describe the project"] as string) || "",
+        project_location: (answers["What city/state is the project located in?"] as string) || "",
+        expected_start_date: answers["What is the expected start date of the project?"] as string,
+        project_status: (answers["Is this an ongoing project or new?"] as string) === "New" ? "New" : "Ongoing",
+        project_progress: answers["If ongoing, how far along is the project?"] as string,
+        tasks_to_handle: answers["What specific tasks do you want us to handle?"] as string[],
+        update_frequency: answers["Preferred update frequency"] as string,
+        update_format: answers["Preferred update format"] as string[],
+        local_representative: (answers["Do you have a representative we will collaborate with locally?"] as string) === "Yes",
+        representative_details: answers["If yes, provide name, phone, and relationship"] as string,
+        existing_contractors: (answers["Are there current contractors/vendors involved?"] as string) === "Yes",
+        contractor_details: answers["If yes, provide details"] as string,
+        expected_deliverables: answers["What deliverables do you expect?"] as string[],
+        timeline_expectation: answers["Timeline expectations"] as string,
+        timeline_date: answers["If fixed, specify date"] as string,
+        keep_confidential: (answers["Would you like your identity kept confidential from contractors/vendors?"] as string) === "Yes",
+        security_concerns: answers["Are there any security concerns or special instructions?"] as string,
+        confirm_accuracy: (answers["I confirm all information provided is accurate"] as string) === "I agree",
+        agreed_terms: (answers["Have you read and agreed to Naijaspora's Terms of Service and Privacy Policy?"] as string) === "I agree",
+        referral_source: answers["How did you hear about Naijaspora?"] as string[],
+        additional_notes: answers["Additional notes or special requests"] as string,
+      };
+
+      submitProduct(data);
+    }
   };
 
   const handleAnswer = (question: string, value: string | string[]) => {

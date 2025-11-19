@@ -104,3 +104,158 @@ export async function documentVerificationService({
     );
   }
 }
+
+export async function scamAlertService({
+  data,
+  token,
+}: {
+  data: ScamAlertProps;
+  token: string;
+}) {
+  try {
+    const response = await fetch(`${API_SERVER_URL}/services/scam-alert`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error(
+      `Scam alert service error: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`,
+    );
+  }
+}
+
+export async function postVisaDenialService({
+  data,
+  token,
+}: {
+  data: PostVisaDenialProps;
+  token: string;
+}) {
+  try {
+    const response = await fetch(`${API_SERVER_URL}/services/post-visa-denial`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error(
+      `Post visa denial service error: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`,
+    );
+  }
+}
+
+export async function consultationService({
+  data,
+  token,
+}: {
+  data: ConsultationProps;
+  token: string;
+}) {
+  try {
+    const response = await fetch(`${API_SERVER_URL}/services/consultation`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error(
+      `Consultation service error: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`,
+    );
+  }
+}
+
+export async function postRelocationService({
+  data,
+  token,
+}: {
+  data: PostRelocationProps;
+  token: string;
+}) {
+  try {
+    const response = await fetch(`${API_SERVER_URL}/services/post-relocation`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error(
+      `Post relocation service error: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`,
+    );
+  }
+}
+
+export async function diasporaProjectService({
+  data,
+  token,
+}: {
+  data: DiasporaProjectProps;
+  token: string;
+}) {
+  try {
+    const response = await fetch(`${API_SERVER_URL}/services/diaspora-project`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error(
+      `Diaspora project service error: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`,
+    );
+  }
+}
