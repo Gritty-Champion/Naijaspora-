@@ -1,4 +1,4 @@
-import {useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import AuthLayout from "@/components/layouts/AuthLayout";
 import Button from "@/components/Button";
@@ -17,6 +17,7 @@ const LoginPage = () => {
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [showPassword, setShowPassword] = useState(false);
   const [resendSuccess, setResendSuccess] = useState(false);
+  const [passwordResetSuccess, setPasswordResetSuccess] = useState(false);
 
   const resendMutation = useMutation({
     mutationFn: (email: string) => resendVerificationEmail(email),
@@ -24,6 +25,15 @@ const LoginPage = () => {
       setResendSuccess(true);
     },
   });
+
+  // Check for password reset success in query params
+  useEffect(() => {
+    if (router.query.reset === "success") {
+      setPasswordResetSuccess(true);
+      // Clear the query param
+      router.replace(path.login, undefined, { shallow: true });
+    }
+  }, [router.query.reset, router]);
 
   const isEmailNotVerified = authError?.includes("verify your email");
 
@@ -94,6 +104,11 @@ const LoginPage = () => {
     if (resendSuccess) {
       setResendSuccess(false);
     }
+
+    // Clear password reset success message
+    if (passwordResetSuccess) {
+      setPasswordResetSuccess(false);
+    }
   };
 
   return (
@@ -140,11 +155,19 @@ const LoginPage = () => {
           />
 
           <Link
-            href="/forgot-password"
+            href={path.forgotPassword}
             className="text-right text-title-small font-medium text-primary-base hover:underline"
           >
             Forgot password?
           </Link>
+
+          {passwordResetSuccess && (
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <p className="text-green-700 text-sm">
+                Password reset successful! You can now log in with your new password.
+              </p>
+            </div>
+          )}
 
           {authError && (
             <div className="mt-2">

@@ -1,5 +1,13 @@
 import { path } from "@/routes";
-import { getUserDetails, getUserToken, refreshToken, registerUser } from "@/services/auth.services";
+import {
+  getUserDetails,
+  getUserToken,
+  refreshToken,
+  registerUser,
+  requestPasswordReset,
+  resetPassword,
+  changePassword
+} from "@/services/auth.services";
 import { useMutation, UseMutationResult, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { createContext, useState, useEffect, ReactNode, useCallback, useRef } from "react";
@@ -32,10 +40,28 @@ interface AuthContextType {
     { email: string; password: string },
     unknown
   >;
-    registerMutation: UseMutationResult<
+  registerMutation: UseMutationResult<
     any,
     Error,
     { first_name: string; last_name: string; email: string; password: string },
+    unknown
+  >;
+  requestPasswordResetMutation: UseMutationResult<
+    any,
+    Error,
+    string,
+    unknown
+  >;
+  resetPasswordMutation: UseMutationResult<
+    any,
+    Error,
+    { token: string; newPassword: string },
+    unknown
+  >;
+  changePasswordMutation: UseMutationResult<
+    any,
+    Error,
+    { currentPassword: string; newPassword: string; token: string },
     unknown
   >;
   logout: () => void;
@@ -199,6 +225,65 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   },
 });
 
+  // Request password reset mutation
+  const requestPasswordResetMutation = useMutation({
+    mutationFn: requestPasswordReset,
+    onSuccess: (data) => {
+      console.log("Password reset email sent:", data);
+      setAuthError(null);
+    },
+    onError: (error) => {
+      console.error("Password reset request error:", error);
+      const errorMessage = error instanceof Error ? error.message : "Failed to request password reset";
+      setAuthError(errorMessage);
+    },
+  });
+
+  // Reset password mutation
+  const resetPasswordMutation = useMutation({
+    mutationFn: resetPassword,
+    onSuccess: (data) => {
+      if (data.error) {
+        console.error("Password reset failed:", data.message);
+        setAuthError(data.message);
+        return;
+      }
+
+      console.log("Password reset successful:", data);
+      setAuthError(null);
+    },
+    onError: (error) => {
+      console.error("Password reset error:", error);
+      const errorMessage = error instanceof Error ? error.message : "Password reset failed";
+      setAuthError(errorMessage);
+    },
+  });
+
+  // Change password mutation
+  const changePasswordMutation = useMutation({
+    mutationFn: changePassword,
+    onSuccess: (data) => {
+      if (data.error) {
+        console.error("Password change failed:", data.message);
+        setAuthError(data.message);
+        return;
+      }
+
+      console.log("Password changed successfully:", data);
+      // Update token since backend returns new accessToken
+      if (data.accessToken) {
+        setUserToken(data.accessToken);
+        localStorage.setItem("user_access", data.accessToken);
+      }
+      setAuthError(null);
+    },
+    onError: (error) => {
+      console.error("Password change error:", error);
+      const errorMessage = error instanceof Error ? error.message : "Failed to change password";
+      setAuthError(errorMessage);
+    },
+  });
+
 
 
   // Fetch user profile when token is available
@@ -317,6 +402,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser,
         loginMutation,
         registerMutation,
+        requestPasswordResetMutation,
+        resetPasswordMutation,
+        changePasswordMutation,
         logout,
         userToken,
         isAuthenticating: isStillAuthenticating,

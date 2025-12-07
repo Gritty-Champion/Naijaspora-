@@ -178,3 +178,111 @@ export async function resendVerificationEmail(email: string) {
     throw error;
   }
 }
+
+export async function requestPasswordReset(email: string) {
+  const res = await fetch(`${API_SERVER_URL}/auth/request-password-reset`, {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email }),
+  });
+
+  // Always returns 200 for security - doesn't reveal if email exists
+  const result = await res.json();
+  return {
+    error: false,
+    ...result,
+  };
+}
+
+export async function resetPassword({
+  token,
+  newPassword,
+}: {
+  token: string;
+  newPassword: string;
+}) {
+  const res = await fetch(`${API_SERVER_URL}/auth/reset-password`, {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token, newPassword }),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => null);
+    const errorMessage = errorData?.message || "Failed to reset password";
+
+    let userFriendlyMessage = errorMessage;
+    if (res.status === 400) {
+      userFriendlyMessage = errorMessage.includes("token")
+        ? "Invalid or expired reset token. Please request a new password reset."
+        : errorMessage.includes("password")
+        ? "Password is too weak. Please use a stronger password."
+        : errorMessage;
+    } else if (res.status === 404) {
+      userFriendlyMessage = "User not found. Please try registering again.";
+    }
+
+    return {
+      error: true,
+      message: userFriendlyMessage,
+      status: res.status,
+    };
+  }
+
+  const result = await res.json();
+  return {
+    error: false,
+    ...result,
+  };
+}
+
+export async function changePassword({
+  currentPassword,
+  newPassword,
+  token,
+}: {
+  currentPassword: string;
+  newPassword: string;
+  token: string;
+}) {
+  const res = await fetch(`${API_SERVER_URL}/auth/change-password`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ currentPassword, newPassword }),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => null);
+    const errorMessage = errorData?.message || "Failed to change password";
+
+    let userFriendlyMessage = errorMessage;
+    if (res.status === 401) {
+      userFriendlyMessage = "Current password is incorrect. Please try again.";
+    } else if (res.status === 400) {
+      userFriendlyMessage = errorMessage.includes("password")
+        ? "New password is too weak. Please use a stronger password."
+        : errorMessage || "Please provide both current and new password.";
+    } else if (res.status === 404) {
+      userFriendlyMessage = "User not found. Please log in again.";
+    }
+
+    return {
+      error: true,
+      message: userFriendlyMessage,
+      status: res.status,
+    };
+  }
+
+  const result = await res.json();
+  // Returns { message: string, accessToken: string }
+  return {
+    error: false,
+    ...result,
+  };
+}
