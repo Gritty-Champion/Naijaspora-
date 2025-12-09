@@ -162,8 +162,8 @@ const LoginPage = () => {
           </Link>
 
           {passwordResetSuccess && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <p className="text-green-700 text-sm">
+            <div className="bg-success-container border border-success-70 rounded-lg p-4">
+              <p className="text-success-on_container text-sm">
                 Password reset successful! You can now log in with your new password.
               </p>
             </div>
@@ -189,7 +189,7 @@ const LoginPage = () => {
               )}
 
               {resendSuccess && (
-                <p className="text-green-600 text-sm mt-2">
+                <p className="text-success-base text-sm mt-2">
                   Verification email sent! Please check your inbox.
                 </p>
               )}

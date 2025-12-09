@@ -84,8 +84,8 @@ const ForgotPasswordPage = () => {
           />
 
           {success && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <p className="text-green-700 text-sm">
+            <div className="bg-success-container border border-success-70 rounded-lg p-4">
+              <p className="text-success-on_container text-sm">
                 If an account exists with this email, a password reset link has been sent.
                 Please check your inbox and follow the instructions.
               </p>
@@ -93,7 +93,7 @@ const ForgotPasswordPage = () => {
           )}
 
           {authError && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-error-container border border-error-70 rounded-lg p-4">
               <p className="text-error-base text-sm">{authError}</p>
             </div>
           )}

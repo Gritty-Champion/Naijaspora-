@@ -117,7 +117,7 @@ const ResetPasswordPage = () => {
         </div>
 
         {errors.token ? (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-error-container border border-error-70 rounded-lg p-4">
             <p className="text-error-base text-sm">{errors.token}</p>
             <Link
               href={path.forgotPassword}
@@ -177,7 +177,7 @@ const ResetPasswordPage = () => {
             />
 
             {authError && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-error-container border border-error-70 rounded-lg p-4">
                 <p className="text-error-base text-sm">{authError}</p>
               </div>
             )}

@@ -100,7 +100,36 @@ const palettes = {
     "100": "#FFFFFF",
   },
   error: {
-    "40": "#FF0000",
+    "0": "#000000",
+    "10": "#410002",
+    "20": "#690005",
+    "30": "#93000A",
+    "40": "#BA1A1A",
+    "50": "#DE3730",
+    "60": "#FF5449",
+    "70": "#FF897D",
+    "80": "#FFB4AB",
+    "90": "#FFDAD6",
+    "95": "#FFEDEA",
+    "98": "#FFF8F7",
+    "99": "#FFFBFF",
+    "100": "#FFFFFF",
+  },
+  success: {
+    "0": "#000000",
+    "10": "#002204",
+    "20": "#00390A",
+    "30": "#005313",
+    "40": "#006E1C",
+    "50": "#008A24",
+    "60": "#1FA72D",
+    "70": "#4AC263",
+    "80": "#6EDE7A",
+    "90": "#8BFB92",
+    "95": "#C6FFBD",
+    "98": "#E9FFDE",
+    "99": "#F6FFF0",
+    "100": "#FFFFFF",
   },
 };
 
@@ -150,6 +179,15 @@ const schemes = {
   },
   error: {
     base: palettes.error["40"],
+    on_error: palettes.error["100"],
+    error_container: palettes.error["90"],
+    on_error_container: palettes.error["10"],
+  },
+  success: {
+    base: palettes.success["40"],
+    on_success: palettes.success["100"],
+    success_container: palettes.success["90"],
+    on_success_container: palettes.success["10"],
   },
 };
 

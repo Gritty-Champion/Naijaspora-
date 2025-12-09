@@ -212,9 +212,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     console.log("Registration success:", data);
     // Clear any previous errors
     setAuthError(null);
-    // redirect to verification page with the email from registration form
+    // redirect to check email page with the email from registration form
     router.push({
-      pathname: path.verifyEmail,
+      pathname: path.checkEmail,
       query: { email: variables.email },
     });
   },

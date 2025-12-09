@@ -51,7 +51,7 @@ export function AuthGuard<P extends object>(
        }
        router.replace(redirectUrl);
      }
-   }, [isAuthenticated, isAuthenticating, router, userToken, redirectTo, preserveRedirect]);
+   }, [isAuthenticated, isAuthenticating, router, userToken]);
 
 
     // Show loading state during authentication check
@@ -141,7 +141,9 @@ export function useAuthGuard(options: AuthGuardOptions = {}) {
 
       router.replace(redirectUrl);
     }
-  }, [isAuthenticated, isAuthenticating, userToken, router, redirectTo, preserveRedirect]);
+    // redirectTo and preserveRedirect are stable values from hook options
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, isAuthenticating, userToken, router]);
 
   return {
     isAuthorized: isAuthenticated && !!userToken,

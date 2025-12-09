@@ -7,7 +7,6 @@ import InputField from "@/components/contact_us/Input";
 import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 import { useAuth } from "@/hooks/useAuth";
 import { AuthGuard } from "@/components/AuthGuard";
-import { path } from "@/routes";
 
 const ChangePasswordPage = () => {
   const router = useRouter();
@@ -204,21 +203,21 @@ const ChangePasswordPage = () => {
             />
 
             {success && (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <p className="text-green-700 text-sm">
+              <div className="bg-success-container border border-success-70 rounded-lg p-4">
+                <p className="text-success-on_container text-sm">
                   Password changed successfully! Redirecting to dashboard...
                 </p>
               </div>
             )}
 
             {authError && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-error-container border border-error-70 rounded-lg p-4">
                 <p className="text-error-base text-sm">{authError}</p>
               </div>
             )}
 
             {errors.general && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-error-container border border-error-70 rounded-lg p-4">
                 <p className="text-error-base text-sm">{errors.general}</p>
               </div>
             )}
