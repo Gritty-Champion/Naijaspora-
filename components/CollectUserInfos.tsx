@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import ReactFlagsSelect from "react-flags-select";
 import { motion, AnimatePresence } from "framer-motion";
 import { RiArrowLeftLine } from "@remixicon/react";
@@ -295,7 +295,7 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
     );
   };
 
-  const getQuestionSteps = (type: ProductTyping): Question[] => {
+  const getQuestionSteps = useCallback((type: ProductTyping): Question[] => {
     if (type === ProductTyping.VISA_PREPS) {
       const { general, study, other, last_batch } = productsData[ProductTyping.VISA_PREPS];
 
@@ -310,11 +310,11 @@ const CollectUserInfos = ({ open }: { open: boolean }) => {
 
     const data = productsData[type]?.general || [];
     return data;
-  };
+  }, [visaType]);
 
   const steps = useMemo(
     () => getQuestionSteps(productType || ProductTyping.VISA_PREPS),
-    [productType, visaType, getQuestionSteps],
+    [productType, getQuestionSteps],
   );
   const current = steps[questionStep];
 

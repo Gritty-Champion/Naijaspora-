@@ -1,4 +1,4 @@
-import {useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import AuthLayout from "@/components/layouts/AuthLayout";
 import Button from "@/components/Button";
@@ -7,13 +7,35 @@ import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import { path } from "@/routes";
+import { resendVerificationEmail } from "@/services/auth.services";
+import { useMutation } from "@tanstack/react-query";
 
 const LoginPage = () => {
   const router = useRouter();
-  const { user, setUser, loginMutation } = useAuth();
+  const { user, setUser, loginMutation, authError, setAuthError } = useAuth();
   const userLoginDetails = user.login;
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [showPassword, setShowPassword] = useState(false);
+  const [resendSuccess, setResendSuccess] = useState(false);
+  const [passwordResetSuccess, setPasswordResetSuccess] = useState(false);
+
+  const resendMutation = useMutation({
+    mutationFn: (email: string) => resendVerificationEmail(email),
+    onSuccess: () => {
+      setResendSuccess(true);
+    },
+  });
+
+  // Check for password reset success in query params
+  useEffect(() => {
+    if (router.query.reset === "success") {
+      setPasswordResetSuccess(true);
+      // Clear the query param
+      router.replace(path.login, undefined, { shallow: true });
+    }
+  }, [router.query.reset, router]);
+
+  const isEmailNotVerified = authError?.includes("verify your email");
 
   const validate = () => {
     const newErrors: { email?: string; password?: string } = {};
@@ -26,8 +48,6 @@ const LoginPage = () => {
 
     if (!userLoginDetails.password) {
       newErrors.password = "Password is required.";
-    } else if (userLoginDetails.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters.";
     }
 
     return newErrors;
@@ -48,10 +68,12 @@ const LoginPage = () => {
         password: user.login.password ?? "",
       },
       {
-        onSuccess: () => {
-          const nextUrl = (router.query.next as string) || path.activeServices;
-          console.log(cookieStore)
-          router.push(nextUrl);
+        onSuccess: (data) => {
+          // Only navigate if login was successful
+          if (!data.error) {
+            const nextUrl = (router.query.next as string) || path.activeServices;
+            router.push(nextUrl);
+          }
         },
       },
     );
@@ -72,6 +94,21 @@ const LoginPage = () => {
       ...prev,
       [name]: undefined,
     }));
+
+    // Clear auth error when user starts typing
+    if (authError) {
+      setAuthError(null);
+    }
+
+    // Clear resend success message
+    if (resendSuccess) {
+      setResendSuccess(false);
+    }
+
+    // Clear password reset success message
+    if (passwordResetSuccess) {
+      setPasswordResetSuccess(false);
+    }
   };
 
   return (
@@ -118,11 +155,52 @@ const LoginPage = () => {
           />
 
           <Link
-            href="/forgot-password"
+            href={path.forgotPassword}
             className="text-right text-title-small font-medium text-primary-base hover:underline"
           >
             Forgot password?
           </Link>
+
+          {passwordResetSuccess && (
+            <div className="bg-success-container border border-success-70 rounded-lg p-4">
+              <p className="text-success-on_container text-sm">
+                Password reset successful! You can now log in with your new password.
+              </p>
+            </div>
+          )}
+
+          {authError && (
+            <div className="mt-2">
+              <p className="text-error-base text-sm">
+                {authError}
+              </p>
+
+              {isEmailNotVerified && !resendSuccess && (
+                <Button
+                  type="button"
+                  variant="text"
+                  className="text-primary-base mt-2"
+                  onClick={() => resendMutation.mutate(userLoginDetails.email ?? "")}
+                  disabled={resendMutation.isPending || !userLoginDetails.email}
+                  loading={resendMutation.isPending}
+                >
+                  Resend verification email
+                </Button>
+              )}
+
+              {resendSuccess && (
+                <p className="text-success-base text-sm mt-2">
+                  Verification email sent! Please check your inbox.
+                </p>
+              )}
+
+              {resendMutation.isError && (
+                <p className="text-error-base text-sm mt-2">
+                  {resendMutation.error?.message || "Failed to resend email. Please try again."}
+                </p>
+              )}
+            </div>
+          )}
 
           <Button
             type="submit"
@@ -133,6 +211,8 @@ const LoginPage = () => {
           >
             Log in
           </Button>
+
+          
         </form>
 
         <p className="text-center text-body-large text-neutral-30">

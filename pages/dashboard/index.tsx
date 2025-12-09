@@ -10,6 +10,7 @@ import ReferralsIcon from "@/img/dashboard/referrals.svg";
 import HelpIcon from "@/img/dashboard/help.svg";
 import { RiMessage2Fill } from "@remixicon/react";
 import { AuthGuard } from "@/components/AuthGuard";
+import { useAuth } from "@/hooks/useAuth";
 
 const dashboardLinks = [
   {
@@ -51,6 +52,36 @@ const dashboardLinks = [
 ];
 
 const DashboardPage = () => {
+  const { user } = useAuth();
+
+  // Get user initials from first_name and last_name
+  const getInitials = () => {
+    const firstName = user.profile.first_name || "";
+    const lastName = user.profile.last_name || "";
+
+    if (firstName && lastName) {
+      return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+    } else if (firstName) {
+      return firstName.charAt(0).toUpperCase();
+    } else if (user.profile.email) {
+      return user.profile.email.charAt(0).toUpperCase();
+    }
+    return "U";
+  };
+
+  // Get full name
+  const getFullName = () => {
+    const firstName = user.profile.first_name || "";
+    const lastName = user.profile.last_name || "";
+
+    if (firstName && lastName) {
+      return `${firstName} ${lastName}`;
+    } else if (firstName) {
+      return firstName;
+    }
+    return "User";
+  };
+
   return (
     <div className="min-h-screen font-montserrat">
       <DashboardHeader />
@@ -60,13 +91,13 @@ const DashboardPage = () => {
         <div className="bg-tertiary-on_tertiary_fixed_variant text-white rounded-2xl p-8 flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 h-64">
           <div className="flex justify-center items-center sm:gap-6 gap-2">
             <div className="flex-shrink-0 w-16 h-16 sm:w-24 sm:h-24 bg-neutral-10 rounded-full flex items-center justify-center text-display-small sm:text-display-large font-bold">
-              FJ
+              {getInitials()}
             </div>
             <div className="flex-grow text-center sm:text-left">
               <h1 className="text-headline-large sm:text-display-medium font-medium">
-                Femi Jegede
+                {getFullName()}
               </h1>
-              <p className="text-body-large sm:text-headline-medium ">jegedeodunayo59@gmail.com</p>
+              <p className="text-body-large sm:text-headline-medium ">{user.profile.email}</p>
             </div>
           </div>
           <Button

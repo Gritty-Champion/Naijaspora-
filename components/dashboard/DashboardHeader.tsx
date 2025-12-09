@@ -2,8 +2,26 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/components/Logo";
 import { RiSearchLine, RiMenuFill } from "@remixicon/react";
+import { useAuth } from "@/hooks/useAuth";
 
 const DashboardHeader = () => {
+    const { user } = useAuth();
+
+    // Get user initials from first_name and last_name
+    const getInitials = () => {
+        const firstName = user.profile.first_name || "";
+        const lastName = user.profile.last_name || "";
+
+        if (firstName && lastName) {
+            return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+        } else if (firstName) {
+            return firstName.charAt(0).toUpperCase();
+        } else if (user.profile.email) {
+            return user.profile.email.charAt(0).toUpperCase();
+        }
+        return "U";
+    };
+
     return (
         <header className="bg-white border-b border-neutral-60 sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +60,7 @@ const DashboardHeader = () => {
                         <Link href="#" className="flex items-center gap-2 text-black border rounded-full px-4 py-1 text-title-small font-medium hover:bg-primary-95 transition-colors">
                             <RiMenuFill size={24} />
                             <div className="flex-shrink-0 text-white w-8 h-8  bg-neutral-10 rounded-full flex items-center justify-center text-body-small font-bold">
-                                FJ
+                                {getInitials()}
                             </div>
                         </Link>
                     </div>

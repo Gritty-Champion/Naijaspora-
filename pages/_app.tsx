@@ -8,10 +8,22 @@ import { AuthProvider } from "@/providers/AuthProvider";
 import {QueryClientProvider, QueryClient} from "@tanstack/react-query"
 import { ProductsProvider } from "@/providers/ProductsProvider";
 
+// Create QueryClient outside component to prevent recreation on every render
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+    mutations: {
+      // Prevent errors from propagating to error boundaries
+      throwOnError: false,
+    },
+  },
+})
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const queryClient = new QueryClient()
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
