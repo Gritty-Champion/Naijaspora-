@@ -39,7 +39,7 @@ const Hero = () => {
   }, [subIndex, index, reverse]);
 
   return (
-    <section className="relative text-white min-h-[70vh] flex items-center justify-center text-left px-8 py-8 sm:py-20 overflow-hidden">
+    <section className="relative text-white min-h-[70vh] flex items-center justify-center text-left px-8 pb-8 pt-20 sm:pb-20 sm:pt-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-tr from-[#E0E0FF] via-[#BDC2FF] to-[#9747FF85] opacity-80"></div>
       <div className="absolute inset-0 bg-black opacity-20"></div>
 

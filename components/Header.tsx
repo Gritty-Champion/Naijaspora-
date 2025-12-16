@@ -9,11 +9,14 @@ import {
   RiArrowRightCircleLine,
   RiCloseLine,
   RiMenuLine,
+  RiUserLine,
+  RiLogoutBoxRLine,
 } from "@remixicon/react";
 import { cn } from "@/libs/cn";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { path } from "@/routes";
+import { useAuth } from "@/hooks/useAuth";
 
 interface HeaderProps {
   isHeroInView: boolean;
@@ -24,6 +27,7 @@ const Header = ({ isHeroInView }: HeaderProps) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const router = useRouter();
+  const { isAuthenticated, user, logout } = useAuth();
   const accordionData = [
     {
       title: "Services",
@@ -76,37 +80,78 @@ const Header = ({ isHeroInView }: HeaderProps) => {
           <HeaderMenu isHeroInView={isHeroInView} isScrolled={isScrolled} />
 
           <div className="hidden lg:flex items-center gap-[24px]">
-            <Link href={path.login}>
-            <Button
-              variant="text"
-              className={cn({
-                "text-primary-on_primary": isScrolled || isHeroInView,
-                "text-black": !isHeroInView,
-              })}
-            >
-              Log In
-            </Button>
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <div className="flex items-center gap-2">
+                  <RiUserLine
+                    className={cn("w-5 h-5", {
+                      "text-primary-on_primary": isScrolled || isHeroInView,
+                      "text-black": !isHeroInView,
+                    })}
+                  />
+                  <span
+                    className={cn("text-sm font-medium", {
+                      "text-primary-on_primary": isScrolled || isHeroInView,
+                      "text-black": !isHeroInView,
+                    })}
+                  >
+                    {user.profile.first_name}
+                  </span>
+                </div>
+                <Button
+                  variant={
+                    router.pathname === "/"
+                      ? isScrolled
+                        ? "primary"
+                        : "blur"
+                      : "primary"
+                  }
+                  onClick={logout}
+                  iconPosition="right"
+                  icon={
+                    <RiLogoutBoxRLine
+                      className={cn("w-5 h-5 shrink-0 aspect-[1/1] text-white")}
+                    />
+                  }
+                >
+                  Log Out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link href={path.login}>
+                  <Button
+                    variant="text"
+                    className={cn({
+                      "text-primary-on_primary": isScrolled || isHeroInView,
+                      "text-black": !isHeroInView,
+                    })}
+                  >
+                    Log In
+                  </Button>
+                </Link>
 
-            <Link href={path.signup}>
-            <Button
-              variant={
-                router.pathname === "/"
-                  ? isScrolled
-                    ? "primary"
-                    : "blur"
-                  : "primary"
-              }
-              iconPosition="right"
-              icon={
-                <RiArrowRightCircleLine
-                  className={cn("w-5 h-5 shrink-0 aspect-[1/1] text-white")}
-                />
-              }
-            >
-              Get started
-            </Button>
-            </Link>
+                <Link href={path.signup}>
+                  <Button
+                    variant={
+                      router.pathname === "/"
+                        ? isScrolled
+                          ? "primary"
+                          : "blur"
+                        : "primary"
+                    }
+                    iconPosition="right"
+                    icon={
+                      <RiArrowRightCircleLine
+                        className={cn("w-5 h-5 shrink-0 aspect-[1/1] text-white")}
+                      />
+                    }
+                  >
+                    Get started
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
 
           <div className="w-fit h-fit flex lg:hidden justify-center items-center">
@@ -171,6 +216,55 @@ const Header = ({ isHeroInView }: HeaderProps) => {
                 </li>
               ))}
             </ul>
+
+            {/* Mobile Auth Buttons */}
+            <div className="w-full flex flex-col gap-3 px-2">
+              {isAuthenticated ? (
+                <>
+                  <div className="flex items-center gap-2 py-2">
+                    <RiUserLine className="w-5 h-5 text-black" />
+                    <span className="text-sm font-medium text-black">
+                      {user.profile.first_name}
+                    </span>
+                  </div>
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      logout();
+                      setShowMobileMenu(false);
+                    }}
+                    className="w-full justify-center"
+                    iconPosition="right"
+                    icon={<RiLogoutBoxRLine className="w-5 h-5 text-white" />}
+                  >
+                    Log Out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link href={path.login}>
+                    <Button
+                      variant="text"
+                      className="w-full justify-center text-black"
+                      onClick={() => setShowMobileMenu(false)}
+                    >
+                      Log In
+                    </Button>
+                  </Link>
+                  <Link href={path.signup}>
+                    <Button
+                      variant="primary"
+                      className="w-full justify-center"
+                      iconPosition="right"
+                      icon={<RiArrowRightCircleLine className="w-5 h-5" />}
+                      onClick={() => setShowMobileMenu(false)}
+                    >
+                      Get started
+                    </Button>
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </Wrapper>

@@ -10,7 +10,7 @@ const getURL = (): EnvironmentConfig => {
       CURRENT_ENV: "production",
     },
     staging: {
-      API_SERVER_URL: "https://167.99.191.115/stage/api",
+      API_SERVER_URL: "https://stage.naijaspora.co/api",
       CURRENT_ENV: "staging",
     },
     development: {

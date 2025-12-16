@@ -8,7 +8,7 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children}: AuthLayoutProps) => {
   return (
-    <main className="flex lg:h-screen lg:overflow-hidden font-montserrat">
+    <main className="flex lg:h-screen  font-montserrat">
       {/* Left Column: Form/Content */}
       <div className="flex flex-col items-center sm:w-1/2 mx-auto  py-6 px-12  bg-surface-base">
         <div className="w-full max-w-">
@@ -20,7 +20,7 @@ const AuthLayout = ({ children}: AuthLayoutProps) => {
       </div>
 
       {/* Right Column: Decorative Image */}
-      <div className="hidden sm:flex sm:w-1/2  bg-[#E0E0FF] p-">
+      <div className="hidden sm:flex sm:w-1/2  bg-[#E0E0FF] ">
         <Image
           src={AuthImage}
           alt="Travel collage with airplane, globe, and luggage"

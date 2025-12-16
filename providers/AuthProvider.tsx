@@ -1,5 +1,13 @@
 import { path } from "@/routes";
-import { getUserDetails, getUserToken, refreshToken } from "@/services/auth.services";
+import {
+  getUserDetails,
+  getUserToken,
+  refreshToken,
+  registerUser,
+  requestPasswordReset,
+  resetPassword,
+  changePassword
+} from "@/services/auth.services";
 import { useMutation, UseMutationResult, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { createContext, useState, useEffect, ReactNode, useCallback, useRef } from "react";
@@ -17,7 +25,10 @@ interface User {
 }
 
 interface TokenResponse {
-  accessToken: string;
+  accessToken?: string;
+  error?: boolean;
+  message?: string;
+  status?: number;
 }
 
 interface AuthContextType {
@@ -29,11 +40,36 @@ interface AuthContextType {
     { email: string; password: string },
     unknown
   >;
+  registerMutation: UseMutationResult<
+    any,
+    Error,
+    { first_name: string; last_name: string; email: string; password: string },
+    unknown
+  >;
+  requestPasswordResetMutation: UseMutationResult<
+    any,
+    Error,
+    string,
+    unknown
+  >;
+  resetPasswordMutation: UseMutationResult<
+    any,
+    Error,
+    { token: string; newPassword: string },
+    unknown
+  >;
+  changePasswordMutation: UseMutationResult<
+    any,
+    Error,
+    { currentPassword: string; newPassword: string; token: string },
+    unknown
+  >;
   logout: () => void;
   userToken: string | null;
   isAuthenticating: boolean;
   isAuthenticated: boolean;
   authError: string | null;
+  setAuthError: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -102,15 +138,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         // Attempt to refresh token
         console.log("No stored token, attempting refresh...");
         const refreshResponse = await refreshToken();
-        const token = refreshResponse.accessToken;
 
-        if (token) {
+        if (refreshResponse?.accessToken) {
           console.log("Token refresh successful");
-          setUserToken(token);
-          localStorage.setItem("user_access", token);
+          setUserToken(refreshResponse.accessToken);
+          localStorage.setItem("user_access", refreshResponse.accessToken);
           refreshAttemptsRef.current = 0;
         } else {
-          console.warn("Token refresh returned invalid data");
+          console.warn("No refresh token available");
           clearAuthState();
         }
       } catch (error) {
@@ -129,6 +164,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const loginMutation = useMutation({
     mutationFn: getUserToken,
     onSuccess: (data) => {
+      // Check if response contains an error
+      if (data.error) {
+        console.error("Login failed:", data.message);
+        setAuthError(data.message);
+        // Don't clear the form inputs on login error, only clear token
+        setUserToken(null);
+        clearStoredToken();
+        return;
+      }
+
       const token = data.accessToken;
 
       if (token) {
@@ -140,22 +185,113 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       } else {
         console.error("Invalid token received from login");
         setAuthError("Invalid authentication response");
-        clearAuthState();
+        setUserToken(null);
+        clearStoredToken();
       }
     },
     onError: (error) => {
       console.error("Login error:", error);
       const errorMessage = error instanceof Error ? error.message : "Login failed";
       setAuthError(errorMessage);
-      clearAuthState();
+      setUserToken(null);
+      clearStoredToken();
     },
   });
+
+  // Register mutation
+  const registerMutation = useMutation({
+  mutationFn: registerUser,
+  onSuccess: (data, variables) => {
+    // Check if response contains an error
+    if (data.error) {
+      console.error("Registration failed:", data.message);
+      setAuthError(data.message);
+      return;
+    }
+
+    console.log("Registration success:", data);
+    // Clear any previous errors
+    setAuthError(null);
+    // redirect to check email page with the email from registration form
+    router.push({
+      pathname: path.checkEmail,
+      query: { email: variables.email },
+    });
+  },
+  onError: (error) => {
+    console.error("Registration error:", error);
+    const errorMessage = error instanceof Error ? error.message : "Registration failed";
+    setAuthError(errorMessage);
+  },
+});
+
+  // Request password reset mutation
+  const requestPasswordResetMutation = useMutation({
+    mutationFn: requestPasswordReset,
+    onSuccess: (data) => {
+      console.log("Password reset email sent:", data);
+      setAuthError(null);
+    },
+    onError: (error) => {
+      console.error("Password reset request error:", error);
+      const errorMessage = error instanceof Error ? error.message : "Failed to request password reset";
+      setAuthError(errorMessage);
+    },
+  });
+
+  // Reset password mutation
+  const resetPasswordMutation = useMutation({
+    mutationFn: resetPassword,
+    onSuccess: (data) => {
+      if (data.error) {
+        console.error("Password reset failed:", data.message);
+        setAuthError(data.message);
+        return;
+      }
+
+      console.log("Password reset successful:", data);
+      setAuthError(null);
+    },
+    onError: (error) => {
+      console.error("Password reset error:", error);
+      const errorMessage = error instanceof Error ? error.message : "Password reset failed";
+      setAuthError(errorMessage);
+    },
+  });
+
+  // Change password mutation
+  const changePasswordMutation = useMutation({
+    mutationFn: changePassword,
+    onSuccess: (data) => {
+      if (data.error) {
+        console.error("Password change failed:", data.message);
+        setAuthError(data.message);
+        return;
+      }
+
+      console.log("Password changed successfully:", data);
+      // Update token since backend returns new accessToken
+      if (data.accessToken) {
+        setUserToken(data.accessToken);
+        localStorage.setItem("user_access", data.accessToken);
+      }
+      setAuthError(null);
+    },
+    onError: (error) => {
+      console.error("Password change error:", error);
+      const errorMessage = error instanceof Error ? error.message : "Failed to change password";
+      setAuthError(errorMessage);
+    },
+  });
+
+
 
   // Fetch user profile when token is available
   const {
     data: userProfileData,
     error: profileError,
     isError: isProfileError,
+    isFetching: isProfileFetching,
   } = useQuery({
     queryKey: ["userDetails", userToken],
     queryFn: () => {
@@ -207,12 +343,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       try {
         const refreshResponse = await refreshToken();
-        const newToken = refreshResponse.accessToken;
 
-        if (newToken) {
+        if (refreshResponse?.accessToken) {
           console.log("Token refresh successful");
-          setUserToken(newToken);
-          localStorage.setItem("user_access", newToken);
+          setUserToken(refreshResponse.accessToken);
+          localStorage.setItem("user_access", refreshResponse.accessToken);
           setAuthError(null);
           refreshAttemptsRef.current = 0;
         } else {
@@ -256,17 +391,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isAuthenticated = !!userToken && !!userProfileData?.email;
 
+  // Consider user as "authenticating" if initial auth is running OR if we have a token but profile is still loading
+  // This prevents race conditions when refreshing protected pages
+  const isStillAuthenticating = isAuthenticating || (!!userToken && isProfileFetching);
+
   return (
     <AuthContext.Provider
       value={{
         user,
         setUser,
         loginMutation,
+        registerMutation,
+        requestPasswordResetMutation,
+        resetPasswordMutation,
+        changePasswordMutation,
         logout,
         userToken,
-        isAuthenticating,
+        isAuthenticating: isStillAuthenticating,
         isAuthenticated,
         authError,
+        setAuthError,
       }}
     >
       {children}
