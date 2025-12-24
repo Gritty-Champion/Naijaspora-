@@ -5,8 +5,8 @@ import {
   loanProofOfFundsService,
   agentVerificationService,
   documentVerificationService,
-  scamAlertService,
-  postVisaDenialService,
+  scamReportService,
+  visaDenialSupportService,
   consultationService,
   postRelocationService,
   diasporaProjectService
@@ -55,9 +55,9 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
       case ProductTyping.DOCUMENTS_VERIFICATION:
         return documentVerificationService({data, token: userToken as string})
       case ProductTyping.SCAM_ALERT:
-        return scamAlertService({ data, token: userToken as string });
+        return scamReportService({ data, token: userToken as string });
       case ProductTyping.POST_VISA_DENIAL:
-        return postVisaDenialService({ data, token: userToken as string });
+        return visaDenialSupportService({ data, token: userToken as string });
       case ProductTyping.CONSULTATION:
         return consultationService({ data, token: userToken as string });
       case ProductTyping.POST_RELOCATION:
@@ -77,8 +77,20 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   } = useMutation({
     mutationFn: serviceSelector,
     onSuccess: (res) => {
+      // Check if response contains an error
+      if (res.error) {
+        console.error("Product submission failed:", res.message);
+        // You might want to handle the error state here
+        return;
+      }
+
+      console.log("Product submission successful:", res);
+
+      // If there's a payment authorization URL, open it
       const paymentUri = res.authorizationUrl;
-      window.open(paymentUri, "_blank")
+      if (paymentUri) {
+        window.open(paymentUri, "_blank");
+      }
     },
     onError: (err) => {
       console.error("Product submission failed:", err);

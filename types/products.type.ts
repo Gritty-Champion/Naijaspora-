@@ -1,3 +1,11 @@
+// Common response type for all service endpoints
+interface ServiceResponse {
+  error: boolean;
+  message?: string;
+  status?: number;
+  data?: any;
+}
+
 interface VisaPrepsProps {
   visa_type: string;
   destination_country: string;

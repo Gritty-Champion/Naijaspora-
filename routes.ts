@@ -10,6 +10,7 @@ export const path = Object.freeze({
   checkEmail: "/auth/check-email",
   forgotPassword: "/auth/forgot-password",
   resetPassword: "/auth/reset-password",
+  dashboard: "/dashboard",
   changePassword: "/dashboard/change-password",
   interviewPreps: "/services/interview-preps",
   agents: "/services/agents",
@@ -19,5 +20,8 @@ export const path = Object.freeze({
   postRelocation: "/services/post-relocation",
   projectManagement: "/services/project-management",
   report: "/services/report",
-  verifyDocuments: "/services/verify-documents"
+  verifyDocuments: "/services/verify-documents",
+  paymentCallback: "/payment/callback",
+  paymentSuccess: "/payment/success",
+  paymentFailed: "/payment/failed"
 });
