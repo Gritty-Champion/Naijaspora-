@@ -1,22 +1,22 @@
+import { useAuth } from "@/hooks/useAuth";
+import { cn } from "@/libs/cn";
 import { headerMotion } from "@/libs/motions";
-import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
-import Wrapper from "./Wrapper";
-import Logo from "./Logo";
-import HeaderMenu from "./HeaderMenu";
-import Button from "./Button";
+import { path } from "@/routes";
 import {
   RiArrowRightCircleLine,
   RiCloseLine,
+  RiLogoutBoxRLine,
   RiMenuLine,
   RiUserLine,
-  RiLogoutBoxRLine,
 } from "@remixicon/react";
-import { cn } from "@/libs/cn";
-import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { path } from "@/routes";
-import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import Button from "./Button";
+import HeaderMenu from "./HeaderMenu";
+import Logo from "./Logo";
+import Wrapper from "./Wrapper";
 
 interface HeaderProps {
   isHeroInView: boolean;
@@ -31,11 +31,7 @@ const Header = ({ isHeroInView }: HeaderProps) => {
   const accordionData = [
     {
       title: "Services",
-      content: [
-        { name: "Visa Interview Preparation", link: path.interviewPreps },
-        { name: "Zero Collateral Loans", link: path.funding },
-        { name: "Agent Verification Services", link: path.verifyDocuments },
-      ],
+      content: path.activeServices,
     },
     {
       title: "Learn",
@@ -47,7 +43,6 @@ const Header = ({ isHeroInView }: HeaderProps) => {
     },
     {
       title: "Contact",
-      content: "#",
     },
   ];
 
@@ -75,9 +70,12 @@ const Header = ({ isHeroInView }: HeaderProps) => {
     >
       <Wrapper>
         <div className="flex relative w-full justify-between items-center py-[8px]">
-          <Logo  />
+          <Logo />
 
-          <HeaderMenu isHeroInView={isHeroInView} isScrolled={isScrolled} />
+          <HeaderMenu
+            isHeroInView={isHeroInView}
+            isScrolled={isScrolled}
+          />
 
           <div className="hidden lg:flex items-center gap-[24px]">
             {isAuthenticated ? (
@@ -99,19 +97,11 @@ const Header = ({ isHeroInView }: HeaderProps) => {
                   </span>
                 </div>
                 <Button
-                  variant={
-                    router.pathname === "/"
-                      ? isScrolled
-                        ? "primary"
-                        : "blur"
-                      : "primary"
-                  }
+                  variant={router.pathname === "/" ? (isScrolled ? "primary" : "blur") : "primary"}
                   onClick={logout}
                   iconPosition="right"
                   icon={
-                    <RiLogoutBoxRLine
-                      className={cn("w-5 h-5 shrink-0 aspect-[1/1] text-white")}
-                    />
+                    <RiLogoutBoxRLine className={cn("w-5 h-5 shrink-0 aspect-[1/1] text-white")} />
                   }
                 >
                   Log Out
@@ -134,11 +124,7 @@ const Header = ({ isHeroInView }: HeaderProps) => {
                 <Link href={path.signup}>
                   <Button
                     variant={
-                      router.pathname === "/"
-                        ? isScrolled
-                          ? "primary"
-                          : "blur"
-                        : "primary"
+                      router.pathname === "/" ? (isScrolled ? "primary" : "blur") : "primary"
                     }
                     iconPosition="right"
                     icon={
@@ -171,7 +157,7 @@ const Header = ({ isHeroInView }: HeaderProps) => {
               {
                 "translate-y-0": showMobileMenu,
                 "-translate-y-full": !showMobileMenu,
-              }
+              },
             )}
             style={{ willChange: "transform" }}
           >
@@ -190,22 +176,32 @@ const Header = ({ isHeroInView }: HeaderProps) => {
             {/* Menus */}
             <ul className="w-full">
               {accordionData.map((item, idx) => (
-                <li key={idx} className="border-b border-gray-200">
+                <li
+                  key={idx}
+                  className="border-b border-gray-200"
+                >
                   <button
                     className="w-full flex justify-between items-center py-4 text-left font-medium"
-                    onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                    onClick={() => {
+                      if (Array.isArray(item.content)) {
+                        setOpenIndex(openIndex === idx ? null : idx);
+                      } else if (typeof item.content === "string") {
+                        router.push(item.content);
+                      }
+                    }}
                   >
                     <span>{item.title}</span>
-                    {Array.isArray(item.content) && (
-                      <span>{openIndex === idx ? "-" : "+"}</span>
-                    )}
+                    {Array.isArray(item.content) && <span>{openIndex === idx ? "-" : "+"}</span>}
                   </button>
                   {openIndex === idx && Array.isArray(item.content) && (
                     <div className="pb-4 pl-2 flex flex-col gap-[12px] text-gray-600 text-sm">
                       {Array.isArray(item.content) ? (
                         <>
                           {item.content.map((data, idx) => (
-                            <Link key={idx} href={data.link}>
+                            <Link
+                              key={idx}
+                              href={data.link}
+                            >
                               {data.name}
                             </Link>
                           ))}
