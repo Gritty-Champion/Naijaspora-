@@ -1,6 +1,16 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { visaPrepsService, loanProofOfFundsService, agentVerificationService, documentVerificationService } from "@/services/products.services";
+import {
+  visaPrepsService,
+  loanProofOfFundsService,
+  agentVerificationService,
+  documentVerificationService,
+  scamReportService,
+  visaDenialSupportService,
+  consultationService,
+  postRelocationService,
+  diasporaProjectService
+} from "@/services/products.services";
 import { useAuth } from "@/hooks/useAuth";
 
 
@@ -9,6 +19,11 @@ export enum ProductTyping {
   LOAN_POF = "loan_proof_of_funds",
   AGENT_VERIFICATION = "agent_verification",
   DOCUMENTS_VERIFICATION = "documents_and_cos_verification",
+  SCAM_ALERT = "scam_alert",
+  POST_VISA_DENIAL = "post_visa_denial_support",
+  CONSULTATION = "consultation",
+  POST_RELOCATION = "post_relocation_support",
+  DIASPORA_PROJECT = "diaspora_project_management",
 }
 
 interface ProductsContextProps {
@@ -39,6 +54,16 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
         return agentVerificationService({ data, token: userToken as string });
       case ProductTyping.DOCUMENTS_VERIFICATION:
         return documentVerificationService({data, token: userToken as string})
+      case ProductTyping.SCAM_ALERT:
+        return scamReportService({ data, token: userToken as string });
+      case ProductTyping.POST_VISA_DENIAL:
+        return visaDenialSupportService({ data, token: userToken as string });
+      case ProductTyping.CONSULTATION:
+        return consultationService({ data, token: userToken as string });
+      case ProductTyping.POST_RELOCATION:
+        return postRelocationService({ data, token: userToken as string });
+      case ProductTyping.DIASPORA_PROJECT:
+        return diasporaProjectService({ data, token: userToken as string });
       default:
         throw new Error("Unsupported product type or missing selection");
     }
@@ -52,8 +77,20 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   } = useMutation({
     mutationFn: serviceSelector,
     onSuccess: (res) => {
+      // Check if response contains an error
+      if (res.error) {
+        console.error("Product submission failed:", res.message);
+        // You might want to handle the error state here
+        return;
+      }
+
+      console.log("Product submission successful:", res);
+
+      // If there's a payment authorization URL, open it
       const paymentUri = res.authorizationUrl;
-      window.open(paymentUri, "_blank")
+      if (paymentUri) {
+        window.open(paymentUri, "_blank");
+      }
     },
     onError: (err) => {
       console.error("Product submission failed:", err);
