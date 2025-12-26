@@ -7,6 +7,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/libs/motions";
 import { path } from "@/routes";
+import { RiGooglePlayFill, RiAppleFill } from "@remixicon/react";
 
 const Footer = () => {
   const socialLinks = [
@@ -56,19 +57,14 @@ const Footer = () => {
           title: "Project Management",
           link: path.projectManagement,
         },
-        {
-          title: "Emergency Services",
-          link: "/",
-        },
       ],
     },
     {
       heading: "COMPANY",
       links: [
         { title: "About Us", link: path.about },
-        { title: "Careers", link: "/" },
         { title: "Blog", link: path.blog },
-        { title: "Contact", link: path.contactUs },
+        { title: "Contact", link: path.contact },
       ],
     },
     {
@@ -77,7 +73,7 @@ const Footer = () => {
         { title: "For Agents", link: path.forAgents },
         { title: "For Nigerians in Diaspora", link: path.forDiaspora },
         { title: "For Japa Hopefuls", link: path.forHopefuls },
-        { title: "Join the community", link: "/" },
+        { title: "Join the community", link: "#" },
       ],
     },
     {
@@ -85,15 +81,14 @@ const Footer = () => {
       links: [
         { title: "Privacy Policy", link: path.privacyPolicy },
         { title: "Terms of Service", link: path.termsOfService },
-        { title: "Scam Policy", link: path.acceptableUse },
       ],
     },
     {
       heading: "SUPPORT",
       links: [
-        { title: "Help Center", link: "/" },
+        { title: "Help Center", link: "#" },
         { title: "Video Guides", link: path.videos },
-        { title: "FAQ", link: "/" },
+        { title: "FAQ", link: "#" },
       ],
     },
   ];
@@ -124,6 +119,30 @@ const Footer = () => {
                 {<Item.icon />}
               </Link>
             ))}
+          </div>
+
+          {/* App Store Links */}
+          <div className="flex flex-col gap-3 mt-4">
+            <Link
+              href="#"
+              className="flex items-center justify-start gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              <RiAppleFill className="w-6 h-6" />
+              <div className="flex flex-col">
+                <span className="text-[10px]">Download on</span>
+                <span className="text-sm font-semibold">App Store</span>
+              </div>
+            </Link>
+            <Link
+              href="#"
+              className="flex items-center justify-start gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              <RiGooglePlayFill className="w-6 h-6" />
+              <div className="flex flex-col">
+                <span className="text-[10px]">Get it on</span>
+                <span className="text-sm font-semibold">Google Play</span>
+              </div>
+            </Link>
           </div>
         </div>
 

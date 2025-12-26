@@ -10,9 +10,22 @@ import Four from "@/img/points/four.svg?url";
 import Five from "@/img/points/five.svg?url";
 import Six from "@/img/points/six.svg?url";
 import { motion } from 'framer-motion';
+import { useAuth } from '@/hooks/useAuth';
+import { useRouter } from 'next/router';
+import { path } from '@/routes';
 
 
 const KeyPoints = () => {
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  const handleGetStarted = () => {
+    if (isAuthenticated) {
+      router.push(path.activeServices);
+    } else {
+      router.push(path.signup);
+    }
+  };
 
   const cardData = [
     {
@@ -63,7 +76,7 @@ const KeyPoints = () => {
                 <p className="max-w-[369px] text-center text-surface-container font-montserrat text-title-medium font-bold ">
                   A truly global support system bigger and more centralized.
                 </p>
-                <Button>Get Started</Button>
+                <Button onClick={handleGetStarted}>Get Started</Button>
               </div>
             </div>
 

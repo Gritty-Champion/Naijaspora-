@@ -15,7 +15,9 @@ import Nine from "@/img/services/Service Nine.png";
 import Button from "../Button";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/libs/motions";
-import PlainLogo from "@/img/plainLogo.svg"
+import PlainLogo from "@/img/plainLogo.svg";
+import Link from "next/link";
+import { path } from "@/routes";
 
 const Services = () => {
   const servicesData = [
@@ -24,63 +26,63 @@ const Services = () => {
       title: "VISA INTERVIEW PREP",
       desc: "Expert coaching and mock sessions to help you confidently ace your visa interview.",
       cta_text: "Get Started",
-      cta_click: () => {},
+      link: path.interviewPreps,
     },
     {
       img: Two,
       title: "ZERO COLLATERAL LOANS",
       desc: "Get access to educational loans without collateral to fund your studies abroad.",
       cta_text: "Apply",
-      cta_click: () => {},
+      link: path.funding,
     },
     {
       img: Three,
       title: "AGENT VERIFICATION SERVICES",
       desc: "Find and connect with verified, trusted travel agents — no more scams.",
-      cta_text: "Search Directory",
-      cta_click: () => {},
+      cta_text: "See Verified Agent List",
+      link: path.agents,
     },
     {
       img: Four,
       title: "DOCUMENT VERIFICATION",
       desc: "Ensure your documents are accurate and compliant before submission.",
       cta_text: "Verify Documents",
-      cta_click: () => {},
+      link: path.verifyDocuments,
     },
     {
       img: Five,
       title: "SCAM ALERT",
       desc: "Stay informed and report fraudsters to keep our community safe",
       cta_text: "Report a Scam",
-      cta_click: () => {},
+      link: path.report,
     },
     {
       img: Six,
       title: "POST-VISA DENIAL SUPPORT",
       desc: "Get smart insights and next steps from our AI chatbot after a visa denial",
       cta_text: "Chat",
-      cta_click: () => {},
+      link: path.denial,
     },
     {
       img: Seven,
       title: "DIASPORA PROJECT MANAGEMENT",
       desc: "Let us manage your property or business projects back home — stress-free",
       cta_text: "Get Started",
-      cta_click: () => {},
+      link: path.projectManagement,
     },
     {
       img: Eight,
       title: "CONSULTATION SERVICES",
       desc: "Our experts are ready to answer questions, offer advice, and provide solutions",
       cta_text: "Book a consultation",
-      cta_click: () => {},
+      link: path.consultations,
     },
     {
       img: Nine,
       title: "POST-RELOCATION SUPPORT",
       desc: "Stay connected with ongoing support, legal aid, and local diaspora networks.",
       cta_text: "Get Started",
-      cta_click: () => {},
+      link: path.postRelocation,
     },
   ];
 
@@ -211,7 +213,9 @@ const Services = () => {
 
                   {/* CTA */}
                   <div className="relative z-20">
-                    <Button onClick={item.cta_click}>{item.cta_text}</Button>
+                    <Link href={item.link}>
+                      <Button>{item.cta_text}</Button>
+                    </Link>
                   </div>
                 </div>
               ))}

@@ -96,7 +96,7 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
 
     {
       label: "About Us",
-      link: "#",
+      link: path.about,
       hasChildren: false,
       hasSider: false,
     },
@@ -107,17 +107,17 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
       <NavigationMenu.List className="center m-0 flex items-center gap-[32px] list-none">
         {menuItems.map((menu, idx) => (
           <NavigationMenu.Item key={idx}>
-            <NavigationMenu.Trigger className="group  flex justify-center items-center gap-[12px]">
-              <p
-                className={cn("text-title-medium font-montserrat font-medium", {
-                  "text-primary-on_primary": isScrolled || isHeroInView,
-                  "text-black": !isHeroInView,
-                })}
-              >
-                {menu.label}
-              </p>
+            {menu.hasChildren ? (
+              <NavigationMenu.Trigger className="group  flex justify-center items-center gap-[12px]">
+                <p
+                  className={cn("text-title-medium font-montserrat font-medium", {
+                    "text-primary-on_primary": isScrolled || isHeroInView,
+                    "text-black": !isHeroInView,
+                  })}
+                >
+                  {menu.label}
+                </p>
 
-              {menu.hasChildren && (
                 <div className="flex items-center justify-center gap-2.5">
                   <RiArrowDropDownFill
                     className={cn("w-7 h-7 aspect-[1/1]", {
@@ -126,8 +126,21 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
                     })}
                   />
                 </div>
-              )}
-            </NavigationMenu.Trigger>
+              </NavigationMenu.Trigger>
+            ) : (
+              <Link href={menu.link || "#"}>
+                <NavigationMenu.Trigger className="group  flex justify-center items-center gap-[12px]">
+                  <p
+                    className={cn("text-title-medium font-montserrat font-medium cursor-pointer", {
+                      "text-primary-on_primary": isScrolled || isHeroInView,
+                      "text-black": !isHeroInView,
+                    })}
+                  >
+                    {menu.label}
+                  </p>
+                </NavigationMenu.Trigger>
+              </Link>
+            )}
 
             {menu.hasChildren && (
               <NavigationMenu.Content className="absolute left-0 top-0 w-full data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft sm:w-auto inline-flex justify-end items-center gap-2.5 bg-secondary-secondary_fixed p-5 rounded-[20px]">

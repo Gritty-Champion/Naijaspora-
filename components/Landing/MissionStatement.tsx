@@ -15,7 +15,7 @@ const MissionStatement = () => {
       className="w-full h-fit bg-primary-container"
     >
       <Wrapper>
-        <div className="flex flex-col lg:flex-row w-full justify-center items-center gap-[30px] lg:gap-[70px] py-8 lg:py-0 lg:pt-8">
+        <div className="flex flex-col lg:flex-row w-full justify-center items-center gap-[30px] lg:gap-[70px] py-8 lg:py-16 ">
           <div className="flex w-full h-auto flex-col justify-center items-start gap-[20px] lg:gap-[46px] px-4 lg:px-0 py-4 lg:py-[46px]">
             <p className="self-stretch text-surface-on font-montserrat text-[28px] lg:text-display-medium font-semibold">
               Making a difference together

@@ -48,16 +48,17 @@ const Testimonial = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      <Wrapper>
-        <div className="flex w-full flex-col items-center gap-[50px] bg-white">
+      <div className="flex w-full flex-col items-center gap-[50px] bg-white">
+        <Wrapper>
           <div className="flex w-full lg:max-h-[232px] justify-center items-center gap-2.5 px-0 py-[76px]">
             <p className="flex-[1_0_0] text-black text-center font-montserrat text-display-small lg:text-display-large font-bold ">
-              Users rated how likely they’d share NaijaSpora with their network.
+              Users rated how likely they'd share NaijaSpora with their network.
             </p>
           </div>
+        </Wrapper>
 
-          <div className="flex relative w-full h-full lg:h-[640px] flex-col justify-center items-center bg-black p-10 rounded-[30px]">
-            <div className="w-full hidden xl:block h-[132px] absolute z-10 bottom-[-20px] left-0">
+        <div className="flex relative w-full h-full lg:h-[640px] flex-col justify-center items-center bg-black p-10 lg:rounded-[0px] overflow-hidden">
+            <div className="w-[110%] hidden xl:block h-[132px] absolute z-10 bottom-[-20px] left-0">
               <Image
                 src={SVGCurve}
                 alt="Curve decoration"
@@ -120,7 +121,6 @@ const Testimonial = () => {
             </div>
           </div>
         </div>
-      </Wrapper>
     </motion.section>
   );
 }

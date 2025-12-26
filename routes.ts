@@ -1,11 +1,11 @@
 export const path = Object.freeze({
   home: "/",
+  about: "/about",
+  contact: "/contact_us",
   services: "/services",
   activeServices: "/active-services",
   blog: "/blog",
   videos: "/videos",
-  about: "/about",
-  contactUs: "/contact_us",
   login: "/auth/login",
   signup: "/auth/signup",
   verifyEmail: "/auth/verify",

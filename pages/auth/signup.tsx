@@ -212,7 +212,7 @@ const SignUpPage = () => {
         <p className="text-center text-body-large md:text-headline-medium text-black">
           Already have an account?{" "}
           <Link
-            href="/login"
+            href="/auth/login"
             className="font-medium text-primary-base hover:underline"
           >
             Log in
