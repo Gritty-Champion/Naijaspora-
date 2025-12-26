@@ -75,53 +75,6 @@ const PaymentSuccessPage: NextPage = () => {
               </p>
             </div>
 
-            {/* Payment Details */}
-            {paymentData.payment && (
-              <div className="bg-success-container border border-success-70 rounded-lg p-6">
-                <h2 className="text-headline-small font-medium text-black mb-4">
-                  Payment Details
-                </h2>
-                <div className="space-y-3">
-                  <div className="flex justify-between text-body-medium">
-                    <span className="text-neutral-30">Reference:</span>
-                    <span className="font-semibold text-black">
-                      {paymentData.payment.reference || paymentData.payment._id || reference}
-                    </span>
-                  </div>
-                  <div className="flex justify-between text-body-medium">
-                    <span className="text-neutral-30">Status:</span>
-                    <span className="font-semibold text-success-base capitalize">
-                      {paymentData.payment.status || paymentData.status}
-                    </span>
-                  </div>
-                  {paymentData.payment.amount && (
-                    <div className="flex justify-between text-body-medium">
-                      <span className="text-neutral-30">Amount:</span>
-                      <span className="font-semibold text-black">
-                        {paymentData.payment.currency || "NGN"} {(paymentData.payment.amount / 100).toLocaleString()}
-                      </span>
-                    </div>
-                  )}
-                  {paymentData.payment.serviceType && (
-                    <div className="flex justify-between text-body-medium">
-                      <span className="text-neutral-30">Service:</span>
-                      <span className="font-semibold text-black capitalize">
-                        {paymentData.payment.serviceType.replace(/([A-Z])/g, ' $1').trim()}
-                      </span>
-                    </div>
-                  )}
-                  {(paymentData.payment.paidAt || paymentData.payment.updatedAt) && (
-                    <div className="flex justify-between text-body-medium">
-                      <span className="text-neutral-30">Paid At:</span>
-                      <span className="font-semibold text-black">
-                        {new Date((paymentData.payment.paidAt || paymentData.payment.updatedAt) as string).toLocaleString()}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
             {/* What's Next */}
             <div className="bg-secondary-container border border-secondary-70 rounded-lg p-6">
               <h2 className="text-headline-small font-medium text-black mb-2">

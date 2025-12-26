@@ -50,33 +50,6 @@ const PaymentFailedPage: NextPage = () => {
           </div>
         )}
 
-        {/* What to Do */}
-        <div className="bg-secondary-container border border-secondary-70 rounded-lg p-6">
-          <h2 className="text-headline-small font-medium text-black mb-2">
-            Common reasons for payment failure:
-          </h2>
-          <ul className="list-disc list-inside text-body-medium text-neutral-30 space-y-2">
-            <li>Insufficient funds in your account</li>
-            <li>Incorrect card details or expired card</li>
-            <li>Card not enabled for online transactions</li>
-            <li>Bank declined the transaction</li>
-            <li>Network or connection issues</li>
-          </ul>
-        </div>
-
-        <div className="bg-secondary-container border border-secondary-70 rounded-lg p-6">
-          <h2 className="text-headline-small font-medium text-black mb-2">
-            What should I do next?
-          </h2>
-          <ol className="list-decimal list-inside text-body-medium text-neutral-30 space-y-2">
-            <li>Check your card details and account balance</li>
-            <li>Ensure your card is enabled for online payments</li>
-            <li>Try a different payment method</li>
-            <li>Contact your bank if the issue persists</li>
-            <li>Contact our support team for assistance</li>
-          </ol>
-        </div>
-
         {reference && (
           <div className="bg-neutral-95 border border-neutral-80 rounded-lg p-4">
             <p className="text-body-small text-neutral-30 mb-1">
@@ -94,7 +67,7 @@ const PaymentFailedPage: NextPage = () => {
             type="button"
             variant="primary"
             className="w-full justify-center"
-            onClick={() => router.back()}
+            // onClick={() => router.back()}
           >
             Try Again
           </Button>

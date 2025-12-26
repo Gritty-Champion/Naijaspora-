@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import type { NextPage } from "next";
 
-const PaymentCallbackPage: NextPage = () => {
+const PaymentVerifyPage: NextPage = () => {
   const router = useRouter();
   const { reference, trxref } = router.query;
 
@@ -34,4 +34,4 @@ const PaymentCallbackPage: NextPage = () => {
   );
 };
 
-export default PaymentCallbackPage;
+export default PaymentVerifyPage;
