@@ -1,6 +1,4 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
 import AuthLayout from "@/components/layouts/AuthLayout";
@@ -10,7 +8,7 @@ import { verifyPayment } from "@/services/payment.services";
 
 const PaymentSuccessPage: NextPage = () => {
   const router = useRouter();
-  const { reference, status } = router.query;
+  const { reference } = router.query;
 
   // Fetch payment details using the reference
   const {
