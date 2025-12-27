@@ -4,6 +4,8 @@ export const path = Object.freeze({
   activeServices: "/active-services",
   blog: "/blog",
   videos: "/videos",
+  about: "/about",
+  contactUs: "/contact_us",
   login: "/auth/login",
   signup: "/auth/signup",
   verifyEmail: "/auth/verify",
@@ -23,5 +25,12 @@ export const path = Object.freeze({
   verifyDocuments: "/services/verify-documents",
   paymentCallback: "/payment/callback",
   paymentSuccess: "/payment/success",
-  paymentFailed: "/payment/failed"
+  paymentFailed: "/payment/failed",
+  forAgents: "/discover/for-agents",
+  forDiaspora: "/discover/for-diaspora",
+  forHopefuls: "/discover/japa-hopefuls",
+  privacyPolicy: "/legal/privacy-policy",
+  termsOfService: "/legal/terms-of-service",
+  acceptableUse: "/legal/acceptable-use-policy",
+  infoSecurity: "/legal/information-security-policy",
 });

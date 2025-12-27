@@ -51,6 +51,8 @@ const BlogHero = ({
         <Image
           src={SVGCurve}
           alt="Curve Decoration"
+          width={1200}
+          height={140} 
           className="w-full h-full object-cover"
         />
       </div>

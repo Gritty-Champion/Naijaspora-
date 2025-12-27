@@ -50,15 +50,15 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
         data: [
           {
             title: "For Agents",
-            link: "",
+            link: path.forAgents,
           },
           {
             title: "For Nigerians in Diaspora",
-            link: "",
+            link: path.forDiaspora,
           },
           {
             title: "For Japa Hopefuls",
-            link: "",
+            link: path.forHopefuls,
           },
           {
             title: "Join the community",

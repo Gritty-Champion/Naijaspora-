@@ -14,7 +14,7 @@ const NewsletterForm: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#000A85] py-16 sm:rounded-2xl max-w-7xl">
+    <div className="bg-[#000A85] py-16 sm:rounded-2xl max-w-7xl mx-auto">
       <div className="container mx-auto px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left section: Heading and subheading */}

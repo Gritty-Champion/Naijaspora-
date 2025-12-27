@@ -65,34 +65,34 @@ const Footer = () => {
     {
       heading: "COMPANY",
       links: [
-        { title: "About Us", link: "/" },
+        { title: "About Us", link: path.about },
         { title: "Careers", link: "/" },
         { title: "Blog", link: path.blog },
-        { title: "Contact", link: "/" },
+        { title: "Contact", link: path.contactUs },
       ],
     },
     {
       heading: "LIFESTYLE",
       links: [
-        { title: "For Agents", link: "/" },
-        { title: "For Nigerians in Diaspora", link: "/" },
-        { title: "For Japa Hopefuls", link: "/" },
+        { title: "For Agents", link: path.forAgents },
+        { title: "For Nigerians in Diaspora", link: path.forDiaspora },
+        { title: "For Japa Hopefuls", link: path.forHopefuls },
         { title: "Join the community", link: "/" },
       ],
     },
     {
       heading: "LEGAL",
       links: [
-        { title: "Privacy Policy", link: "/" },
-        { title: "Terms of Service", link: "/" },
-        { title: "Scam Policy", link: "/" },
+        { title: "Privacy Policy", link: path.privacyPolicy },
+        { title: "Terms of Service", link: path.termsOfService },
+        { title: "Scam Policy", link: path.acceptableUse },
       ],
     },
     {
       heading: "SUPPORT",
       links: [
         { title: "Help Center", link: "/" },
-        { title: "Video Guides", link: "/" },
+        { title: "Video Guides", link: path.videos },
         { title: "FAQ", link: "/" },
       ],
     },
