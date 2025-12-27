@@ -52,7 +52,7 @@ const Testimonial = () => {
         <Wrapper>
           <div className="flex w-full lg:max-h-[232px] justify-center items-center gap-2.5 px-0 py-[76px]">
             <p className="flex-[1_0_0] text-black text-center font-montserrat text-display-small lg:text-display-large font-bold ">
-              Users rated how likely they'd share NaijaSpora with their network.
+              Users rated how likely they&apos;d share NaijaSpora with their network.
             </p>
           </div>
         </Wrapper>
