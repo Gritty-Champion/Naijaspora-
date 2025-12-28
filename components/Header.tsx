@@ -36,7 +36,7 @@ const Header = ({ isHeroInView }: HeaderProps) => {
     {
       title: "Learn",
       content: [
-        { name: "Help center", link: "#" },
+        { name: "Help center", link: "/#faq" },
         { name: "Blog", link: path.blog },
         { name: "Videos", link: path.videos },
       ],
@@ -80,22 +80,24 @@ const Header = ({ isHeroInView }: HeaderProps) => {
           <div className="hidden lg:flex items-center gap-[24px]">
             {isAuthenticated ? (
               <>
-                <div className="flex items-center gap-2">
-                  <RiUserLine
-                    className={cn("w-5 h-5", {
-                      "text-primary-on_primary": isScrolled || isHeroInView,
-                      "text-black": !isHeroInView,
-                    })}
-                  />
-                  <span
-                    className={cn("text-sm font-medium", {
-                      "text-primary-on_primary": isScrolled || isHeroInView,
-                      "text-black": !isHeroInView,
-                    })}
-                  >
-                    {user.profile.first_name}
-                  </span>
-                </div>
+                <Link href={path.dashboard}>
+                  <div className="flex items-center gap-2 cursor-pointer">
+                    <RiUserLine
+                      className={cn("w-5 h-5", {
+                        "text-primary-on_primary": isScrolled || isHeroInView,
+                        "text-black": !isHeroInView,
+                      })}
+                    />
+                    <span
+                      className={cn("text-sm font-medium", {
+                        "text-primary-on_primary": isScrolled || isHeroInView,
+                        "text-black": !isHeroInView,
+                      })}
+                    >
+                      {user.profile.first_name}
+                    </span>
+                  </div>
+                </Link>
                 <Button
                   variant={router.pathname === "/" ? (isScrolled ? "primary" : "blur") : "primary"}
                   onClick={logout}
@@ -217,12 +219,14 @@ const Header = ({ isHeroInView }: HeaderProps) => {
             <div className="w-full flex flex-col gap-3 px-2">
               {isAuthenticated ? (
                 <>
-                  <div className="flex items-center gap-2 py-2">
-                    <RiUserLine className="w-5 h-5 text-black" />
-                    <span className="text-sm font-medium text-black">
-                      {user.profile.first_name}
-                    </span>
-                  </div>
+                  <Link href={path.dashboard}>
+                    <div className="flex items-center gap-2 py-2 cursor-pointer">
+                      <RiUserLine className="w-5 h-5 text-black" />
+                      <span className="text-sm font-medium text-black">
+                        {user.profile.first_name}
+                      </span>
+                    </div>
+                  </Link>
                   <Button
                     variant="primary"
                     onClick={() => {

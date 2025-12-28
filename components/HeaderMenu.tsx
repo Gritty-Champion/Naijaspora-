@@ -62,7 +62,7 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
           },
           {
             title: "Join the community",
-            link: "",
+            link: "#",
           },
         ],
       },
@@ -74,7 +74,7 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
         {
           label: "Help Center",
           icon: MenuHelp,
-          link: "#",
+          link: "/#faq",
           desc: "Quick answers for your relocation journey",
         },
         {
@@ -166,7 +166,7 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
                   ))}
 
                   {menu.label === "Services" && (
-                    <Link href={path.activeServices}>
+                    <Link href={path.services}>
                     <Button variant="text">View all</Button>
                     </Link>
                   )}

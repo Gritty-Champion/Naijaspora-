@@ -11,10 +11,24 @@ import Testimonial from "@/components/Landing/Testimonial";
 import { faqData } from "@/libs/constants";
 import HeroBG from "@/img/defaultHeroBG.svg?url";
 import {useController} from "@/hooks/useController";
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/router";
+import { path } from "@/routes";
 
 
 export default function Home() {
   const { isHeroInView } = useController();
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  const handleHeroButtonClick = () => {
+    if (isAuthenticated) {
+      router.push(path.activeServices);
+    } else {
+      router.push(path.signup);
+    }
+  };
+
   return (
     <>
       {/* <Head>
@@ -41,6 +55,7 @@ export default function Home() {
             }
             desc="Expert travel planning tailored to your dreams. Let us handle the details while you explore the world effortlessly."
             heroImage={HeroBG}
+            heroBtnClick={handleHeroButtonClick}
           />
           <Features />
           <KeyPoints />

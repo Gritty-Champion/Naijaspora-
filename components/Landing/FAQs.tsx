@@ -13,6 +13,7 @@ const FAQs = ({
 }) => {
   return (
     <motion.section
+      id="faq"
       className="w-full h-full"
       variants={fadeIn("right", 0.2)}
       initial="hidden"
