@@ -42,7 +42,7 @@ const PricingFeatures: PricingFeaturesType = {
       price: 10,
       features: {
         title: "Quick trust check for one agent.",
-        data: ["1 Agent Lookup", "Response Time: 48 hrs"],
+        data: ["1 agent Lookup", "Response time 48-72 hours"],
       },
     },
     {
@@ -51,7 +51,7 @@ const PricingFeatures: PricingFeaturesType = {
       price: 25,
       features: {
         title: "Detailed check with insights.",
-        data: ["1 Agent Full Profile Check", "Track Record & Social Audit"],
+        data: ["1 agent full profile check", "Track record & full audit", "Recommended agents directory"],
       },
     },
     {
@@ -61,9 +61,10 @@ const PricingFeatures: PricingFeaturesType = {
       features: {
         title: "For high-stakes visa journeys.",
         data: [
-          "Up to 3 Agents Verified",
-          "Live Call Confirmation",
-          "Verified Badge Recommendation",
+          "Up to three agents verified",
+          "Live call Confirmation",
+          "24 hours response time",
+          "Access full directory of verified agents",
         ],
       },
     },
@@ -203,7 +204,7 @@ const PricingFeatures: PricingFeaturesType = {
       price: 10,
       features: {
         title: "visa & relocation advice",
-        data: ["Book a 15-minute expert call"],
+        data: ["Book a 1 hour expert consultation"],
       },
     },
     {
@@ -212,7 +213,7 @@ const PricingFeatures: PricingFeaturesType = {
       price: 40,
       features: {
         title: "Full support for reapplication success",
-        data: ["Country-specific visa guidance"],
+        data: ["Five personalized in depth 1-hour expert consultation sessions", "Country specific visa guidance"],
       },
     },
   ],

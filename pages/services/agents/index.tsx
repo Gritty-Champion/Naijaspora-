@@ -37,7 +37,7 @@ const AgentsPage = () => {
     {
       icon: ToolTwo,
       title: "Scam Alert + Report a Scammer",
-      desc: "Stay informed and report fraudsters to keep our community safe.",
+      desc: "Stay informed and report fraudsters to keep our community safe. FOR FREE",
       cta_text: "Explore",
       cta_action: () => router.push(path.report),
     },
@@ -63,7 +63,7 @@ const AgentsPage = () => {
           contentImage={HeroImg}
           title={<>Connect Only with Trusted Travel Agents</>}
           desc="NaijaSpora helps you avoid scammers by connecting you with licensed, pre-verified travel agents — ensuring your relocation journey starts with confidence and safety."
-          heroBtnText="Get Started"
+          heroBtnText="Search Directory"
           heroBtnClick={handleGetStarted}
           vidComText="Learn More"
           textStyles="text-surface-on"
@@ -79,6 +79,8 @@ const AgentsPage = () => {
           heading={"Visa Interview Prep Pricing"}
           description={"Flexible plans for every visa journey."}
           data={PricingFeatures[Category.Agent]}
+          buttonText="Get Started"
+          onButtonClick={handleGetStarted}
         />
 
         <HowItWorks
@@ -87,11 +89,12 @@ const AgentsPage = () => {
             "Four simple steps to verify any travel agent before you commit."
           }
           data={[
-            "Share agent name, number, and business details for verification.",
-            "We run database and reputation checks across multiple platforms.",
-            "Our team contacts the agent directly to verify their identity.",
+            "Our representative contacts you through your preferred method requesting for information about the agent(s)",
+            "Using our proprietary software, we run database and reputation checks across multiple platforms",
+            "If required, Our team contacts the agent directly for extra verification purpose",
             "Receive a full report with trust status and recommendations",
           ]}
+          onLearnMoreClick={() => router.push("/#faq")}
         />
 
         <MoreServices
@@ -102,7 +105,7 @@ const AgentsPage = () => {
         <CTA
           description="Join Thousands Using NaijaSpora Agent Connect"
           cta_text="Learn more"
-          cta_action={() => {}}
+          cta_action={() => router.push(path.forAgents)}
           image={CTAImg}
         />
       </main>

@@ -37,7 +37,7 @@ const VerifyDocumentsPage = () => {
     {
       icon: ToolTwo,
       title: "Scam Alert + Report a Scammer",
-      desc: "Stay informed and report fraudsters to keep our community safe.",
+      desc: "Stay informed and report fraudsters to keep our community safe. FOR FREE",
       cta_text: "Explore",
       cta_action: () => router.push(path.report),
     },
@@ -63,7 +63,7 @@ const VerifyDocumentsPage = () => {
           contentImage={HeroImg}
           title={<>Submit Confidently. Travel Securely</>}
           desc="NaijaSpora's Document Verification service helps you avoid unnecessary rejections by ensuring every academic, financial, and identity document you submit meets the exact requirements of your visa application"
-          heroBtnText="Get Started"
+          heroBtnText="Verify Documents"
           heroBtnClick={handleGetStarted}
           vidComText="Learn More"
           textStyles="text-surface-on"
@@ -81,6 +81,8 @@ const VerifyDocumentsPage = () => {
             "Choose the right plan to connect with safe, verified travel agents."
           }
           data={PricingFeatures[Category.Verify]}
+          buttonText="Get Started"
+          onButtonClick={handleGetStarted}
         />
 
         <HowItWorks
@@ -94,6 +96,7 @@ const VerifyDocumentsPage = () => {
             "Receive detailed notes and correction tips within 24 hours.",
             "Access a compliance-checked version, ready for embassy submission.",
           ]}
+          onLearnMoreClick={() => router.push("/#faq")}
         />
 
         <MoreServices
@@ -102,9 +105,9 @@ const VerifyDocumentsPage = () => {
         />
 
         <CTA
-          description="Trusted by Visa Applicants Across Africa"
-          cta_text="Get Started"
-          cta_action={() => router.push(path.verifyDocuments)}
+          description="Planning to relocate? Get trusted guidance, verified support, and real insights to help you japa safely and confidently."
+          cta_text="Learn More"
+          cta_action={() => router.push(path.forHopefuls)}
           image={CTAImg}
         />
       </main>

@@ -38,22 +38,22 @@ const Index = () => {
       icon: ToolOne,
       title: "Visa Readiness Checklist",
       desc: "Use this printable guide to organize your documents",
-      cta_text: "Explore",
-      cta_action: () => {},
+      cta_text: "Book Consultation",
+      cta_action: () => router.push(path.activeConsultations),
     },
     {
       icon: ToolTwo,
       title: "Student Visa Planning Guide",
       desc: "Breakdown of study routes, school selection, and funding strategies",
-      cta_text: "Explore",
-      cta_action: () => {},
+      cta_text: "Book Consultation",
+      cta_action: () => router.push(path.activeConsultations),
     },
     {
       icon: ToolThree,
       title: "1-on-1 Consultations",
       desc: "Chat with an expert for deep-dive review and advice.",
-      cta_text: "Explore",
-      cta_action: () => router.push(path.consultations),
+      cta_text: "Book Consultation",
+      cta_action: () => router.push(path.activeConsultations),
     },
   ];
   return (
@@ -69,7 +69,7 @@ const Index = () => {
           heroImage={HeroImg}
           title={<>Consultation Services</>}
           desc="Talk to a migration expert anytime for personalized advice, visa guidance, and relocation strategies tailored to your journey."
-          heroBtnText="Get Started"
+          heroBtnText="Book Now"
           heroBtnClick={handleGetStarted}
           vidComText="Learn More"
           textStyles="text-primary-on_primary"
@@ -97,6 +97,8 @@ const Index = () => {
             "Get personalized guidance and expert answers for your relocation journey"
           }
           data={PricingFeatures[Category.Consultation]}
+          buttonText="Book Now"
+          onButtonClick={handleGetStarted}
         />
 
         <HowItWorks
@@ -108,6 +110,7 @@ const Index = () => {
             "Connect with a verified expert via video or audio call.",
             "Receive expert guidance and next steps tailored for you.",
           ]}
+          onLearnMoreClick={() => router.push("/#faq")}
         />
 
         <MoreServices
@@ -119,7 +122,7 @@ const Index = () => {
         <CTA
           description="Take control of your Journey"
           cta_text="Learn more"
-          cta_action={() => router.push(path.consultations)}
+          cta_action={() => router.push(path.forHopefuls)}
           image={CTAImg}
           addText="Get answers, strategies, and support from trusted experts"
         />

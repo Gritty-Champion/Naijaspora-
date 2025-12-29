@@ -29,21 +29,21 @@ const InterviewPrepsPage = () => {
       icon: AlertIcon,
       title: "Agent Verification Services",
       desc: "Find and connect with verified, trusted travel agents — no more scams.",
-      cta_text: "Explore",
+      cta_text: "Continue",
       cta_action: () => router.push(path.agents),
     },
     {
       icon: SupportIcon,
       title: "Post-Visa Denial Support",
-      desc: "Get smart insights and next steps from our AI chatbot after a visa denial.",
-      cta_text: "Explore",
+      desc: "Denied doesn't mean done. We help you understand why—and what to do next.",
+      cta_text: "Continue",
       cta_action: () => router.push(path.denial),
     },
     {
       icon: VerifyIcon,
       title: "Document Verification",
       desc: "Ensure your documents are accurate and compliant before submission.",
-      cta_text: "Explore",
+      cta_text: "Continue",
       cta_action: () => router.push(path.verifyDocuments),
     },
   ];
@@ -77,6 +77,8 @@ const InterviewPrepsPage = () => {
           heading={"Visa Interview Prep Pricing"}
           description={"Flexible plans for every visa journey."}
           data={PricingFeatures[Category.InterviewPreps]}
+          buttonText="Get Started"
+          onButtonClick={handleBookNow}
         />
 
         <HowItWorks
@@ -88,6 +90,7 @@ const InterviewPrepsPage = () => {
             "Practice real embassy questions, get coached on tone, posture and answer structure",
             "Receive honest feedback, correction tips, and a checklist to finalize your documents",
           ]}
+          onLearnMoreClick={() => router.push("/#faq")}
         />
 
         <MoreServices
@@ -96,9 +99,9 @@ const InterviewPrepsPage = () => {
         />
 
         <CTA
-          description="Join the NaijaSpora community of successful visa applicants"
-          cta_text="Learn more"
-          cta_action={() => {}}
+          description="Join the Naijaspora community: A trusted space for Nigerians at home and abroad."
+          cta_text="Join now"
+          cta_action={() => router.push(path.community)}
           image={CTAImg}
         />
 
