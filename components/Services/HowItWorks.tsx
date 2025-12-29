@@ -11,10 +11,12 @@ const HowItWorks = ({
   heading,
   description,
   data,
+  onLearnMoreClick,
 }: {
   heading: string;
   description: string;
   data: string[];
+  onLearnMoreClick?: () => void;
 }) => {
   const icons = [icon_1, icon_2, icon_3, icon_4];
   const steps = data.map((item, idx) => ({
@@ -55,7 +57,7 @@ const HowItWorks = ({
             ))}
           </div>
 
-          <Button>Learn More</Button>
+          <Button onClick={onLearnMoreClick}>Learn More</Button>
         </div>
       </Wrapper>
     </section>

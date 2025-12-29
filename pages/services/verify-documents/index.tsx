@@ -16,29 +16,37 @@ import ToolThree from "@/img/verify/toolThree.svg";
 import Pricings from "@/components/Services/Pricings";
 import PricingFeatures, { Category } from "@/libs/pricingFeatures";
 import HowItWorks from "@/components/Services/HowItWorks";
+import { useRouter } from "next/router";
+import { path } from "@/routes";
 
-const index = () => {
+const VerifyDocumentsPage = () => {
+  const router = useRouter();
+
+  const handleGetStarted = () => {
+    router.push(path.activeVerifyDocuments);
+  };
+
   const moreToolsData: MoreServicesInterface[] = [
     {
       icon: ToolOne,
       title: "Consultation Services",
       desc: "Talk to a migration expert anytime for personalized advice and solutions.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.consultations),
     },
     {
       icon: ToolTwo,
       title: "Scam Alert + Report a Scammer",
       desc: "Stay informed and report fraudsters to keep our community safe.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.report),
     },
     {
       icon: ToolThree,
       title: "Post Relocation Support",
       desc: "Stay connected with ongoing support, legal aid, and local diaspora networks.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.postRelocation),
     },
   ];
   return (
@@ -54,8 +62,9 @@ const index = () => {
           heroImage={undefined}
           contentImage={HeroImg}
           title={<>Submit Confidently. Travel Securely</>}
-          desc="NaijaSpora’s Document Verification service helps you avoid unnecessary rejections by ensuring every academic, financial, and identity document you submit meets the exact requirements of your visa application"
+          desc="NaijaSpora's Document Verification service helps you avoid unnecessary rejections by ensuring every academic, financial, and identity document you submit meets the exact requirements of your visa application"
           heroBtnText="Get Started"
+          heroBtnClick={handleGetStarted}
           vidComText="Learn More"
           textStyles="text-surface-on"
           vidComClasses="text-surface-on"
@@ -95,7 +104,7 @@ const index = () => {
         <CTA
           description="Trusted by Visa Applicants Across Africa"
           cta_text="Get Started"
-          cta_action={() => {}}
+          cta_action={() => router.push(path.verifyDocuments)}
           image={CTAImg}
         />
       </main>
@@ -104,4 +113,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default VerifyDocumentsPage;

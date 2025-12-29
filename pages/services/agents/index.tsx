@@ -16,29 +16,37 @@ import ToolThree from "@/img/funding/moretool_2.svg";
 import Pricings from "@/components/Services/Pricings";
 import PricingFeatures, { Category } from "@/libs/pricingFeatures";
 import HowItWorks from "@/components/Services/HowItWorks";
+import { useRouter } from "next/router";
+import { path } from "@/routes";
 
-const index = () => {
+const AgentsPage = () => {
+  const router = useRouter();
+
+  const handleGetStarted = () => {
+    router.push(path.activeAgents);
+  };
+
   const moreToolsData: MoreServicesInterface[] = [
     {
       icon: ToolOne,
       title: "Zero Collateral Loans",
       desc: "Get access to educational loans without collateral to fund your studies abroad.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.funding),
     },
     {
       icon: ToolTwo,
       title: "Scam Alert + Report a Scammer",
       desc: "Stay informed and report fraudsters to keep our community safe.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.report),
     },
     {
       icon: ToolThree,
       title: "Diaspora Project Management",
       desc: "Let us manage your property or business projects back home — stress-free.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.projectManagement),
     },
   ];
   return (
@@ -56,6 +64,7 @@ const index = () => {
           title={<>Connect Only with Trusted Travel Agents</>}
           desc="NaijaSpora helps you avoid scammers by connecting you with licensed, pre-verified travel agents — ensuring your relocation journey starts with confidence and safety."
           heroBtnText="Get Started"
+          heroBtnClick={handleGetStarted}
           vidComText="Learn More"
           textStyles="text-surface-on"
           vidComClasses="text-surface-on"
@@ -102,4 +111,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default AgentsPage;

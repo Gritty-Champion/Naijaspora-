@@ -73,7 +73,7 @@ const Footer = () => {
         { title: "For Agents", link: path.forAgents },
         { title: "For Nigerians in Diaspora", link: path.forDiaspora },
         { title: "For Japa Hopefuls", link: path.forHopefuls },
-        { title: "Join the community", link: "#" },
+        { title: "Join the community", link: path.community },
       ],
     },
     {

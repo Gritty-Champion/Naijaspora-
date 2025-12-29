@@ -62,7 +62,7 @@ const HeaderMenu = ({ isScrolled, isHeroInView }: HeaderMenuProps) => {
           },
           {
             title: "Join the community",
-            link: "#",
+            link: path.community,
           },
         ],
       },

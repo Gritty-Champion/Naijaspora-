@@ -148,7 +148,7 @@ const PricingFeatures: PricingFeaturesType = {
       image: agents_1,
       price: 10,
       features: {
-        title: "Quick trust check for one agent.",
+        title: "Get clear guidance on no-collateral loan options and how to apply. The Basic Plan helps you understand requirements, avoid mistakes, and move forward with confidence",
         data: ["Loan Amount: ₦200,000 – ₦3,000,000"],
       },
     },
@@ -157,7 +157,7 @@ const PricingFeatures: PricingFeaturesType = {
       image: agents_3,
       price: 40,
       features: {
-        title: "For high-stakes visa journeys.",
+        title: "Get full support with your no-collateral loan application. Our Advanced Service reviews your profile, refines your documents, and guides you strategically to boost approval confidence.",
         data: ["Loan Amount: ₦300,000 – ₦5,000,000"],
       },
     },

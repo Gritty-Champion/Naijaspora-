@@ -20,32 +20,40 @@ import ToolTwo from "@/img/denial/more_tools_two.svg";
 import ToolThree from "@/img/denial/more_tools_three.svg";
 import featuresImage from "@/img/consult/featureImage.svg?url";
 import howToImage from "@/img/consult/howToImage.svg?url";
+import { useRouter } from "next/router";
+import { path } from "@/routes";
 
 
 
 const Index = () => {
+  const router = useRouter();
   const { isHeroInView } = useController();
+
+  const handleGetStarted = () => {
+    router.push(path.activeConsultations);
+  };
+
   const moreToolsData: MoreServicesInterface[] = [
     {
       icon: ToolOne,
       title: "Visa Readiness Checklist",
       desc: "Use this printable guide to organize your documents",
-      cta_text: "Download",
+      cta_text: "Explore",
       cta_action: () => {},
     },
     {
       icon: ToolTwo,
       title: "Student Visa Planning Guide",
       desc: "Breakdown of study routes, school selection, and funding strategies",
-      cta_text: "Get the guide",
+      cta_text: "Explore",
       cta_action: () => {},
     },
     {
       icon: ToolThree,
       title: "1-on-1 Consultations",
       desc: "Chat with an expert for deep-dive review and advice.",
-      cta_text: "Talk to Us",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.consultations),
     },
   ];
   return (
@@ -62,6 +70,7 @@ const Index = () => {
           title={<>Consultation Services</>}
           desc="Talk to a migration expert anytime for personalized advice, visa guidance, and relocation strategies tailored to your journey."
           heroBtnText="Get Started"
+          heroBtnClick={handleGetStarted}
           vidComText="Learn More"
           textStyles="text-primary-on_primary"
           vidComClasses="text-primary-on_primary"
@@ -110,7 +119,7 @@ const Index = () => {
         <CTA
           description="Take control of your Journey"
           cta_text="Learn more"
-          cta_action={() => {}}
+          cta_action={() => router.push(path.consultations)}
           image={CTAImg}
           addText="Get answers, strategies, and support from trusted experts"
         />

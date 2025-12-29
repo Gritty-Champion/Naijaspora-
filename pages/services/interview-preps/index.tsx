@@ -14,29 +14,37 @@ import VerifyIcon from "@/img/verify.svg"
 import Pricings from "@/components/Services/Pricings";
 import PricingFeatures, { Category } from "@/libs/pricingFeatures";
 import HowItWorks from "@/components/Services/HowItWorks";
+import { useRouter } from "next/router";
+import { path } from "@/routes";
 
-const index = () => {
+const InterviewPrepsPage = () => {
+  const router = useRouter();
+
+  const handleBookNow = () => {
+    router.push(path.activeInterviewPreps);
+  };
+
   const moreToolsData: MoreServicesInterface[] = [
     {
       icon: AlertIcon,
       title: "Agent Verification Services",
       desc: "Find and connect with verified, trusted travel agents — no more scams.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.agents),
     },
     {
       icon: SupportIcon,
       title: "Post-Visa Denial Support",
       desc: "Get smart insights and next steps from our AI chatbot after a visa denial.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.denial),
     },
     {
       icon: VerifyIcon,
       title: "Document Verification",
       desc: "Ensure your documents are accurate and compliant before submission.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.verifyDocuments),
     },
   ];
   return (
@@ -54,6 +62,7 @@ const index = () => {
           title={<>Be Visa Interview Ready with NaijaSpora</>}
           desc="Get expert-led coaching and interview prep that helps you walk into your visa appointment with confidence."
           heroBtnText="Book a consultation now"
+          heroBtnClick={handleBookNow}
           vidComText="Learn More"
           textStyles="text-surface-on"
           vidComClasses="text-surface-on"
@@ -104,4 +113,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default InterviewPrepsPage;

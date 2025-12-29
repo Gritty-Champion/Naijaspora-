@@ -9,10 +9,14 @@ const Pricings = ({
   heading,
   description,
   data,
+  buttonText = "Get Started",
+  onButtonClick,
 }: {
   heading: string;
   description: string;
   data: PricingFeatureItem[];
+  buttonText?: string;
+  onButtonClick?: () => void;
 }) => {
   return (
     <section className="w-full h-fit bg-neutral-variant-95">
@@ -31,7 +35,7 @@ const Pricings = ({
             {data.map((Item, idx) => (
               <div
                 key={idx}
-                className="flex w-full lg:max-w-[324px] h-[761px] flex-col items-center gap-[5px] bg-white rounded-[10px]"
+                className="flex w-full lg:max-w-[380px] h-[761px] flex-col items-center gap-[5px] bg-white rounded-[10px]"
               >
                 <div
                   className={cn(
@@ -52,44 +56,48 @@ const Pricings = ({
                   <Item.image />
                 </div>
 
-                <div className="flex h-[394px] flex-col justify-between items-center shrink-0 self-stretch px-2.5 py-10">
-                  {Item.features.title && (
-                    <p className="self-stretch text-black text-center text-title-large font-normal">
-                      {Item.features.title}
-                    </p>
-                  )}
+                <div className="flex h-[394px] flex-col items-center shrink-0 self-stretch px-2.5 py-10">
+                  <div className="flex flex-col flex-1 gap-6 w-full">
+                    {Item.features.title && (
+                      <p className="self-stretch text-black text-center text-title-large font-normal">
+                        {Item.features.title}
+                      </p>
+                    )}
 
-                  <div className="flex flex-col justify-center items-start gap-2.5 self-stretch">
-                    {Item.features.data.map((data, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-center gap-3 self-stretch"
-                      >
-                        <CheckIcon />
-                        <p className="flex-[1_0_0] text-black font-montserrat text-title-large font-regular">
-                          {data}
-                        </p>
-                      </div>
-                    ))}
+                    <div className="flex flex-col justify-center items-start gap-2.5 self-stretch">
+                      {Item.features.data.map((data, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center gap-3 self-stretch"
+                        >
+                          <CheckIcon />
+                          <p className="flex-[1_0_0] text-black font-montserrat text-title-large font-regular">
+                            {data}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
-                  <div className="w-full lg:w-[272px] h-[1px] shrink-0 bg-black" />
+                  <div className="flex flex-col gap-4 items-center w-full">
+                    <div className="w-full lg:w-[272px] h-[1px] shrink-0 bg-black" />
 
-                  {typeof Item.price === "string" ? (
-                    <p className="font-montserrat text-center text-display-small text-black font-bold">
-                      {Item.price}
-                    </p>
-                  ) : (
-                    <p className="font-montserrat text-display-large text-black font-bold">
-                      ${Item.price}
-                      <span className="text-headline-medium font-medium">
-                        /month
-                      </span>
-                    </p>
-                  )}
+                    {typeof Item.price === "string" ? (
+                      <p className="font-montserrat text-center text-display-small text-black font-bold">
+                        {Item.price}
+                      </p>
+                    ) : (
+                      <p className="font-montserrat text-display-large text-black font-bold">
+                        ${Item.price}
+                        <span className="text-headline-medium font-medium">
+                          /month
+                        </span>
+                      </p>
+                    )}
+                  </div>
                 </div>
 
-                <Button>Get Started</Button>
+                <Button onClick={onButtonClick}>{buttonText}</Button>
               </div>
             ))}
           </div>

@@ -16,29 +16,37 @@ import ToolThree from "@/img/verify/toolThree.svg";
 import Pricings from "@/components/Services/Pricings";
 import PricingFeatures, { Category } from "@/libs/pricingFeatures";
 import HowItWorks from "@/components/Services/HowItWorks";
+import { useRouter } from "next/router";
+import { path } from "@/routes";
 
-const index = () => {
+const ReportPage = () => {
+  const router = useRouter();
+
+  const handleGetStarted = () => {
+    router.push(path.activeReport);
+  };
+
   const moreToolsData: MoreServicesInterface[] = [
     {
       icon: ToolOne,
       title: "Consultation Services",
       desc: "Talk to a migration expert anytime for personalized advice and solutions.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.consultations),
     },
     {
       icon: ToolTwo,
       title: "Scam Alert + Report a Scammer",
       desc: "Stay informed and report fraudsters to keep our community safe.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.report),
     },
     {
       icon: ToolThree,
       title: "Post Relocation Support",
       desc: "Stay connected with ongoing support, legal aid, and local diaspora networks.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.postRelocation),
     },
   ];
   return (
@@ -56,6 +64,7 @@ const index = () => {
           title={<>Scam Alert & Scammer Reporting</>}
           desc="NaijaSpora's Scam Alert system empowers you to detect fraud early, stay ahead of scams, and report suspicious agents or activities — so you and thousands of others can travel safely."
           heroBtnText="Get Started"
+          heroBtnClick={handleGetStarted}
           vidComText="Learn More"
           textStyles="text-surface-on"
           vidComClasses="text-surface-on"
@@ -91,9 +100,9 @@ const index = () => {
         />
 
         <CTA
-          description="Don’t just avoid scams — move smart, move prepared"
+          description="Don't just avoid scams — move smart, move prepared"
           cta_text="Get Started"
-          cta_action={() => {}}
+          cta_action={() => router.push(path.report)}
           image={CTAImg}
         />
       </main>
@@ -102,4 +111,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default ReportPage;

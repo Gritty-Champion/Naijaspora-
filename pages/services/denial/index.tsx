@@ -20,32 +20,40 @@ import ToolTwo from "@/img/denial/more_tools_two.svg";
 import ToolThree from "@/img/denial/more_tools_three.svg";
 import featuresImage from "@/img/denial/featuresImage.svg?url";
 import howToImage from "@/img/denial/howToImg.svg?url";
+import { useRouter } from "next/router";
+import { path } from "@/routes";
 
 
 
 const Index = () => {
+  const router = useRouter();
   const { isHeroInView } = useController();
+
+  const handleGetStarted = () => {
+    router.push(path.activeDenial);
+  };
+
   const moreToolsData: MoreServicesInterface[] = [
     {
       icon: ToolOne,
       title: "Denial Recovery Playbook",
       desc: "A complete guide to reapplying after your visa is denied.",
-      cta_text: "Get the Guide",
+      cta_text: "Explore",
       cta_action: () => {},
     },
     {
       icon: ToolTwo,
       title: "Sample Appeal Letters",
       desc: "Ready-to-edit templates for visa reconsideration or clarification.",
-      cta_text: "View Samples",
+      cta_text: "Explore",
       cta_action: () => {},
     },
     {
       icon: ToolThree,
       title: "1-on-1 Consultations",
       desc: "Chat with an expert for deep-dive review and advice.",
-      cta_text: "Talk to Us",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.consultations),
     },
   ];
   return (
@@ -62,6 +70,7 @@ const Index = () => {
           title={<>Post-Visa Denial Support</>}
           desc="Smart recovery after a rejection—no stress, no confusion"
           heroBtnText="Get Started"
+          heroBtnClick={handleGetStarted}
           vidComText="Learn More"
           textStyles="text-primary-on_primary"
           vidComClasses="text-primary-on_primary"
@@ -108,9 +117,9 @@ const Index = () => {
         />
 
         <CTA
-          description="Don’t Let Rejection Define You"
+          description="Don't Let Rejection Define You"
           cta_text="Learn more"
-          cta_action={() => {}}
+          cta_action={() => router.push(path.denial)}
           image={CTAImg}
           addText="Bounce back smarter—with help that actually works."
         />

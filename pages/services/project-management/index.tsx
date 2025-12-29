@@ -20,30 +20,38 @@ import ToolTwo from "@/img/denial/more_tools_two.svg";
 import ToolThree from "@/img/denial/more_tools_three.svg";
 import featuresImage from "@/img/project/featureImage.svg?url";
 import howToImage from "@/img/project/howToImage.svg?url";
+import { useRouter } from "next/router";
+import { path } from "@/routes";
 
 const Index = () => {
+  const router = useRouter();
   const { isHeroInView } = useController();
+
+  const handleGetStarted = () => {
+    router.push(path.activeProjectManagement);
+  };
+
   const moreToolsData: MoreServicesInterface[] = [
     {
       icon: ToolOne,
       title: "Investment Handbook",
       desc: "Step-by-step strategies for  business projects",
-      cta_text: "Get the Guide",
+      cta_text: "Explore",
       cta_action: () => {},
     },
     {
       icon: ToolTwo,
       title: "Sample Projects",
       desc: "See example updates—photos, videos —to know what to expect",
-      cta_text: "View Samples",
+      cta_text: "Explore",
       cta_action: () => {},
     },
     {
       icon: ToolThree,
       title: "1-on-1 Project Consultations",
       desc: "Book a session with a project advisor to discuss budgets",
-      cta_text: "Talk to Us",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.consultations),
     },
   ];
   return (
@@ -60,6 +68,7 @@ const Index = () => {
           title={<>Diaspora Project Management</>}
           desc="Put distance to work for you, not against you."
           heroBtnText="Get Started"
+          heroBtnClick={handleGetStarted}
           vidComText="Learn More"
           textStyles="text-primary-on_primary"
           vidComClasses="text-primary-on_primary"
@@ -112,7 +121,7 @@ const Index = () => {
         <CTA
           description="Start Managing your project smarter with NaijaSpora"
           cta_text="Learn more"
-          cta_action={() => {}}
+          cta_action={() => router.push(path.projectManagement)}
           image={CTAImg}
         />
       </main>

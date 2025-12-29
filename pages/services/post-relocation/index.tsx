@@ -22,29 +22,37 @@ import ToolTwo from "@/img/denial/more_tools_two.svg";
 import ToolThree from "@/img/denial/more_tools_three.svg";
 import featuresImage from "@/img/post-relocation/featureImage.svg?url";
 import howToImage from "@/img/consult/howToImage.svg?url";
+import { useRouter } from "next/router";
+import { path } from "@/routes";
 
 const Index = () => {
+  const router = useRouter();
   const { isHeroInView } = useController();
+
+  const handleGetStarted = () => {
+    router.push(path.activePostRelocation);
+  };
+
   const moreToolsData: MoreServicesInterface[] = [
     {
       icon: ToolOne,
       title: "City Starter Guides",
       desc: "Navigate your new environment with hyperlocal info on transportation, safety, etc",
-      cta_text: "Get the Guide",
+      cta_text: "Explore",
       cta_action: () => {},
     },
     {
       icon: ToolTwo,
       title: "Legal Help Directory",
       desc: "Verified lawyers and advisors in your region, ready to assist.",
-      cta_text: "View directory",
+      cta_text: "Explore",
       cta_action: () => {},
     },
     {
       icon: ToolThree,
       title: "Diaspora Communities List",
       desc: "Find and join NaijaSpora-approved diaspora networks in over 15 countries.",
-      cta_text: "Browse Groups",
+      cta_text: "Explore",
       cta_action: () => {},
     },
   ];
@@ -62,6 +70,7 @@ const Index = () => {
           title={<>Post-Relocation Support</>}
           desc="Stay connected, protected, and empowered after your arrival—with legal aid, housing support, local diaspora connections, and ongoing guidance."
           heroBtnText="Get Started"
+          heroBtnClick={handleGetStarted}
           vidComText="Learn More"
           textStyles="text-primary-on_primary"
           vidComClasses="text-primary-on_primary"
@@ -108,9 +117,9 @@ const Index = () => {
         <CTA
           description="Thrive beyond the Visa"
           cta_text="Learn more"
-          cta_action={() => {}}
+          cta_action={() => router.push(path.postRelocation)}
           image={CTAImg}
-          addText="Relocation is more than getting a stamp. It’s about building a life—and we’re right here with you."
+          addText="Relocation is more than getting a stamp. It's about building a life—and we're right here with you."
         />
       </main>
       <Footer />

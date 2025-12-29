@@ -16,29 +16,37 @@ import VerifyIcon from "@/img/verify.svg";
 import Pricings from "@/components/Services/Pricings";
 import PricingFeatures, { Category } from "@/libs/pricingFeatures";
 import HowItWorks from "@/components/Services/HowItWorks";
+import { useRouter } from "next/router";
+import { path } from "@/routes";
 
-const index = () => {
+const FundingPage = () => {
+  const router = useRouter();
+
+  const handleApplyNow = () => {
+    // Redirect to funding questions page
+    router.push(path.activeFunding);
+  };
   const moreToolsData: MoreServicesInterface[] = [
     {
       icon: VisaPrepIcon,
       title: "Visa Interview Prep",
       desc: "Expert coaching and mock sessions to help you confidently ace your visa interview.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.interviewPreps),
     },
     {
       icon: ShieldIcon,
       title: "Agent Verification Services",
       desc: "Find and connect with verified, trusted travel agents — no more scams.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.agents),
     },
     {
       icon: VerifyIcon,
       title: "Document Verification",
       desc: "Ensure your documents are accurate and compliant before submission.",
-      cta_text: "Learn more",
-      cta_action: () => {},
+      cta_text: "Explore",
+      cta_action: () => router.push(path.verifyDocuments),
     },
   ];
   return (
@@ -55,7 +63,8 @@ const index = () => {
           contentImage={HeroImg}
           title={<>Get the Funds You Need—No Collateral</>}
           desc="NaijaSpora connects you with legitimate lenders offering fast, flexible loans designed for students and travelers — with no collateral required and 100% transparency."
-          heroBtnText="Get Started"
+          heroBtnText="Apply Now"
+          heroBtnClick={handleApplyNow}
           vidComText="Learn More"
           textStyles="text-surface-on"
           vidComClasses="text-surface-on"
@@ -72,6 +81,8 @@ const index = () => {
             "Choose a plan that fits your travel and financial timeline."
           }
           data={PricingFeatures[Category.Funding]}
+          buttonText="Apply Now"
+          onButtonClick={handleApplyNow}
         />
 
         <HowItWorks
@@ -85,6 +96,7 @@ const index = () => {
             "Our system assesses your profile and repayment eligibility instantly.",
             "Once approved, funds are sent to your account immediately.",
           ]}
+          onLearnMoreClick={() => router.push("/#faq")}
         />
 
         <MoreServices
@@ -93,9 +105,9 @@ const index = () => {
         />
 
         <CTA
-          description="Join the NaijaSpora community of empowered travelers"
-          cta_text="Learn more"
-          cta_action={() => {}}
+          description="Join Naijaspora—a trusted community of Nigerians at home and abroad achieving visa success together."
+          cta_text="Join now"
+          cta_action={() => router.push(path.community)}
           image={CTAImg}
         />
       </main>
@@ -104,4 +116,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default FundingPage;
